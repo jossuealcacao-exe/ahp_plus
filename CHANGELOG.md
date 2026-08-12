@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.1.0-emancipation.1 — 2026-08-12
 
 - Fetch complete Git history in CI so strict AHP+ ancestry verification has
   sufficient evidence.

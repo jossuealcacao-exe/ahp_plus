@@ -16,7 +16,7 @@ import {
 
 test('CLI reports the prerelease version', () => {
   const result = runAhp(process.cwd(), ['version']);
-  assert.equal(result.stdout.trim(), '1.1.0-emancipation.0');
+  assert.equal(result.stdout.trim(), '1.1.0-emancipation.1');
 });
 
 test('repository resolution works from subdirectories', (context) => {

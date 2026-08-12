@@ -11,9 +11,10 @@ of truth.
 
 ## Status
 
-`1.1.0-emancipation.0` is the first public engineering prerelease. The CLI and
-protocol are distributed under Apache-2.0. GitHub installation is supported;
-the npm registry package has not been published.
+`1.1.0-emancipation.1` is the current public engineering prerelease. It
+supersedes `.0` with verified shallow-clone CI and native Windows support. The
+CLI and protocol are distributed under Apache-2.0. GitHub installation is
+supported; the npm registry package has not been published.
 
 ## Core invariant
 
@@ -63,7 +64,7 @@ node /absolute/path/to/ahp_plus/bin/ahp.mjs init . \
 Install the reviewed GitHub prerelease directly by tag:
 
 ```bash
-npm install --save-dev github:jossuealcacao-exe/ahp_plus#v1.1.0-emancipation.0
+npm install --save-dev github:jossuealcacao-exe/ahp_plus#v1.1.0-emancipation.1
 npx ahp init --owner "Your name" --project your-project
 ```
 
