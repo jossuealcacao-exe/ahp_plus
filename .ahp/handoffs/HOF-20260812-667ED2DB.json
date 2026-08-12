@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.1.0",
+  "id": "HOF-20260812-667ED2DB",
+  "kind": "handoff",
+  "from": "codex",
+  "to": "any-ai-platform",
+  "project_id": "ahp-plus",
+  "objective": "Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto",
+  "git": {
+    "branch": "main",
+    "commit": "798790a68f310a64dce0b12a241f1c8f2b55a114",
+    "tree": "d5678c804b05bfd2b1b6f2c71cb2cd1c5c88e271",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-9ABE54A5.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-AA674A5F.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-EC0A1631.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-ADC41D98.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/sessions/codex-ahp-public-release/CHK-20260812-3CAB5A46.json"
+      }
+    ],
+    "working_tree_digest": "8e6478038b8f2516d701767de3a6c9ad29df7971199b2029d0bc7908dbcb43d1",
+    "project_working_tree": "CLEAN",
+    "project_changed_files": [],
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-9ABE54A5.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-AA674A5F.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-EC0A1631.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-ADC41D98.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/sessions/codex-ahp-public-release/CHK-20260812-3CAB5A46.json"
+      }
+    ],
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0,
+    "remote": "https://github.com/jossuealcacao-exe/ahp_plus.git"
+  },
+  "portability": {
+    "status": "PUSH_REQUIRED",
+    "reason": "AHP+ state has uncommitted changes."
+  },
+  "checkpoint_id": "CHK-20260812-3CAB5A46",
+  "completed": [],
+  "in_progress": [],
+  "pending": [],
+  "decisions": [
+    "DEC-20260812-3F8CD0C9",
+    "DEC-20260812-9D73F687"
+  ],
+  "validations": [
+    "QA-20260812-ADC41D98",
+    "QA-20260812-4B66222D",
+    "QA-20260812-2906F954",
+    "QA-20260812-2FE0E94E",
+    "QA-20260812-46EC6F6A",
+    "QA-20260812-A8BCAAFD",
+    "QA-20260812-F0EAE74C",
+    "QA-20260812-96E2086F",
+    "QA-20260812-07F06C0D",
+    "QA-20260812-F98EE4C0"
+  ],
+  "risks": [],
+  "requirements": [],
+  "relevant_files": [
+    ".ahp/INDEX.md",
+    ".ahp/evidence/EVD-20260812-9ABE54A5.json",
+    ".ahp/evidence/EVD-20260812-AA674A5F.json",
+    ".ahp/evidence/EVD-20260812-EC0A1631.json",
+    ".ahp/records/qa/QA-20260812-ADC41D98.json",
+    ".ahp/sessions/codex-ahp-public-release/CHK-20260812-3CAB5A46.json",
+    ".ahp/state/project.json",
+    ".github/workflows/validate.yml",
+    "README.md",
+    "SPECIFICATION.md",
+    "docs/COMMANDS.md",
+    "docs/MOBILE_AND_REMOTE.md"
+  ],
+  "blockers": [],
+  "assumptions": [],
+  "next_action": "Instalar v1.1.0-emancipation.1 en el primer proyecto consumidor y ejecutar ahp adapter install all --apply",
+  "done_criteria": [
+    "proyecto consumidor inicializado",
+    "adaptadores revisados",
+    "primer handoff real recibido desde otra plataforma"
+  ],
+  "notes": "AHP+ emancipation completada y lista para el primer proyecto consumidor",
+  "created_at": "2026-08-12T23:33:44.682Z",
+  "receiver_preflight": [
+    "Resolve the receiving Git repository root.",
+    "Run ahp verify --strict.",
+    "Compare project_id, branch, commit, tree, and working-tree digest.",
+    "Inspect active locks and portability status.",
+    "Do not pull, switch, merge, or overwrite without user authority."
+  ],
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "e99cb992b26d4a45678e6a7c72f6905942255256b83993ec5b956c5d9441a86c"
+  }
+}

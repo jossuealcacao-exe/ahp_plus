@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.1.0",
+  "id": "CHK-20260812-3CAB5A46",
+  "kind": "checkpoint",
+  "session_id": "codex-ahp-public-release",
+  "project_id": "ahp-plus",
+  "summary": "AHP+ v1.1.0-emancipation.1 publicado, aceptado por CI interplataforma e instalado desde GitHub",
+  "objective": "Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto",
+  "next_action": "Instalar v1.1.0-emancipation.1 en el primer proyecto consumidor y ejecutar ahp adapter install all --apply",
+  "files": [
+    "README.md",
+    "SPECIFICATION.md",
+    "docs/COMMANDS.md",
+    "docs/MOBILE_AND_REMOTE.md",
+    ".github/workflows/validate.yml"
+  ],
+  "validations": [
+    "QA-20260812-ADC41D98"
+  ],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "git": {
+    "branch": "main",
+    "commit": "798790a68f310a64dce0b12a241f1c8f2b55a114",
+    "tree": "d5678c804b05bfd2b1b6f2c71cb2cd1c5c88e271",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-9ABE54A5.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-AA674A5F.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-EC0A1631.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-ADC41D98.json"
+      }
+    ],
+    "working_tree_digest": "11ac10e3d1cbac55167deb693596271b8c3c7431d131934238fab49a537d070b",
+    "project_working_tree": "CLEAN",
+    "project_changed_files": [],
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-9ABE54A5.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-AA674A5F.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-EC0A1631.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-ADC41D98.json"
+      }
+    ],
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-08-12T23:33:44.507Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "4e402363b5fbe3ecf128526f16f7bde4d206cd888ee378db4fc511dbb8f97b25"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260812-ADC41D98",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.1.0-emancipation.1 public acceptance",
+  "description": "The corrected public prerelease, its cross-platform matrix, immutable tag, and consumer installation are verified.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:33:43.913Z",
+  "updated_at": "2026-08-12T23:33:43.913Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260812-9ABE54A5",
+    "EVD-20260812-AA674A5F",
+    "EVD-20260812-EC0A1631"
+  ],
+  "base_commit": "798790a68f310a64dce0b12a241f1c8f2b55a114",
+  "tags": [
+    "public-release",
+    "acceptance",
+    "cross-platform"
+  ]
+}

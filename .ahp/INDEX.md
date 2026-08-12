@@ -1,15 +1,15 @@
 # AHP+ Project Context
 
 - Project: ahp-plus
-- Phase: READY_FOR_QA
+- Phase: COMPLETED
 - Objective: Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto
 - Confidence: VERIFIED
 - Git branch: main
-- Git commit: d5d3b3838daae63edc158d3e39e8917545ff3cfe
+- Git commit: 798790a68f310a64dce0b12a241f1c8f2b55a114
 - Working tree: DIRTY
-- Portability: PUSH_REQUIRED — Branch is ahead of upstream by 1 commit(s).
-- State revision: 6114d9404d7b490d2c431e7a0e084ae642cf358f455de24fb5121c9cbdad9529
-- Next action: Confirmar la matriz GitHub Actions después de normalizar las rutas Git de Windows
+- Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
+- State revision: efe736a8d4573779ee98ab631150b34f9427cc15dba2881b05ec3db089e56d43
+- Next action: Publicar candidato v1.1.0-emancipation.1 y exigir matriz GitHub Actions verde
 
 ## Blockers
 
@@ -17,10 +17,14 @@
 
 ## Latest checkpoint
 
-- CHK-20260812-150D5053: Rutas Git de Windows normalizadas y gate local aprobado
+- CHK-20260812-004DF6A4: v1.1.0-emancipation.1 preparado con matriz interplataforma verde
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260812-ADC41D98: AHP+ 1.1.0-emancipation.1 public acceptance
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-EC0A1631: Emancipation.1 public tag installation
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-AA674A5F: AHP+ Emancipation.1 GitHub prerelease
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-9ABE54A5: Emancipation.1 release matrix
 - [qa/PASS/VERIFIED] QA-20260812-4B66222D: AHP+ 1.1.0-emancipation.1 release candidate gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-06806C27: Emancipation prerelease 1 local gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-F2E895D0: Cross-platform GitHub Actions matrix

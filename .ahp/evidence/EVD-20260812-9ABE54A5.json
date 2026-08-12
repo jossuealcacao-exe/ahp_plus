@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.1.0",
+  "id": "EVD-20260812-9ABE54A5",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "Emancipation.1 release matrix",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:33:43.338Z",
+  "updated_at": "2026-08-12T23:33:43.338Z",
+  "observed_at": "2026-08-12T23:33:43.338Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "github-actions",
+    "model": "GPT-5"
+  },
+  "source_refs": [],
+  "base_commit": "798790a68f310a64dce0b12a241f1c8f2b55a114",
+  "tags": [],
+  "evidence_type": "test",
+  "locator": "https://github.com/jossuealcacao-exe/ahp_plus/actions/runs/31651145415",
+  "result": "PASS: 6/6 jobs; Ubuntu, macOS, Windows; Node.js 20 and 22; tests, conformance, validation",
+  "limitations": "",
+  "artifact_sha256": null,
+  "exit_code": null
+}
