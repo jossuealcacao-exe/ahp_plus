@@ -22,7 +22,7 @@
     "NOTICE"
   ],
   "scripts": {
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --test",
     "validate": "node scripts/validate.mjs",
     "conformance": "node scripts/conformance.mjs",
     "pack:dry-run": "npm pack --dry-run"

@@ -6,6 +6,9 @@
   sufficient evidence.
 - Report a missing base commit in shallow clones as unavailable history rather
   than stale project state.
+- Use shell-independent Node.js test discovery for Windows compatibility.
+- Upgrade the official checkout and setup-node actions to their current major
+  versions.
 
 ## 1.1.0-emancipation.0 — 2026-08-12
 

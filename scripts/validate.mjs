@@ -57,6 +57,7 @@ const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 
 const versionFile = fs.readFileSync(path.join(root, 'VERSION'), 'utf8').trim();
 if (packageJson.version !== CLI_VERSION) errors.push(`package version ${packageJson.version} differs from CLI ${CLI_VERSION}`);
 if (versionFile !== CLI_VERSION) errors.push(`VERSION ${versionFile} differs from CLI ${CLI_VERSION}`);
+if (packageJson.scripts?.test !== 'node --test') errors.push('test script must use shell-independent Node.js test discovery');
 for (const entry of [
   'bin', 'src', 'schemas', 'templates', 'docs', 'SPECIFICATION.md', 'README.md',
   'CHANGELOG.md', 'SECURITY.md', 'VERSION', 'LICENSE', 'NOTICE',
