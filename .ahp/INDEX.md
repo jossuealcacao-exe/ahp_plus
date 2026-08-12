@@ -5,11 +5,11 @@
 - Objective: Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto
 - Confidence: VERIFIED
 - Git branch: main
-- Git commit: 53cc6810abb76e36906697a092f4041e878f607b
+- Git commit: fd668c8211edf09f5c0f2abaa6294d102bef85c0
 - Working tree: DIRTY
 - Portability: PUSH_REQUIRED — Branch is ahead of upstream by 1 commit(s).
-- State revision: 0f34920f3228ca3cad5a26c12173eaae2fce225af8c291db58ebbdfbd4558bba
-- Next action: Publicar el fix de checkout completo y confirmar la matriz GitHub Actions
+- State revision: 478010d4f03a493a8464cfaad88f630e9a0429afb89bd314f65941bc7590e44e
+- Next action: Publicar compatibilidad Windows y confirmar las seis combinaciones de GitHub Actions
 
 ## Blockers
 
@@ -17,10 +17,13 @@
 
 ## Latest checkpoint
 
-- CHK-20260812-63E8E8AF: Causa de CI corregida y regresión local superada
+- CHK-20260812-441EEC73: Compatibilidad Windows corregida y gate local completo aprobado
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260812-2906F954: Windows Git root normalization gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-49107838: Native Git root normalization gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-43499C08: Windows Git path identity diagnosis
 - [qa/PASS/VERIFIED] QA-20260812-2FE0E94E: Windows CI compatibility fix gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-133E4E8A: Shell-independent test discovery gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-88F27795: Windows CI test discovery diagnosis
