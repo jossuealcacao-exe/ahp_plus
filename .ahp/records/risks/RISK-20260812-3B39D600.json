@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.1.0",
+  "id": "RISK-20260812-3B39D600",
+  "kind": "risk",
+  "project_id": "ahp-plus",
+  "title": "Public distribution is not yet authorized",
+  "description": "The package remains private and UNLICENSED until the owner selects the license and authorizes commit, push, tag, and publication.",
+  "status": "CLOSED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:10:50.269Z",
+  "updated_at": "2026-08-12T23:17:39.942Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "LICENSE",
+    "package.json"
+  ],
+  "base_commit": null,
+  "tags": [
+    "release",
+    "license",
+    "authority"
+  ],
+  "closed_at": "2026-08-12T23:17:39.943Z",
+  "closed_by": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "close_base_commit": null,
+  "close_reason": "Owner approved Apache-2.0 and the GitHub publication flow."
+}

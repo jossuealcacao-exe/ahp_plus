@@ -1,0 +1,11 @@
+# AHP+:BEGIN
+!.ahp/
+!.ahp/**
+.ahp/cache/
+.ahp/tmp/
+# AHP+:END
+
+node_modules/
+coverage/
+*.tgz
+.DS_Store

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260812-F98EE4C0",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ emancipation local release gate",
+  "description": "Core semantics, conformance, validation, packaging, local installation, and adapter structure passed.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:10:50.097Z",
+  "updated_at": "2026-08-12T23:10:50.097Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260812-AFA5CA74",
+    "EVD-20260812-049DCED3",
+    "EVD-20260812-3C366E60",
+    "EVD-20260812-53F6D2C7",
+    "EVD-20260812-52A158DF"
+  ],
+  "base_commit": null,
+  "tags": [
+    "release-gate",
+    "prerelease"
+  ]
+}

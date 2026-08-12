@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260812-96E2086F",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ GitHub prerelease gate",
+  "description": "License, tests, conformance, validation, and package contents are ready for the first GitHub prerelease.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:17:39.797Z",
+  "updated_at": "2026-08-12T23:17:39.797Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260812-1678A12F",
+    "EVD-20260812-F1267A9E"
+  ],
+  "base_commit": null,
+  "tags": [
+    "github-release",
+    "apache-2.0"
+  ]
+}

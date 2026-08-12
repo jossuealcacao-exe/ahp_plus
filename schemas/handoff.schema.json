@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ahp-plus:schema:handoff:1.1.0",
+  "title": "AHP+ Handoff",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "kind",
+    "from",
+    "to",
+    "project_id",
+    "objective",
+    "git",
+    "portability",
+    "completed",
+    "in_progress",
+    "pending",
+    "decisions",
+    "validations",
+    "risks",
+    "relevant_files",
+    "next_action",
+    "done_criteria",
+    "created_at",
+    "receiver_preflight",
+    "integrity"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.1.0" },
+    "id": { "type": "string", "pattern": "^HOF-[0-9]{8}-[A-F0-9]{8}$" },
+    "kind": { "const": "handoff" },
+    "from": { "type": "string", "minLength": 1 },
+    "to": { "type": "string", "minLength": 1 },
+    "project_id": { "type": "string", "minLength": 1 },
+    "objective": { "type": "string" },
+    "git": {
+      "type": "object",
+      "required": ["branch", "commit", "tree", "working_tree", "changed_files", "working_tree_digest", "project_working_tree", "project_changed_files", "project_working_tree_digest", "ahp_state_working_tree", "ahp_state_changed_files", "upstream", "ahead", "behind", "remote"]
+    },
+    "portability": {
+      "type": "object",
+      "required": ["status", "reason"],
+      "properties": {
+        "status": { "enum": ["LOCAL_ONLY", "PUSH_REQUIRED", "REMOTE_DIVERGED", "REMOTE_READY"] },
+        "reason": { "type": "string" }
+      }
+    },
+    "completed": { "type": "array", "items": { "type": "string" } },
+    "in_progress": { "type": "array", "items": { "type": "string" } },
+    "pending": { "type": "array", "items": { "type": "string" } },
+    "decisions": { "type": "array", "items": { "type": "string" } },
+    "validations": { "type": "array", "items": { "type": "string" } },
+    "risks": { "type": "array", "items": { "type": "string" } },
+    "requirements": { "type": "array", "items": { "type": "string" } },
+    "relevant_files": { "type": "array", "items": { "type": "string" } },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "next_action": { "type": "string" },
+    "done_criteria": { "type": "array", "items": { "type": "string" } },
+    "created_at": { "type": "string", "format": "date-time" },
+    "receiver_preflight": { "type": "array", "items": { "type": "string" } },
+    "integrity": { "type": "object", "required": ["algorithm", "canonicalization", "digest"] }
+  },
+  "additionalProperties": true
+}

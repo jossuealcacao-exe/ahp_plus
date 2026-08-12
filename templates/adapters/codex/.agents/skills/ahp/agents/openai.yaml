@@ -1,0 +1,4 @@
+interface:
+  display_name: "AHP+ Continuity"
+  short_description: "Verify and hand off Git-backed AI work"
+  default_prompt: "Use $ahp to verify this repository and prepare a portable handoff."

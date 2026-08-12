@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260812-07F06C0D",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.1.0-emancipation.0 final local gate",
+  "description": "Final code, conformance, repository validation, distribution contents, and installed-consumer flow passed.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:12:19.685Z",
+  "updated_at": "2026-08-12T23:12:19.685Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260812-A26DF84E",
+    "EVD-20260812-A6691ED4"
+  ],
+  "base_commit": null,
+  "tags": [
+    "final-local-gate",
+    "prerelease"
+  ]
+}

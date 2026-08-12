@@ -1,0 +1,649 @@
+{
+  "schema_version": "1.1.0",
+  "id": "CHK-20260812-7C0B6163",
+  "kind": "checkpoint",
+  "session_id": "codex-ahp-emancipation",
+  "project_id": "ahp-plus",
+  "summary": "AHP+ independiente terminado; gate local final y paquete instalable verificados",
+  "objective": "Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto",
+  "next_action": "Revisar licencia y nombre; después autorizar commit, remoto GitHub, tag y publicación",
+  "files": [
+    "README.md",
+    "SPECIFICATION.md",
+    "package.json",
+    "src/cli.mjs",
+    "src/git.mjs",
+    "src/handoffs.mjs",
+    "docs/COMMANDS.md",
+    "docs/MIGRATION_PANGEA.md"
+  ],
+  "validations": [
+    "QA-20260812-07F06C0D"
+  ],
+  "blockers": [
+    "Decisión del propietario sobre licencia",
+    "Aprobación explícita para commit, push, tag y publicación"
+  ],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "git": {
+    "branch": "main",
+    "commit": null,
+    "tree": null,
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": "??",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/README.md"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-049DCED3.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-3C366E60.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-52A158DF.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-53F6D2C7.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-A26DF84E.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-A6691ED4.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-AFA5CA74.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/handoffs/HOF-20260812-4B394FE4.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/manifest.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/decisions/DEC-20260812-9D73F687.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-07F06C0D.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-F98EE4C0.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/risks/RISK-20260812-3B39D600.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/sessions/codex-ahp-emancipation/CHK-20260812-BA343373.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".github/workflows/validate.yml"
+      },
+      {
+        "code": "??",
+        "path": ".gitignore"
+      },
+      {
+        "code": "??",
+        "path": "AGENTS.md"
+      },
+      {
+        "code": "??",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": "??",
+        "path": "CLAUDE.md"
+      },
+      {
+        "code": "??",
+        "path": "CONTRIBUTING.md"
+      },
+      {
+        "code": "??",
+        "path": "LICENSE"
+      },
+      {
+        "code": "??",
+        "path": "NOTICE"
+      },
+      {
+        "code": "??",
+        "path": "README.md"
+      },
+      {
+        "code": "??",
+        "path": "SECURITY.md"
+      },
+      {
+        "code": "??",
+        "path": "SPECIFICATION.md"
+      },
+      {
+        "code": "??",
+        "path": "VERSION"
+      },
+      {
+        "code": "??",
+        "path": "bin/ahp.mjs"
+      },
+      {
+        "code": "??",
+        "path": "docs/ARCHITECTURE.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/COMMANDS.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/CONFORMANCE.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/MIGRATION_PANGEA.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/MOBILE_AND_REMOTE.md"
+      },
+      {
+        "code": "??",
+        "path": "package.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/checkpoint.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/handoff.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/lock.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/manifest.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/project-state.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/record.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "scripts/conformance.mjs"
+      },
+      {
+        "code": "??",
+        "path": "scripts/validate.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/adapters.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/args.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/canonical-json.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/checkpoints.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/cli.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/constants.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/context.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/errors.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/fs-utils.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/git.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/handoffs.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/integrity.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/locks.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/migration.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/preflight.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/records.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/root.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/state.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/validation.mjs"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/chatgpt/AHP_MOBILE.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/claude/CLAUDE.fragment.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/codex/.agents/skills/ahp/SKILL.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/codex/.agents/skills/ahp/agents/openai.yaml"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/cursor/ahp.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/generic/AGENTS.fragment.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/generic/AHP_INSTRUCTIONS.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/opencode/ahp.md"
+      },
+      {
+        "code": "??",
+        "path": "tests/conformance.test.mjs"
+      },
+      {
+        "code": "??",
+        "path": "tests/core.test.mjs"
+      },
+      {
+        "code": "??",
+        "path": "tests/helpers.mjs"
+      }
+    ],
+    "working_tree_digest": "f5a821a13ea755cabe6dddf052a1d4b9a1343c63733be3ffeb6791f0f639ec54",
+    "project_working_tree": "DIRTY",
+    "project_changed_files": [
+      {
+        "code": "??",
+        "path": ".github/workflows/validate.yml"
+      },
+      {
+        "code": "??",
+        "path": ".gitignore"
+      },
+      {
+        "code": "??",
+        "path": "AGENTS.md"
+      },
+      {
+        "code": "??",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": "??",
+        "path": "CLAUDE.md"
+      },
+      {
+        "code": "??",
+        "path": "CONTRIBUTING.md"
+      },
+      {
+        "code": "??",
+        "path": "LICENSE"
+      },
+      {
+        "code": "??",
+        "path": "NOTICE"
+      },
+      {
+        "code": "??",
+        "path": "README.md"
+      },
+      {
+        "code": "??",
+        "path": "SECURITY.md"
+      },
+      {
+        "code": "??",
+        "path": "SPECIFICATION.md"
+      },
+      {
+        "code": "??",
+        "path": "VERSION"
+      },
+      {
+        "code": "??",
+        "path": "bin/ahp.mjs"
+      },
+      {
+        "code": "??",
+        "path": "docs/ARCHITECTURE.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/COMMANDS.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/CONFORMANCE.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/MIGRATION_PANGEA.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/MOBILE_AND_REMOTE.md"
+      },
+      {
+        "code": "??",
+        "path": "package.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/checkpoint.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/handoff.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/lock.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/manifest.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/project-state.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "schemas/record.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "scripts/conformance.mjs"
+      },
+      {
+        "code": "??",
+        "path": "scripts/validate.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/adapters.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/args.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/canonical-json.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/checkpoints.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/cli.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/constants.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/context.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/errors.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/fs-utils.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/git.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/handoffs.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/integrity.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/locks.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/migration.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/preflight.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/records.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/root.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/state.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/validation.mjs"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/chatgpt/AHP_MOBILE.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/claude/CLAUDE.fragment.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/codex/.agents/skills/ahp/SKILL.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/codex/.agents/skills/ahp/agents/openai.yaml"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/cursor/ahp.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/generic/AGENTS.fragment.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/generic/AHP_INSTRUCTIONS.md"
+      },
+      {
+        "code": "??",
+        "path": "templates/adapters/opencode/ahp.md"
+      },
+      {
+        "code": "??",
+        "path": "tests/conformance.test.mjs"
+      },
+      {
+        "code": "??",
+        "path": "tests/core.test.mjs"
+      },
+      {
+        "code": "??",
+        "path": "tests/helpers.mjs"
+      }
+    ],
+    "project_working_tree_digest": "703d3a1ec847c6e491ee2a2d6369dcf5bc5adc7772a124fdd35568f11ffbbff3",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": "??",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/README.md"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-049DCED3.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-3C366E60.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-52A158DF.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-53F6D2C7.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-A26DF84E.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-A6691ED4.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-AFA5CA74.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/handoffs/HOF-20260812-4B394FE4.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/manifest.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/decisions/DEC-20260812-9D73F687.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-07F06C0D.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-F98EE4C0.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/risks/RISK-20260812-3B39D600.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/sessions/codex-ahp-emancipation/CHK-20260812-BA343373.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/state/project.json"
+      }
+    ],
+    "upstream": null,
+    "ahead": null,
+    "behind": null
+  },
+  "created_at": "2026-08-12T23:12:20.039Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "6ce1ffef5038afb934e3019dee0fbf646484f81fe4b8334bd6bbcd6ac3a97b5c"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "@jossuealcala/ahp-plus",
+  "version": "1.1.0-emancipation.0",
+  "private": false,
+  "description": "Git-backed governance, continuity, evidence, and handoff protocol for AI agents",
+  "type": "module",
+  "bin": {
+    "ahp": "bin/ahp.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "schemas",
+    "templates",
+    "docs",
+    "SPECIFICATION.md",
+    "README.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "VERSION",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "validate": "node scripts/validate.mjs",
+    "conformance": "node scripts/conformance.mjs",
+    "pack:dry-run": "npm pack --dry-run"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "Apache-2.0",
+  "author": "Jossue Alcalá",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jossuealcacao-exe/ahp_plus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jossuealcacao-exe/ahp_plus/issues"
+  },
+  "homepage": "https://github.com/jossuealcacao-exe/ahp_plus#readme",
+  "keywords": [
+    "ai",
+    "agents",
+    "handoff",
+    "governance",
+    "git",
+    "continuity"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ahp-plus:schema:manifest:1.1.0",
+  "title": "AHP+ Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "protocol",
+    "protocol_version",
+    "instance_id",
+    "project_id",
+    "owner",
+    "root",
+    "created_at",
+    "certainty_levels",
+    "governance"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.1.0" },
+    "protocol": { "const": "AHP+" },
+    "protocol_version": { "type": "string" },
+    "cli_version_created": { "type": "string" },
+    "instance_id": { "type": "string", "minLength": 1 },
+    "project_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$" },
+    "owner": { "type": "string", "minLength": 1 },
+    "root": { "const": ".ahp" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "certainty_levels": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": ["VERIFIED", "USER_CONFIRMED", "INFERRED", "UNVERIFIED", "STALE", "CONFLICTED"]
+      }
+    },
+    "governance": {
+      "type": "object",
+      "required": ["source_of_truth", "state_scope", "network_mutations", "external_actions_require_authority"],
+      "properties": {
+        "source_of_truth": { "const": "git" },
+        "state_scope": { "const": "one-instance-per-git-repository" },
+        "network_mutations": { "const": "never" },
+        "external_actions_require_authority": { "const": true }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
