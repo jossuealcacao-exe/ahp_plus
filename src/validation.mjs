@@ -220,7 +220,9 @@ export function verifyRepository(input = '.', options = {}) {
   const git = gitState(resolved.repoRoot);
   if (project.base_commit && git.commit && project.base_commit !== git.commit) {
     const relation = gitCommitRelation(resolved.repoRoot, project.base_commit, git.commit);
-    if (relation.relation !== 'AHP_ENVELOPE_DESCENDANT') {
+    if (relation.relation === 'BASE_UNAVAILABLE') {
+      warnings.push(`state/project.json: base_commit ${project.base_commit.slice(0, 8)} is unavailable in this Git history; fetch sufficient history to verify ancestry`);
+    } else if (relation.relation !== 'AHP_ENVELOPE_DESCENDANT') {
       warnings.push(`state/project.json: base_commit is stale (${project.base_commit.slice(0, 8)} != ${git.commit.slice(0, 8)})`);
     }
   }

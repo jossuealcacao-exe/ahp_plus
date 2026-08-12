@@ -192,6 +192,9 @@ export function gitState(cwd) {
 export function gitCommitRelation(root, baseCommit, headCommit) {
   if (!baseCommit || !headCommit) return { relation: 'UNKNOWN', changed_files: [] };
   if (baseCommit === headCommit) return { relation: 'EXACT', changed_files: [] };
+  if (runGit(root, ['cat-file', '-e', `${baseCommit}^{commit}`], null) === null) {
+    return { relation: 'BASE_UNAVAILABLE', changed_files: [] };
+  }
   try {
     execFileSync('git', ['merge-base', '--is-ancestor', baseCommit, headCommit], {
       cwd: root,

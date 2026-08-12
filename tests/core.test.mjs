@@ -141,3 +141,21 @@ test('dirty project changes are local-only while AHP-only changes require push',
   const gitState = jsonAhp(repo, ['status']).git;
   assert.ok(gitState.project_changed_files.some((entry) => entry.path === 'README.md' && entry.code === ' M'));
 });
+
+test('a shallow clone reports unavailable ancestry instead of stale state', (context) => {
+  const temporary = temporaryDirectory();
+  context.after(() => removeTemporary(temporary));
+  const source = createGitRepository(path.join(temporary, 'source'));
+  initializeAhp(source, 'shallow-history');
+  commitAll(source, 'test: initialize AHP state');
+  fs.writeFileSync(path.join(source, '.ahp/README.md'), '# AHP+ state\n\nEnvelope update.\n');
+  commitAll(source, 'test: advance AHP envelope');
+
+  const shallow = path.join(temporary, 'shallow');
+  git(temporary, 'clone', '--depth', '1', `file://${source}`, shallow);
+  const verification = jsonAhp(shallow, ['verify']);
+  assert.equal(verification.ok, true);
+  assert.ok(verification.warnings.some((warning) => warning.includes('is unavailable in this Git history')));
+  const strict = runAhp(shallow, ['verify', '--strict'], { expect: 2 });
+  assert.match(strict.stdout, /fetch sufficient history to verify ancestry/);
+});

@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Fetch complete Git history in CI so strict AHP+ ancestry verification has
+  sufficient evidence.
+- Report a missing base commit in shallow clones as unavailable history rather
+  than stale project state.
+
 ## 1.1.0-emancipation.0 — 2026-08-12
 
 - Extract AHP+ into an independent protocol and zero-dependency Node.js CLI.
