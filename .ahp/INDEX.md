@@ -1,15 +1,15 @@
 # AHP+ Project Context
 
 - Project: ahp-plus
-- Phase: VERIFIED
+- Phase: COMPLETED
 - Objective: Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto
 - Confidence: VERIFIED
 - Git branch: main
-- Git commit: 18066cf7abed019ba6596648946d8afef318af49
+- Git commit: b00b25cb06a802c7b347a0effbb9c97134760442
 - Working tree: DIRTY
 - Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
-- State revision: 70dbbaf1dd2cec07168f30ec3a921fd96661ae57f91ba4769e62ea9ed0d8699a
-- Next action: Crear el commit inicial, conectar origin y publicar main
+- State revision: a7cd009bd1ca4ed58aabd3502adedebea1b70d9ba2d85495ad695c2372e05379
+- Next action: Publicar tag v1.1.0-emancipation.0 y crear GitHub prerelease
 
 ## Blockers
 
@@ -17,10 +17,13 @@
 
 ## Latest checkpoint
 
-- CHK-20260812-A0C47009: Licencia Apache-2.0 aprobada y gate de prerelease GitHub superado
+- CHK-20260812-EA07367E: main publicado y consumo remoto por SHA verificado
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260812-A8BCAAFD: AHP+ public GitHub release acceptance
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-BE1BA620: Published tag installation
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-24693F72: GitHub prerelease publication
 - [qa/PASS/VERIFIED] QA-20260812-F0EAE74C: Remote commit installation gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-9AD2052C: GitHub commit installation
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-52909E96: Initial GitHub publication

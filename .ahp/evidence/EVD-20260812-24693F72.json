@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.1.0",
+  "id": "EVD-20260812-24693F72",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "GitHub prerelease publication",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:20:30.818Z",
+  "updated_at": "2026-08-12T23:20:30.818Z",
+  "observed_at": "2026-08-12T23:20:30.818Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [],
+  "base_commit": "b00b25cb06a802c7b347a0effbb9c97134760442",
+  "tags": [],
+  "evidence_type": "url",
+  "locator": "https://github.com/jossuealcacao-exe/ahp_plus/releases/tag/v1.1.0-emancipation.0",
+  "result": "PASS: public, non-draft prerelease published for v1.1.0-emancipation.0",
+  "limitations": "",
+  "artifact_sha256": null,
+  "exit_code": null
+}
