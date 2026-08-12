@@ -5,11 +5,11 @@
 - Objective: Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto
 - Confidence: VERIFIED
 - Git branch: main
-- Git commit: 668b624ca45bb42894acca4d534f4ffb82bc077a
+- Git commit: 53cc6810abb76e36906697a092f4041e878f607b
 - Working tree: DIRTY
 - Portability: PUSH_REQUIRED — Branch is ahead of upstream by 1 commit(s).
-- State revision: 7dc94b12fd9ed05d4a8a72176a155943c107f07463fb23da4d8fe6f107f0d9f6
-- Next action: Instalar AHP+ en el primer proyecto externo y ejecutar ahp adapter install all --apply
+- State revision: 0f34920f3228ca3cad5a26c12173eaae2fce225af8c291db58ebbdfbd4558bba
+- Next action: Publicar el fix de checkout completo y confirmar la matriz GitHub Actions
 
 ## Blockers
 
@@ -17,10 +17,13 @@
 
 ## Latest checkpoint
 
-- CHK-20260812-B14EA877: AHP+ 1.1.0-emancipation.0 publicado y verificado desde su tag GitHub
+- CHK-20260812-63E8E8AF: Causa de CI corregida y regresión local superada
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260812-2FE0E94E: Windows CI compatibility fix gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-133E4E8A: Shell-independent test discovery gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-88F27795: Windows CI test discovery diagnosis
 - [qa/PASS/VERIFIED] QA-20260812-46EC6F6A: Shallow CI verification fix gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-F29ACE58: Shallow-history regression fix
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-7DAFF86E: GitHub Actions shallow-history diagnosis

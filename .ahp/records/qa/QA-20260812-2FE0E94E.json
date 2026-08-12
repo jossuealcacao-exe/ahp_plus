@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260812-2FE0E94E",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "Windows CI compatibility fix gate",
+  "description": "Test discovery is shell-independent and workflow actions use current supported majors.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:25:26.184Z",
+  "updated_at": "2026-08-12T23:25:26.184Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260812-88F27795",
+    "EVD-20260812-133E4E8A"
+  ],
+  "base_commit": "53cc6810abb76e36906697a092f4041e878f607b",
+  "tags": []
+}
