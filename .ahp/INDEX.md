@@ -1,15 +1,15 @@
 # AHP+ Project Context
 
 - Project: ahp-plus
-- Phase: IN_PROGRESS
+- Phase: READY_FOR_QA
 - Objective: Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto
 - Confidence: VERIFIED
 - Git branch: main
-- Git commit: fd668c8211edf09f5c0f2abaa6294d102bef85c0
+- Git commit: d5d3b3838daae63edc158d3e39e8917545ff3cfe
 - Working tree: DIRTY
 - Portability: PUSH_REQUIRED — Branch is ahead of upstream by 1 commit(s).
-- State revision: 478010d4f03a493a8464cfaad88f630e9a0429afb89bd314f65941bc7590e44e
-- Next action: Publicar compatibilidad Windows y confirmar las seis combinaciones de GitHub Actions
+- State revision: 6114d9404d7b490d2c431e7a0e084ae642cf358f455de24fb5121c9cbdad9529
+- Next action: Confirmar la matriz GitHub Actions después de normalizar las rutas Git de Windows
 
 ## Blockers
 
@@ -17,10 +17,13 @@
 
 ## Latest checkpoint
 
-- CHK-20260812-441EEC73: Compatibilidad Windows corregida y gate local completo aprobado
+- CHK-20260812-150D5053: Rutas Git de Windows normalizadas y gate local aprobado
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260812-4B66222D: AHP+ 1.1.0-emancipation.1 release candidate gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-06806C27: Emancipation prerelease 1 local gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-F2E895D0: Cross-platform GitHub Actions matrix
 - [qa/PASS/VERIFIED] QA-20260812-2906F954: Windows Git root normalization gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-49107838: Native Git root normalization gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-43499C08: Windows Git path identity diagnosis

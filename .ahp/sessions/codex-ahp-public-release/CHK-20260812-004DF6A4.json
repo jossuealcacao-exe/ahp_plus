@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.1.0",
+  "id": "CHK-20260812-004DF6A4",
+  "kind": "checkpoint",
+  "session_id": "codex-ahp-public-release",
+  "project_id": "ahp-plus",
+  "summary": "v1.1.0-emancipation.1 preparado con matriz interplataforma verde",
+  "objective": "Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto",
+  "next_action": "Publicar candidato v1.1.0-emancipation.1 y exigir matriz GitHub Actions verde",
+  "files": [
+    "README.md",
+    "CHANGELOG.md",
+    "VERSION",
+    "package.json",
+    "src/constants.mjs",
+    ".github/workflows/validate.yml"
+  ],
+  "validations": [
+    "QA-20260812-4B66222D"
+  ],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "git": {
+    "branch": "main",
+    "commit": "d5d3b3838daae63edc158d3e39e8917545ff3cfe",
+    "tree": "fa70276bada3c15ea8c962fbba6ed1a800628792",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-06806C27.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-F2E895D0.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-4B66222D.json"
+      }
+    ],
+    "working_tree_digest": "adc66d639fb7f25daf8e1b068952f5c9122d9bff78b93a1695d92835ca72dc36",
+    "project_working_tree": "CLEAN",
+    "project_changed_files": [],
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-06806C27.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-F2E895D0.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-4B66222D.json"
+      }
+    ],
+    "upstream": "origin/main",
+    "ahead": 1,
+    "behind": 0
+  },
+  "created_at": "2026-08-12T23:30:24.375Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "16737dc5f36591781b98bf50c2aef3b32ce48fd841ea4f173ba43df287148b95"
+  }
+}

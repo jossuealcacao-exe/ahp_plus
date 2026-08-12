@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260812-4B66222D",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.1.0-emancipation.1 release candidate gate",
+  "description": "The corrected prerelease is backed by a green six-job platform matrix and a complete local package gate.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:30:23.937Z",
+  "updated_at": "2026-08-12T23:30:23.937Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260812-F2E895D0",
+    "EVD-20260812-06806C27"
+  ],
+  "base_commit": "d5d3b3838daae63edc158d3e39e8917545ff3cfe",
+  "tags": []
+}
