@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260812-46EC6F6A",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "Shallow CI verification fix gate",
+  "description": "CI now fetches complete history and shallow clones produce an evidence-specific diagnostic.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:23:13.685Z",
+  "updated_at": "2026-08-12T23:23:13.685Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260812-7DAFF86E",
+    "EVD-20260812-F29ACE58"
+  ],
+  "base_commit": "668b624ca45bb42894acca4d534f4ffb82bc077a",
+  "tags": []
+}

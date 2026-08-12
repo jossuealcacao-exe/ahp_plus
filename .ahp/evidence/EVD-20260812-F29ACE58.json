@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.1.0",
+  "id": "EVD-20260812-F29ACE58",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "Shallow-history regression fix",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:23:13.502Z",
+  "updated_at": "2026-08-12T23:23:13.502Z",
+  "observed_at": "2026-08-12T23:23:13.502Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [],
+  "base_commit": "668b624ca45bb42894acca4d534f4ffb82bc077a",
+  "tags": [],
+  "evidence_type": "test",
+  "locator": "npm test; npm run conformance; npm run validate",
+  "result": "PASS: 11/11 tests, 3/3 conformance, public release gate true",
+  "limitations": "",
+  "artifact_sha256": null,
+  "exit_code": 0
+}
