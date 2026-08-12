@@ -7,6 +7,8 @@
 - Report a missing base commit in shallow clones as unavailable history rather
   than stale project state.
 - Use shell-independent Node.js test discovery for Windows compatibility.
+- Normalize repository roots from Git into native absolute paths, including
+  Windows long-path identity.
 - Upgrade the official checkout and setup-node actions to their current major
   versions.
 

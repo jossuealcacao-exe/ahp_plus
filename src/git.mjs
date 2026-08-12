@@ -29,7 +29,8 @@ function runGitRaw(cwd, args, fallback = null) {
 }
 
 export function gitTopLevel(cwd) {
-  return runGit(cwd, ['rev-parse', '--show-toplevel'], null);
+  const root = runGit(cwd, ['rev-parse', '--show-toplevel'], null);
+  return root ? path.resolve(root) : null;
 }
 
 function parseChangedFiles(status) {

@@ -26,7 +26,7 @@ export function createGitRepository(root, { commit = true } = {}) {
   git(root, 'config', 'user.email', 'ahp-test@example.invalid');
   fs.writeFileSync(path.join(root, 'README.md'), '# Fixture\n');
   if (commit) commitAll(root, 'test: initialize fixture');
-  return fs.realpathSync(root);
+  return path.resolve(git(root, 'rev-parse', '--show-toplevel'));
 }
 
 export function commitAll(root, message) {
