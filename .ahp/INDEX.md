@@ -5,23 +5,25 @@
 - Objective: Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto
 - Confidence: VERIFIED
 - Git branch: main
-- Git commit: n/a
+- Git commit: 18066cf7abed019ba6596648946d8afef318af49
 - Working tree: DIRTY
-- Portability: LOCAL_ONLY — Repository has no committed HEAD.
-- State revision: 456b4ba9281e886f6f6c5cb57c4ad6cf17d9b1a5fd92458494aa715728ac421d
-- Next action: Revisar licencia y nombre; después autorizar commit, remoto GitHub, tag y publicación
+- Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
+- State revision: 70dbbaf1dd2cec07168f30ec3a921fd96661ae57f91ba4769e62ea9ed0d8699a
+- Next action: Crear el commit inicial, conectar origin y publicar main
 
 ## Blockers
 
-- Decisión del propietario sobre licencia
-- Aprobación explícita para commit, push, tag y publicación
+- None.
 
 ## Latest checkpoint
 
-- CHK-20260812-7C0B6163: AHP+ independiente terminado; gate local final y paquete instalable verificados
+- CHK-20260812-A0C47009: Licencia Apache-2.0 aprobada y gate de prerelease GitHub superado
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260812-F0EAE74C: Remote commit installation gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-9AD2052C: GitHub commit installation
+- [evidence/OBSERVED/VERIFIED] EVD-20260812-52909E96: Initial GitHub publication
 - [qa/PASS/VERIFIED] QA-20260812-96E2086F: AHP+ GitHub prerelease gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-F1267A9E: Public release gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-1678A12F: Apache-2.0 license text

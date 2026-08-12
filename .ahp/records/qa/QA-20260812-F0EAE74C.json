@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260812-F0EAE74C",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "Remote commit installation gate",
+  "description": "GitHub main and a fresh consumer installation from the exact commit were verified.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-12T23:19:03.600Z",
+  "updated_at": "2026-08-12T23:19:03.600Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260812-52909E96",
+    "EVD-20260812-9AD2052C"
+  ],
+  "base_commit": "18066cf7abed019ba6596648946d8afef318af49",
+  "tags": []
+}

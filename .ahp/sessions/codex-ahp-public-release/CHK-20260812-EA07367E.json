@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.1.0",
+  "id": "CHK-20260812-EA07367E",
+  "kind": "checkpoint",
+  "session_id": "codex-ahp-public-release",
+  "project_id": "ahp-plus",
+  "summary": "main publicado y consumo remoto por SHA verificado",
+  "objective": "Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto",
+  "next_action": "Publicar tag v1.1.0-emancipation.0 y crear GitHub prerelease",
+  "files": [
+    ".ahp/state/project.json",
+    "README.md",
+    "package.json",
+    "LICENSE"
+  ],
+  "validations": [
+    "QA-20260812-F0EAE74C"
+  ],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "git": {
+    "branch": "main",
+    "commit": "18066cf7abed019ba6596648946d8afef318af49",
+    "tree": "51a2f7405383312feb4c5b2b9a777381558636b0",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-52909E96.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-9AD2052C.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-F0EAE74C.json"
+      }
+    ],
+    "working_tree_digest": "2ab9160841689e430e750cd6ea256c2809525bcab235146a612168b9862dd2e9",
+    "project_working_tree": "CLEAN",
+    "project_changed_files": [],
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-52909E96.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-9AD2052C.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-F0EAE74C.json"
+      }
+    ],
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-08-12T23:19:04.023Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "83a35674a3d2f7a38be4109ee096b912a58638d03f35012b76a59ea6170fa925"
+  }
+}

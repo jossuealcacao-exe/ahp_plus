@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.1.0",
+  "id": "HOF-20260812-879A4F59",
+  "kind": "handoff",
+  "from": "codex",
+  "to": "github-release",
+  "project_id": "ahp-plus",
+  "objective": "Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto",
+  "git": {
+    "branch": "main",
+    "commit": "18066cf7abed019ba6596648946d8afef318af49",
+    "tree": "51a2f7405383312feb4c5b2b9a777381558636b0",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-52909E96.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-9AD2052C.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-F0EAE74C.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/sessions/codex-ahp-public-release/CHK-20260812-EA07367E.json"
+      }
+    ],
+    "working_tree_digest": "8c737dd3517deea490f0304b58106d5b22070ae9d353cadff46fc334c04a4876",
+    "project_working_tree": "CLEAN",
+    "project_changed_files": [],
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-52909E96.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260812-9AD2052C.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260812-F0EAE74C.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/sessions/codex-ahp-public-release/CHK-20260812-EA07367E.json"
+      }
+    ],
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0,
+    "remote": "https://github.com/jossuealcacao-exe/ahp_plus.git"
+  },
+  "portability": {
+    "status": "PUSH_REQUIRED",
+    "reason": "AHP+ state has uncommitted changes."
+  },
+  "checkpoint_id": "CHK-20260812-EA07367E",
+  "completed": [],
+  "in_progress": [],
+  "pending": [],
+  "decisions": [
+    "DEC-20260812-3F8CD0C9",
+    "DEC-20260812-9D73F687"
+  ],
+  "validations": [
+    "QA-20260812-F0EAE74C",
+    "QA-20260812-96E2086F",
+    "QA-20260812-07F06C0D",
+    "QA-20260812-F98EE4C0"
+  ],
+  "risks": [],
+  "requirements": [],
+  "relevant_files": [
+    ".ahp/INDEX.md",
+    ".ahp/evidence/EVD-20260812-52909E96.json",
+    ".ahp/evidence/EVD-20260812-9AD2052C.json",
+    ".ahp/records/qa/QA-20260812-F0EAE74C.json",
+    ".ahp/sessions/codex-ahp-public-release/CHK-20260812-EA07367E.json",
+    ".ahp/state/project.json",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "blockers": [],
+  "assumptions": [],
+  "next_action": "Publicar tag v1.1.0-emancipation.0 y crear GitHub prerelease",
+  "done_criteria": [
+    "tag publicado",
+    "GitHub prerelease disponible",
+    "instalación por tag verificada"
+  ],
+  "notes": "Commit remoto e instalación por SHA verificados; listo para tag y prerelease",
+  "created_at": "2026-08-12T23:19:04.217Z",
+  "receiver_preflight": [
+    "Resolve the receiving Git repository root.",
+    "Run ahp verify --strict.",
+    "Compare project_id, branch, commit, tree, and working-tree digest.",
+    "Inspect active locks and portability status.",
+    "Do not pull, switch, merge, or overwrite without user authority."
+  ],
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "ad92d449e82ed20bd45fef3b68fe44752e2c60df1d9e0b29f872022f60776e89"
+  }
+}
