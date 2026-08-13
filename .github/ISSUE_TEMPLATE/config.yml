@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report / Reporte de seguridad
+    url: https://github.com/jossuealcacao-exe/ahp_plus/security/policy
+    about: Report vulnerabilities privately / Reporta vulnerabilidades de forma privada
+  - name: User documentation / Documentación de usuario
+    url: https://github.com/jossuealcacao-exe/ahp_plus#documentation
+    about: Review installation, commands, and protocol boundaries / Revisa instalación, comandos y límites del protocolo

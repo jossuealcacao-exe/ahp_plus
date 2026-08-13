@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.1.0",
+  "id": "CHK-20260813-548DCDAB",
+  "kind": "checkpoint",
+  "session_id": "codex-github-presentation",
+  "project_id": "ahp-plus",
+  "summary": "Portada profesional bilingüe, identidad visual, plantillas comunitarias, portafolio y metadata pública de AHP+ preparados y validados",
+  "objective": "Presentar AHP+ profesionalmente en GitHub con portada bilingüe, identidad visual y portafolio",
+  "next_action": "Recibir feedback público y opcionalmente subir el banner como social preview desde GitHub Settings",
+  "files": [
+    "README.md",
+    "README.es.md",
+    ".github/assets/ahp-plus-hero.jpg",
+    ".github/ISSUE_TEMPLATE/bug-report.yml",
+    ".github/ISSUE_TEMPLATE/feature-request.yml",
+    ".github/ISSUE_TEMPLATE/config.yml",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    "CHANGELOG.md",
+    "scripts/validate.mjs"
+  ],
+  "validations": [
+    "QA-20260813-1BA18B8F"
+  ],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "git": {
+    "branch": "main",
+    "commit": "c3825e79cc869b84b18dfea426eb44269102c287",
+    "tree": "7db19fb4ed9379542da95098a58455115d66773d",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "scripts/validate.mjs"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-9C0186DF.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-1BA18B8F.json"
+      },
+      {
+        "code": "??",
+        "path": ".github/ISSUE_TEMPLATE/bug-report.yml"
+      },
+      {
+        "code": "??",
+        "path": ".github/ISSUE_TEMPLATE/config.yml"
+      },
+      {
+        "code": "??",
+        "path": ".github/ISSUE_TEMPLATE/feature-request.yml"
+      },
+      {
+        "code": "??",
+        "path": ".github/PULL_REQUEST_TEMPLATE.md"
+      },
+      {
+        "code": "??",
+        "path": ".github/assets/ahp-plus-hero.jpg"
+      },
+      {
+        "code": "??",
+        "path": "README.es.md"
+      }
+    ],
+    "working_tree_digest": "3a945ac727529798719dfc80bee58bc7f6f8302d5b51772d5bbf1d8edce5eaf8",
+    "project_working_tree": "DIRTY",
+    "project_changed_files": [
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "scripts/validate.mjs"
+      },
+      {
+        "code": "??",
+        "path": ".github/ISSUE_TEMPLATE/bug-report.yml"
+      },
+      {
+        "code": "??",
+        "path": ".github/ISSUE_TEMPLATE/config.yml"
+      },
+      {
+        "code": "??",
+        "path": ".github/ISSUE_TEMPLATE/feature-request.yml"
+      },
+      {
+        "code": "??",
+        "path": ".github/PULL_REQUEST_TEMPLATE.md"
+      },
+      {
+        "code": "??",
+        "path": ".github/assets/ahp-plus-hero.jpg"
+      },
+      {
+        "code": "??",
+        "path": "README.es.md"
+      }
+    ],
+    "project_working_tree_digest": "23159851f23434bc29a00acb1d946c3eb4c65b5cbd22229bd7386fc99de99e0b",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-9C0186DF.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-1BA18B8F.json"
+      }
+    ],
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-08-13T01:53:47.304Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "a85a871e2e6fb962790fef21d5cdca1f7283bc75e76d43b78159be1c15277466"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.1.0",
+  "id": "EVD-20260813-9C0186DF",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "Professional bilingual GitHub presentation gate",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T01:52:58.532Z",
+  "updated_at": "2026-08-13T01:52:58.532Z",
+  "observed_at": "2026-08-13T01:52:58.532Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "QA-20260813-BB8BFE05"
+  ],
+  "base_commit": "c3825e79cc869b84b18dfea426eb44269102c287",
+  "tags": [],
+  "evidence_type": "url",
+  "locator": "https://github.com/jossuealcacao-exe/ahp_plus",
+  "result": "PASS: README English and Spanish complete; 1280x640 hero JPEG 160 KB SHA-256 51b5c308342a1fb37c4e8c09d9c37c8bf7d650b5a61704a4807dc47b1576383c; relative links resolve; GitHub issue and PR YAML parses; 11/11 core tests; 3/3 conformance; validation clean; package dry-run 54 files and about 50 KB; strict verify true; repository description, portfolio homepage https://jossuealcala.com, and 15 discovery topics confirmed through GitHub CLI",
+  "limitations": "GitHub social preview upload remains optional because the available browser session is not authenticated and GitHub exposes no supported CLI/API upload; the same optimized asset is ready at .github/assets/ahp-plus-hero.jpg",
+  "artifact_sha256": "51b5c308342a1fb37c4e8c09d9c37c8bf7d650b5a61704a4807dc47b1576383c",
+  "exit_code": 0
+}

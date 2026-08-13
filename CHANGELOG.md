@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Add professional English and Spanish GitHub landing pages, a repository hero
+  image, bilingual contribution templates, and clearer product positioning.
+- Link the public repository to the maintainer portfolio and expand discovery
+  topics for AI governance, developer tooling, Node.js, and npm.
+
 ## 1.1.0 — 2026-08-12
 
 - Promote the independently versioned AHP+ protocol and reference CLI to its

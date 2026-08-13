@@ -1,0 +1,50 @@
+name: Improvement proposal / Propuesta de mejora
+description: Propose a compatible improvement / Propón una mejora compatible
+title: "[Proposal]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Problema
+      description: What user or portability problem should AHP+ solve? / ¿Qué problema de usuario o portabilidad debe resolver AHP+?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal / Propuesta
+      description: Describe the desired behavior without assuming implementation / Describe el comportamiento deseado sin asumir la implementación
+    validations:
+      required: true
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Affected layer / Capa afectada
+      options:
+        - Protocol specification
+        - Reference CLI
+        - Adapter
+        - Documentation
+        - Distribution or release process
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and migration / Compatibilidad y migración
+      description: Explain impacts on existing repositories and adapters / Explica impactos en repositorios y adaptadores existentes
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or example / Evidencia o ejemplo
+      description: Share a sanitized reproducible case when possible / Comparte un caso reproducible sanitizado cuando sea posible
+  - type: checkboxes
+    id: authority
+    attributes:
+      label: Protocol boundary / Límite del protocolo
+      options:
+        - label: This proposal does not make AHP+ silently grant external authority. / Esta propuesta no hace que AHP+ conceda autoridad externa silenciosamente.
+          required: true

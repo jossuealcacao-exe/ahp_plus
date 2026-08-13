@@ -2,14 +2,14 @@
 
 - Project: ahp-plus
 - Phase: COMPLETED
-- Objective: Liberar AHP+ 1.1.0 estable como producto público en GitHub y npm
+- Objective: Presentar AHP+ profesionalmente en GitHub con portada bilingüe, identidad visual y portafolio
 - Confidence: VERIFIED
 - Git branch: main
-- Git commit: 7f4e1a82364bf16f0e2b6977887e780e8942bc00
+- Git commit: c3825e79cc869b84b18dfea426eb44269102c287
 - Working tree: DIRTY
-- Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
-- State revision: 8cf8a46fa042d3d7fb172f28f1997598201d327c8b19b8e1c251326dc542a470
-- Next action: Recibir feedback público y usar npm next para futuros prereleases
+- Portability: LOCAL_ONLY — Project working-tree changes are not transported by Git.
+- State revision: 349dc971db585a46f58b171d73f5adcfe4b247ebf08060c6929878d43b04c1e6
+- Next action: Recibir feedback público y opcionalmente subir el banner como social preview desde GitHub Settings
 
 ## Blockers
 
@@ -17,10 +17,12 @@
 
 ## Latest checkpoint
 
-- CHK-20260813-B0E57B58: AHP+ 1.1.0 estable liberado públicamente y verificado en GitHub y npm latest
+- CHK-20260813-548DCDAB: Portada profesional bilingüe, identidad visual, plantillas comunitarias, portafolio y metadata pública de AHP+ preparados y validados
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260813-1BA18B8F: AHP+ professional GitHub presentation acceptance
+- [evidence/OBSERVED/VERIFIED] EVD-20260813-9C0186DF: Professional bilingual GitHub presentation gate
 - [qa/PASS/VERIFIED] QA-20260813-BB8BFE05: AHP+ 1.1.0 stable public release acceptance
 - [evidence/OBSERVED/VERIFIED] EVD-20260813-FDBD5C34: AHP+ 1.1.0 npm latest publication and consumer acceptance
 - [qa/PASS/VERIFIED] QA-20260813-178C0DE3: AHP+ 1.1.0 GitHub stable release gate

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260813-1BA18B8F",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ professional GitHub presentation acceptance",
+  "description": "Accept bilingual landing pages, visual identity, community templates, portfolio attribution, repository discovery metadata, and unchanged protocol behavior.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T01:53:14.664Z",
+  "updated_at": "2026-08-13T01:53:14.664Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260813-9C0186DF"
+  ],
+  "base_commit": "c3825e79cc869b84b18dfea426eb44269102c287",
+  "tags": []
+}

@@ -1,161 +1,232 @@
+<div align="center">
+
+![AHP+ — Git-backed continuity for AI agents](.github/assets/ahp-plus-hero.jpg)
+
 # AHP+
 
-**Uno para controlar a todos.**
+**Verifiable project continuity across AI agents, IDEs, accounts, and machines.**
 
-AHP+ (Agent Handoff Protocol Plus) is a Git-backed protocol and reference CLI
-for preserving project state, decisions, evidence, checkpoints, authority, and
-handoffs across AI platforms.
+[![npm version](https://img.shields.io/npm/v/%40jossuealcala%2Fahp-plus?style=flat-square&color=2563eb)](https://www.npmjs.com/package/@jossuealcala/ahp-plus)
+[![CI](https://img.shields.io/github/actions/workflow/status/jossuealcacao-exe/ahp_plus/validate.yml?branch=main&style=flat-square&label=CI)](https://github.com/jossuealcacao-exe/ahp_plus/actions/workflows/validate.yml)
+[![Node.js](https://img.shields.io/badge/Node.js-20%20%7C%2022-339933?style=flat-square&logo=nodedotjs&logoColor=white)](package.json)
+[![License](https://img.shields.io/github/license/jossuealcacao-exe/ahp_plus?style=flat-square)](LICENSE)
+[![GitHub release](https://img.shields.io/github/v/release/jossuealcacao-exe/ahp_plus?style=flat-square)](https://github.com/jossuealcacao-exe/ahp_plus/releases/latest)
 
-The model, account, IDE, and chat can change. The repository remains the source
-of truth.
+[English](README.md) · [Español](README.es.md) · [npm](https://www.npmjs.com/package/@jossuealcala/ahp-plus) · [Latest release](https://github.com/jossuealcacao-exe/ahp_plus/releases/latest) · [Portfolio](https://jossuealcala.com/en/)
 
-## Status
+</div>
 
-`1.1.0` is the first stable public release. It includes verified
-shallow-clone CI, native Windows support, and a real consumer handoff from Codex
-to Cursor in `iris-foundation`. The CLI and protocol are distributed under
-Apache-2.0. Publication is through the npm `latest` channel and GitHub release
-`v1.1.0`; development builds use the separate `next` channel.
+---
 
-## User documentation
+AHP+ (**Agent Handoff Protocol Plus**) is an open, Git-backed protocol and a
+reference CLI for preserving the operational truth of a software project:
+state, decisions, evidence, checkpoints, authority boundaries, and verified
+handoffs.
 
-Public user guides:
+The model, chat, IDE, account, and machine may change. The repository remains
+the source of truth.
 
-- [Instalación y primeros 15 minutos](docs/GETTING_STARTED_ES.md)
-- [Gestión y uso cotidiano](docs/OPERATIONS_ES.md)
-- [Qué diferencia a AHP+ y dónde encaja](docs/WHY_AHP_ES.md)
-- [Comandos por terminal, IDE y app](docs/COMMANDS_BY_SURFACE_ES.md)
-- [Canales estable y de desarrollo](docs/CHANNELS_ES.md)
-- [Feedback y contribución pública](docs/COMMUNITY_FEEDBACK_ES.md)
+## Why AHP+
 
-The normative protocol remains [SPECIFICATION.md](SPECIFICATION.md). The user
-guides explain the reference CLI without changing its semantics.
+AI tools are good at continuing a conversation, but a conversation is not a
+durable project record. AHP+ answers the questions that matter when work moves
+between environments:
 
-## Core invariant
+- Which repository, branch, commit, and working tree are active?
+- Which decisions are still valid, and who confirmed them?
+- Which tests or external actions were actually observed?
+- Is the current state local-only, waiting for a push, diverged, or portable?
+- Can the next agent receive the handoff without silently changing scope?
+- Does the agent have authority for the next external action?
 
-One AHP+ instance belongs to one Git repository. Workspace orchestrators may
-aggregate instances, but they must not substitute a parent repository's branch
-or commit for the active project's Git identity.
+## Install in a project
 
-## Requirements
-
-- Git
-- Node.js 20 or newer
-- No runtime dependencies
-
-## Local installation
-
-```bash
-npm install --save-dev /absolute/path/to/ahp_plus
-npx ahp init --owner "Your name" --project your-project
-```
-
-Initialization records the `HEAD` that existed before the new package and
-`.ahp` files are committed. After reviewing and committing those files, anchor
-the canonical state to that commit, then commit the state-only envelope:
-
-```bash
-npx ahp set-state \
-  --confidence USER_CONFIRMED \
-  --next-action "Create the first verified checkpoint"
-
-npx ahp verify --strict
-```
-
-Git commits and pushes remain deliberate user actions; AHP+ never performs
-them. A commit that changes project files after the recorded `base_commit` is
-reported as stale until `ahp set-state` explicitly accepts the new boundary.
-
-During development of AHP+ itself:
-
-```bash
-node /absolute/path/to/ahp_plus/bin/ahp.mjs init . \
-  --owner "Your name" \
-  --project your-project
-```
-
-## Stable installation
-
-From the official npm stable channel:
+Requirements: Git, Node.js 20 or newer, and a Git repository with at least one
+commit. The runtime has no third-party dependencies.
 
 ```bash
 npm install --save-dev @jossuealcala/ahp-plus@latest
-npx ahp init --owner "Your name" --project your-project
+npx ahp init . --owner "Your name" --project your-project
 ```
 
-For an exact reproducible pin, use `@jossuealcala/ahp-plus@1.1.0`. The same
-release is available on GitHub as tag `v1.1.0` with a downloadable package and
-checksum. Do not install production work from `main`.
-
-## First heartbeat
+Run the first heartbeat:
 
 ```bash
-ahp root
-ahp doctor
-ahp verify --strict
-ahp status
-ahp context --format markdown --budget 8000
+npx ahp root .
+npx ahp doctor .
+npx ahp verify . --strict
+npx ahp status .
+npx ahp context . --format markdown --budget 8000
 ```
 
-`ahp root` resolves the nearest Git repository first. It never climbs out of a
-nested Git repository to borrow AHP+ state from a parent workspace.
+Review the generated files before committing them. AHP+ never commits, pushes,
+merges, deploys, publishes, deletes, or grants itself authority.
 
-## Continuity workflow
+For an exact reproducible pin, install
+`@jossuealcala/ahp-plus@1.1.0`. Do not use `main` as a production dependency.
+
+## How it works
+
+```mermaid
+flowchart LR
+    H["Human authority"] --> I["Repository instructions"]
+    I --> A["AHP+ canonical state"]
+    A --> G["Git commit and remote"]
+    G --> R["Receiving agent or IDE"]
+    R --> V{"Identity and integrity verified?"}
+    V -->|READY| C["Continue from the recorded boundary"]
+    V -->|RECONCILIATION_REQUIRED| S["Stop and reconcile"]
+```
+
+One AHP+ instance belongs to one Git repository. A parent workspace must never
+lend its branch or commit identity to a nested repository.
+
+## What AHP+ records
+
+| Record | Purpose |
+|---|---|
+| Project state | Phase, objective, next action, blockers, and accepted Git boundary |
+| Evidence | Reproducible commands, artifacts, URLs, checksums, and observed results |
+| Decisions | Durable choices, authority, sources, and explicit supersession |
+| QA | Pass/fail gates backed by evidence IDs |
+| Checkpoints | Recoverable session boundaries |
+| Handoffs | Sealed continuity between platforms with receiver verification |
+| Risks and locks | Visible risk tracking and cooperative concurrency notices |
+
+Claims use explicit certainty levels: `VERIFIED`, `USER_CONFIRMED`, `INFERRED`,
+`UNVERIFIED`, `STALE`, and `CONFLICTED`.
+
+## Terminal and IDE usage
+
+AHP+ has one command contract. Adapters translate that contract into the
+conventions of each host without changing protocol semantics.
+
+| Surface | Installed interface | Example |
+|---|---|---|
+| Terminal | `npx ahp` | `npx ahp verify . --strict` |
+| Cursor | `/ahp` command | `/ahp verify strict` |
+| OpenCode | `/ahp` command | `/ahp handoff to claude` |
+| Codex | Local `$ahp` skill | `Use $ahp to verify this repository` |
+| Claude Code | Repository instructions | `Use AHP+ to run doctor and strict verification` |
+| ChatGPT / mobile | Read-only capsule or CLI when available | `Read AHP_MOBILE.md and inspect HOF-...` |
+| Generic agents | `AGENTS.md` + `AHP_INSTRUCTIONS.md` | `Follow this repository's AHP+ instructions` |
+
+Preview adapter changes first, then apply them deliberately:
 
 ```bash
-ahp checkpoint \
-  --session codex-feature-auth \
+npx ahp adapter install all .
+npx ahp adapter install all . --apply
+```
+
+See [commands by surface](docs/COMMANDS_BY_SURFACE_ES.md) for complete terminal,
+IDE, and app examples.
+
+## Handoff workflow
+
+Create a recoverable boundary and transfer it to another host:
+
+```bash
+npx ahp checkpoint . \
+  --session feature-auth \
   --platform codex \
   --actor "Codex" \
-  --summary "Validated the auth boundary" \
-  --next-action "Implement the token refresh test"
+  --summary "Validated the authentication boundary" \
+  --next-action "Continue with the refresh-token test"
 
-ahp handoff create \
+npx ahp handoff create . \
   --from codex \
   --to cursor \
-  --session codex-feature-auth \
-  --summary "Continue from the validated auth boundary"
-
-ahp handoff receive HOF-...
+  --session feature-auth \
+  --summary "Continue from the validated boundary"
 ```
 
-## Portability classes
-
-| Status | Meaning |
-|---|---|
-| `LOCAL_ONLY` | No commit exists or the working tree contains untransported changes. |
-| `PUSH_REQUIRED` | The state is committed but no synchronized upstream is proven. |
-| `REMOTE_DIVERGED` | The receiving branch must be reconciled. |
-| `REMOTE_READY` | HEAD is clean and synchronized with its configured upstream. |
-
-AHP+ does not execute `pull`, `push`, `commit`, `merge`, deploy, publication, or
-destructive commands. It reports what is required and leaves authority with the
-user and host platform.
-
-## Platform adapters
-
-Adapter installation is plan-only by default:
+At the receiving environment:
 
 ```bash
-ahp adapter install all
-ahp adapter install all --apply
+npx ahp verify . --strict
+npx ahp handoff inspect HOF-... .
+npx ahp handoff receive HOF-... .
+npx ahp sync check . --require-remote
 ```
 
-Available adapters: generic `AGENTS.md`, Claude Code, Cursor, OpenCode, Codex,
-and a mobile/ChatGPT context capsule. Existing files are preserved; collisions
-stop installation unless explicitly reviewed with `--replace`.
+`READY` proves compatibility with the recorded boundary. It does not authorize
+a commit, push, merge, deployment, publication, payment, deletion, or access to
+secrets.
 
-## Protocol boundary
+## Portability states
 
-AHP+ complements, rather than replaces:
+| Status | Operational meaning |
+|---|---|
+| `LOCAL_ONLY` | Project changes are not transported by Git |
+| `PUSH_REQUIRED` | New AHP+ state still needs an authorized commit and push |
+| `REMOTE_DIVERGED` | Local and remote history require reconciliation |
+| `REMOTE_READY` | The clean checkout matches its configured upstream |
 
-- `AGENTS.md` for durable agent instructions.
-- MCP for tools, resources, and prompts.
-- A2A for live remote-agent communication.
-- ACP for editor-to-agent communication.
+## Where AHP+ fits
 
-AHP+ owns repository-local durable state, evidence, authority boundaries,
-checkpoints, portability classification, and receiver verification.
+AHP+ complements existing agent infrastructure:
 
-See [SPECIFICATION.md](SPECIFICATION.md), [docs/COMMANDS.md](docs/COMMANDS.md),
-and [docs/CONFORMANCE.md](docs/CONFORMANCE.md).
+- **AGENTS.md** defines how agents should work in a repository.
+- **MCP** connects AI applications to tools, data, and prompts.
+- **A2A** supports live communication between independent agents.
+- **ACP** connects agents to editors and interactive clients.
+- **Git** transports and audits confirmed content.
+- **AHP+** preserves durable project state, evidence, authority, portability,
+  and receiver-verified handoffs across all of them.
+
+Read [What makes AHP+ different](docs/WHY_AHP_ES.md) for the detailed boundary.
+
+## Verified release quality
+
+AHP+ 1.1.0 is tested on Ubuntu, macOS, and Windows with Node.js 20 and 22. The
+stable release passed:
+
+- core tests and protocol conformance;
+- strict integrity and ancestry verification;
+- shallow-clone and native Windows Git-path checks;
+- package-content and checksum verification;
+- clean installation from npm `latest`;
+- adapter installation across all supported surfaces;
+- a real Codex-to-Cursor consumer handoff in `iris-foundation`.
+
+The npm and GitHub release artifacts share SHA-256
+`c953fe7eb0c67070bf91d6342d1d1efe5fc036045eb5b3edf6897efa5cfc0548`.
+
+## Documentation
+
+| Guide | Purpose |
+|---|---|
+| [Getting started](docs/GETTING_STARTED_ES.md) | Installation and first 15 minutes |
+| [Daily operations](docs/OPERATIONS_ES.md) | State, evidence, checkpoints, handoffs, and updates |
+| [Commands](docs/COMMANDS.md) | Normative CLI command contract |
+| [Commands by surface](docs/COMMANDS_BY_SURFACE_ES.md) | Terminal, IDE, and app invocation |
+| [Architecture](docs/ARCHITECTURE.md) | Repository identity and protocol layout |
+| [Conformance](docs/CONFORMANCE.md) | Cross-platform acceptance criteria |
+| [Distribution channels](docs/CHANNELS_ES.md) | Stable `latest` and development `next` |
+| [Community feedback](docs/COMMUNITY_FEEDBACK_ES.md) | Safe, reproducible issue reports |
+| [Specification](SPECIFICATION.md) | Normative AHP+ 1.1 protocol |
+
+## Distribution channels
+
+- **Stable:** semantic versions on npm `latest` and non-prerelease GitHub
+  Releases.
+- **Development:** prerelease versions such as `1.1.1-dev.0` on npm `next` and
+  GitHub prereleases.
+
+## Security and contributing
+
+Do not publish secrets, private repository content, customer data, or complete
+`.ahp/` directories in public issues. Follow [SECURITY.md](SECURITY.md) for
+security reports and [CONTRIBUTING.md](CONTRIBUTING.md) for changes.
+
+## Author
+
+Created and maintained by **Jossue Alcalá**.
+
+- [Portfolio](https://jossuealcala.com/en/)
+- [GitHub](https://github.com/jossuealcacao-exe)
+- [LinkedIn](https://www.linkedin.com/in/jossue-alcala)
+
+## License
+
+Apache-2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).

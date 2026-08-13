@@ -12,7 +12,13 @@ const placeholderPrefix = `[${'TO' + 'DO'}:`;
 const required = [
   'AGENTS.md',
   'CLAUDE.md',
+  '.github/ISSUE_TEMPLATE/bug-report.yml',
+  '.github/ISSUE_TEMPLATE/feature-request.yml',
+  '.github/ISSUE_TEMPLATE/config.yml',
+  '.github/PULL_REQUEST_TEMPLATE.md',
+  '.github/assets/ahp-plus-hero.jpg',
   'README.md',
+  'README.es.md',
   'SPECIFICATION.md',
   'LICENSE',
   'VERSION',

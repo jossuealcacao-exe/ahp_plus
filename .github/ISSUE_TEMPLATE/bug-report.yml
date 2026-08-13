@@ -1,0 +1,74 @@
+name: Bug report / Reporte de error
+description: Report a reproducible AHP+ defect / Reporta un defecto reproducible de AHP+
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve AHP+. Please remove secrets and private project data.
+
+        Gracias por ayudar a mejorar AHP+. Elimina secretos y datos privados del proyecto.
+  - type: input
+    id: version
+    attributes:
+      label: AHP+ version / Versión de AHP+
+      placeholder: 1.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface / Superficie
+      options:
+        - Terminal
+        - Cursor
+        - OpenCode
+        - Codex
+        - Claude Code
+        - ChatGPT or mobile
+        - Generic agent
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment / Entorno
+      description: Operating system, shell, Node.js, and Git versions / Sistema operativo, shell y versiones de Node.js y Git
+      placeholder: macOS 15, zsh, Node.js 22, Git 2.50
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction / Reproducción
+      description: Exact safe steps or commands / Pasos o comandos exactos y seguros
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed result / Resultado observado
+      description: Include sanitized output and exit code when available / Incluye salida sanitizada y código de salida cuando exista
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result / Resultado esperado
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Authorized evidence / Evidencia autorizada
+      description: Add only evidence you are allowed to publish / Añade solo evidencia que tengas autorización para publicar
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check / Revisión de seguridad
+      options:
+        - label: I removed credentials, private repository content, customer data, and sensitive `.ahp/` records. / Eliminé credenciales, contenido privado, datos de clientes y registros `.ahp/` sensibles.
+          required: true
