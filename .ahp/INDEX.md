@@ -5,10 +5,10 @@
 - Objective: Liberar AHP+ 1.1.0 estable como producto público en GitHub y npm
 - Confidence: USER_CONFIRMED
 - Git branch: main
-- Git commit: 6dfffd7814bc1a15533b40e8bbbab6e77eb76407
+- Git commit: 92dd2bfa2e0f3e29f57eaf7dafd26a9228e53958
 - Working tree: DIRTY
-- Portability: LOCAL_ONLY — Project working-tree changes are not transported by Git.
-- State revision: 6c35cc90bfff2f8617b5adce8ee3cdad034ccb9ed5606422498f0c0ad29f1627
+- Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
+- State revision: eabbd3380c00d2ef906a099c7c4219f6fab1da5c47a99a1ac6ca66da4337d50e
 - Next action: Commit and push the stable candidate, require green CI, then publish GitHub and npm latest
 
 ## Blockers
