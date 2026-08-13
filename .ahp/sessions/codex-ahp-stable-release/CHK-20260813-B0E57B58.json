@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.1.0",
+  "id": "CHK-20260813-B0E57B58",
+  "kind": "checkpoint",
+  "session_id": "codex-ahp-stable-release",
+  "project_id": "ahp-plus",
+  "summary": "AHP+ 1.1.0 estable liberado públicamente y verificado en GitHub y npm latest",
+  "objective": "Liberar AHP+ 1.1.0 estable como producto público en GitHub y npm",
+  "next_action": "Recibir feedback público y usar npm next para futuros prereleases",
+  "files": [
+    ".ahp/state/project.json",
+    ".ahp/evidence/EVD-20260813-FDBD5C34.json",
+    ".ahp/records/qa/QA-20260813-BB8BFE05.json"
+  ],
+  "validations": [
+    "QA-20260813-BB8BFE05"
+  ],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "git": {
+    "branch": "main",
+    "commit": "7f4e1a82364bf16f0e2b6977887e780e8942bc00",
+    "tree": "a200a91987f35e7ff5d7753e4afcc099c8a172a7",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-FDBD5C34.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-BB8BFE05.json"
+      }
+    ],
+    "working_tree_digest": "76fd9eebbc5b6eb3c9b9bfd9257322933aeddbdad87216f1ab0b76c1a9336557",
+    "project_working_tree": "CLEAN",
+    "project_changed_files": [],
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-FDBD5C34.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-BB8BFE05.json"
+      }
+    ],
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-08-13T01:39:29.909Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "b9b9333a0c8b78ef1f02ac885bdcc493a262d23c80e7fc46b6fc6d3265cbcdfd"
+  }
+}

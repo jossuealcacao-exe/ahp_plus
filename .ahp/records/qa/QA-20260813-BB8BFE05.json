@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260813-BB8BFE05",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.1.0 stable public release acceptance",
+  "description": "Final acceptance of the public stable release across GitHub, npm latest, cross-platform CI, package parity, clean consumer installation, adapters, and interplatform handoff evidence.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T01:39:01.508Z",
+  "updated_at": "2026-08-13T01:39:01.508Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260813-FDBD5C34",
+    "EVD-20260813-BF41BAB7",
+    "EVD-20260813-7ADB1D26",
+    "EVD-20260813-8BE86898"
+  ],
+  "base_commit": "7f4e1a82364bf16f0e2b6977887e780e8942bc00",
+  "tags": []
+}

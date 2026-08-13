@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.1.0",
+  "id": "EVD-20260813-FDBD5C34",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.1.0 npm latest publication and consumer acceptance",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T01:38:49.716Z",
+  "updated_at": "2026-08-13T01:38:49.716Z",
+  "observed_at": "2026-08-13T01:38:49.716Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260813-BF41BAB7",
+    "EVD-20260813-8BE86898"
+  ],
+  "base_commit": "7f4e1a82364bf16f0e2b6977887e780e8942bc00",
+  "tags": [],
+  "evidence_type": "url",
+  "locator": "https://www.npmjs.com/package/@jossuealcala/ahp-plus",
+  "result": "PASS: npm accepted @jossuealcala/ahp-plus@1.1.0 with public access and dist-tag latest; public registry metadata and tarball return 200; 53-file tarball SHA-256 c953fe7eb0c67070bf91d6342d1d1efe5fc036045eb5b3edf6897efa5cfc0548 matches GitHub; clean install by package name reports 1.1.0, audit 0 vulnerabilities, doctor true, all adapters applied, strict verify true with 0 warnings and 0 errors",
+  "limitations": "",
+  "artifact_sha256": "c953fe7eb0c67070bf91d6342d1d1efe5fc036045eb5b3edf6897efa5cfc0548",
+  "exit_code": 0
+}
