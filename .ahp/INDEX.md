@@ -1,26 +1,28 @@
 # AHP+ Project Context
 
 - Project: ahp-plus
-- Phase: READY_FOR_QA
+- Phase: BLOCKED
 - Objective: Liberar AHP+ 1.1.0 estable como producto público en GitHub y npm
-- Confidence: USER_CONFIRMED
+- Confidence: VERIFIED
 - Git branch: main
-- Git commit: 92dd2bfa2e0f3e29f57eaf7dafd26a9228e53958
+- Git commit: a232026502e4742845d318221a43b93bd635fcfe
 - Working tree: DIRTY
 - Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
-- State revision: eabbd3380c00d2ef906a099c7c4219f6fab1da5c47a99a1ac6ca66da4337d50e
-- Next action: Commit and push the stable candidate, require green CI, then publish GitHub and npm latest
+- State revision: e15e7c96d961bbf5a2361a9a7d685af43eb874152c6af767235a0ef3c5271bb1
+- Next action: Ejecutar npm login, publicar @jossuealcala/ahp-plus@1.1.0 con --tag latest y verificar instalación desde registry
 
 ## Blockers
 
-- None.
+- Autenticación npm interactiva requerida
 
 ## Latest checkpoint
 
-- CHK-20260813-DAE37CDB: AHP+ 1.1.0 stable candidate, public docs, commands, and distribution channels validated
+- CHK-20260813-75D372CD: AHP+ 1.1.0 publicado y verificado en GitHub; publicación npm pendiente exclusivamente de autenticación del propietario
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260813-178C0DE3: AHP+ 1.1.0 GitHub stable release gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260813-BF41BAB7: AHP+ 1.1.0 GitHub stable publication and acceptance
 - [qa/PASS/VERIFIED] QA-20260813-33B694BC: AHP+ 1.1.0 stable release candidate gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260813-8BE86898: AHP+ 1.1.0 stable local and package gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260813-7ADB1D26: Iris public consumer interplatform acceptance

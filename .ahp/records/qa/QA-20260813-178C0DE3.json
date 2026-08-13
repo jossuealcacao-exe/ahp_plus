@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260813-178C0DE3",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.1.0 GitHub stable release gate",
+  "description": "Accept the official GitHub stable release, immutable tag target, downloadable artifact, checksum, CI matrix, and clean consumer installation; npm is a separate publication gate.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T00:51:08.542Z",
+  "updated_at": "2026-08-13T00:51:08.542Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260813-BF41BAB7",
+    "EVD-20260813-8BE86898",
+    "EVD-20260813-7ADB1D26"
+  ],
+  "base_commit": "a232026502e4742845d318221a43b93bd635fcfe",
+  "tags": []
+}

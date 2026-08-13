@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.1.0",
+  "id": "EVD-20260813-BF41BAB7",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.1.0 GitHub stable publication and acceptance",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T00:50:56.249Z",
+  "updated_at": "2026-08-13T00:50:56.249Z",
+  "observed_at": "2026-08-13T00:50:56.249Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "QA-20260813-33B694BC",
+    "EVD-20260813-8BE86898"
+  ],
+  "base_commit": "a232026502e4742845d318221a43b93bd635fcfe",
+  "tags": [],
+  "evidence_type": "url",
+  "locator": "https://github.com/jossuealcacao-exe/ahp_plus/releases/tag/v1.1.0",
+  "result": "PASS: annotated tag v1.1.0 resolves to a232026502e4742845d318221a43b93bd635fcfe; GitHub Release is public, non-draft, non-prerelease; Actions run 31655386932 passed all 6 OS/Node jobs; downloaded tarball checksum c953fe7eb0c67070bf91d6342d1d1efe5fc036045eb5b3edf6897efa5cfc0548; clean consumer reports 1.1.0 and strict verify true",
+  "limitations": "npm registry publication remains pending interactive npm authentication",
+  "artifact_sha256": "c953fe7eb0c67070bf91d6342d1d1efe5fc036045eb5b3edf6897efa5cfc0548",
+  "exit_code": 0
+}

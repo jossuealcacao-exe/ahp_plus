@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.1.0",
+  "id": "CHK-20260813-75D372CD",
+  "kind": "checkpoint",
+  "session_id": "codex-ahp-stable-release",
+  "project_id": "ahp-plus",
+  "summary": "AHP+ 1.1.0 publicado y verificado en GitHub; publicación npm pendiente exclusivamente de autenticación del propietario",
+  "objective": "Liberar AHP+ 1.1.0 estable como producto público en GitHub y npm",
+  "next_action": "Ejecutar npm login, publicar @jossuealcala/ahp-plus@1.1.0 con --tag latest y verificar instalación desde registry",
+  "files": [
+    ".ahp/state/project.json",
+    ".ahp/evidence/EVD-20260813-BF41BAB7.json",
+    ".ahp/records/qa/QA-20260813-178C0DE3.json"
+  ],
+  "validations": [
+    "QA-20260813-178C0DE3"
+  ],
+  "blockers": [
+    "Autenticación npm interactiva requerida"
+  ],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "git": {
+    "branch": "main",
+    "commit": "a232026502e4742845d318221a43b93bd635fcfe",
+    "tree": "f1703c546db63f0d384c8a64dcb8caa657ed02c2",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-BF41BAB7.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-178C0DE3.json"
+      }
+    ],
+    "working_tree_digest": "095a64b11969b78a1548c52aae1c78a848a302cdbb687f2b7ab1614db5f77c09",
+    "project_working_tree": "CLEAN",
+    "project_changed_files": [],
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-BF41BAB7.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-178C0DE3.json"
+      }
+    ],
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-08-13T00:52:12.974Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "37baaea721df1c9c36b0c807b0e09e8070664066595550d2f97c24dd0b409e8f"
+  }
+}
