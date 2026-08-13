@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.1.0",
+  "id": "CHK-20260813-E9498083",
+  "kind": "checkpoint",
+  "session_id": "codex-github-presentation",
+  "project_id": "ahp-plus",
+  "summary": "Presentación pública bilingüe de AHP+ verificada en GitHub con identidad visual, portafolio, metadata, plantillas comunitarias y matriz CI interplataformas en verde",
+  "objective": "Presentar AHP+ profesionalmente en GitHub con portada bilingüe, identidad visual y portafolio",
+  "next_action": "Recibir feedback público y opcionalmente usar .github/assets/ahp-plus-hero.jpg como social preview en GitHub Settings",
+  "files": [
+    "README.md",
+    "README.es.md",
+    ".github/assets/ahp-plus-hero.jpg",
+    ".github/ISSUE_TEMPLATE/bug-report.yml",
+    ".github/ISSUE_TEMPLATE/feature-request.yml",
+    ".github/ISSUE_TEMPLATE/config.yml",
+    ".github/PULL_REQUEST_TEMPLATE.md"
+  ],
+  "validations": [
+    "QA-20260813-6C97A11E"
+  ],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "git": {
+    "branch": "main",
+    "commit": "34b8586cc950d2f4dcb574ec7619caf9dd69ee2c",
+    "tree": "275593cc6095aca89a14d69258ef52fca8ec1328",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-5E853474.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-6C97A11E.json"
+      }
+    ],
+    "working_tree_digest": "31f3e6ed8c937ad98d3d35638f2e43f48dd26c3db05e822f9ac3581239f054c2",
+    "project_working_tree": "CLEAN",
+    "project_changed_files": [],
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-5E853474.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-6C97A11E.json"
+      }
+    ],
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-08-13T01:59:29.202Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "64c98bf560c54c61d790b5c64d7d86c94f0f1e97a96959f1798fb1fc4f289ba8"
+  }
+}

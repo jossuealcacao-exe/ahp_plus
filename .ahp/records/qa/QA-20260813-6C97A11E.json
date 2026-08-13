@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260813-6C97A11E",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ public GitHub presentation remote acceptance",
+  "description": "Public GitHub bilingual presentation, portfolio metadata, repository topics, downloadable hero asset, community templates, and the six-job Ubuntu/macOS/Windows Node 20/22 CI matrix were verified against commit 34b8586.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T01:58:40.720Z",
+  "updated_at": "2026-08-13T01:58:40.720Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260813-5E853474"
+  ],
+  "base_commit": "34b8586cc950d2f4dcb574ec7619caf9dd69ee2c",
+  "tags": []
+}

@@ -5,11 +5,11 @@
 - Objective: Presentar AHP+ profesionalmente en GitHub con portada bilingüe, identidad visual y portafolio
 - Confidence: VERIFIED
 - Git branch: main
-- Git commit: 30b9a8c87c2cabd39c2b04d2f9a3b1014c4c8ccc
-- Working tree: CLEAN
-- Portability: REMOTE_READY — Committed state matches the configured upstream.
-- State revision: 097927a6beb5ac1d0e2e495bb1752e33a82b5578feb3e80991f8a4f8764cf435
-- Next action: Recibir feedback público y opcionalmente subir el banner como social preview desde GitHub Settings
+- Git commit: 34b8586cc950d2f4dcb574ec7619caf9dd69ee2c
+- Working tree: DIRTY
+- Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
+- State revision: 9cb5839f3ff9e6908c73d8d9a93403e87f2ad9f6390e0523dda07166a48f3e1e
+- Next action: Recibir feedback público y opcionalmente usar .github/assets/ahp-plus-hero.jpg como social preview en GitHub Settings
 
 ## Blockers
 
@@ -17,10 +17,12 @@
 
 ## Latest checkpoint
 
-- CHK-20260813-548DCDAB: Portada profesional bilingüe, identidad visual, plantillas comunitarias, portafolio y metadata pública de AHP+ preparados y validados
+- CHK-20260813-E9498083: Presentación pública bilingüe de AHP+ verificada en GitHub con identidad visual, portafolio, metadata, plantillas comunitarias y matriz CI interplataformas en verde
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260813-6C97A11E: AHP+ public GitHub presentation remote acceptance
+- [evidence/OBSERVED/VERIFIED] EVD-20260813-5E853474: Public GitHub presentation and cross-platform CI
 - [qa/PASS/VERIFIED] QA-20260813-1BA18B8F: AHP+ professional GitHub presentation acceptance
 - [evidence/OBSERVED/VERIFIED] EVD-20260813-9C0186DF: Professional bilingual GitHub presentation gate
 - [qa/PASS/VERIFIED] QA-20260813-BB8BFE05: AHP+ 1.1.0 stable public release acceptance

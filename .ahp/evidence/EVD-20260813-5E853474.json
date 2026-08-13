@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.1.0",
+  "id": "EVD-20260813-5E853474",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "Public GitHub presentation and cross-platform CI",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T01:57:20.323Z",
+  "updated_at": "2026-08-13T01:57:20.323Z",
+  "observed_at": "2026-08-13T01:57:20.323Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260813-9C0186DF",
+    "QA-20260813-1BA18B8F"
+  ],
+  "base_commit": "34b8586cc950d2f4dcb574ec7619caf9dd69ee2c",
+  "tags": [],
+  "evidence_type": "url",
+  "locator": "https://github.com/jossuealcacao-exe/ahp_plus/actions/runs/31659219043",
+  "result": "PASS: commit 34b8586 completed six successful CI jobs on Ubuntu, macOS, and Windows with Node 20 and 22; GitHub API exposes README.md, README.es.md, 163656-byte hero JPEG, bilingual issue templates, portfolio homepage https://jossuealcala.com, professional description, and 15 discovery topics; public hero asset returns HTTP 200 image/jpeg",
+  "limitations": "",
+  "artifact_sha256": null,
+  "exit_code": 0
+}
