@@ -1,6 +1,6 @@
 {
   "name": "@jossuealcala/ahp-plus",
-  "version": "1.1.0-emancipation.1",
+  "version": "1.1.0",
   "private": false,
   "description": "Git-backed governance, continuity, evidence, and handoff protocol for AI agents",
   "type": "module",
@@ -40,6 +40,10 @@
     "url": "https://github.com/jossuealcacao-exe/ahp_plus/issues"
   },
   "homepage": "https://github.com/jossuealcacao-exe/ahp_plus#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "ai",
     "agents",

@@ -26,6 +26,12 @@ const required = [
   'schemas/handoff.schema.json',
   'schemas/lock.schema.json',
   'docs/CONFORMANCE.md',
+  'docs/GETTING_STARTED_ES.md',
+  'docs/OPERATIONS_ES.md',
+  'docs/WHY_AHP_ES.md',
+  'docs/COMMANDS_BY_SURFACE_ES.md',
+  'docs/CHANNELS_ES.md',
+  'docs/COMMUNITY_FEEDBACK_ES.md',
   'templates/adapters/codex/.agents/skills/ahp/SKILL.md',
 ];
 
@@ -64,8 +70,10 @@ for (const entry of [
 ]) {
   if (!packageJson.files?.includes(entry)) errors.push(`package files omit ${entry}`);
 }
-if (packageJson.private !== false) errors.push('public prerelease package must not be marked private');
-if (packageJson.license !== 'Apache-2.0') errors.push('public prerelease package must declare Apache-2.0');
+if (packageJson.private !== false) errors.push('public package must not be marked private');
+if (packageJson.license !== 'Apache-2.0') errors.push('public package must declare Apache-2.0');
+if (packageJson.publishConfig?.access !== 'public') errors.push('scoped npm package must publish with public access');
+if (packageJson.publishConfig?.registry !== 'https://registry.npmjs.org/') errors.push('npm publish registry must be the official public registry');
 
 if (process.platform !== 'win32') {
   const executable = fs.statSync(path.join(root, 'bin/ahp.mjs')).mode & 0o111;

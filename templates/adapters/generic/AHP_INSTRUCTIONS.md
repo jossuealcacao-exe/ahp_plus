@@ -20,6 +20,11 @@ ahp handoff create --from current-agent --to next-agent --summary "..."
 ahp handoff receive HOF-...
 ```
 
+Semantic requests supported by adapters include `doctor`, `verify strict`,
+`context`, `status`, `checkpoint`, `handoff to <platform>`, and
+`receive <HOF-ID>`. Translate them to the installed CLI and report actual
+output.
+
 If the platform cannot run commands, treat committed `.ahp/INDEX.md` and the
 handoff JSON as a read-only capsule. Never claim a command, test, edit, commit,
 push, or deploy occurred without tool evidence.

@@ -1,0 +1,315 @@
+{
+  "schema_version": "1.1.0",
+  "id": "CHK-20260813-DAE37CDB",
+  "kind": "checkpoint",
+  "session_id": "codex-ahp-stable-release",
+  "project_id": "ahp-plus",
+  "summary": "AHP+ 1.1.0 stable candidate, public docs, commands, and distribution channels validated",
+  "objective": "Liberar AHP+ 1.1.0 estable como producto público en GitHub y npm",
+  "next_action": "Commit and push the stable candidate, require green CI, then publish GitHub and npm latest",
+  "files": [
+    "package.json",
+    "VERSION",
+    "src/constants.mjs",
+    "CHANGELOG.md",
+    "README.md",
+    "SPECIFICATION.md",
+    "docs/GETTING_STARTED_ES.md",
+    "docs/OPERATIONS_ES.md",
+    "docs/WHY_AHP_ES.md",
+    "docs/COMMANDS_BY_SURFACE_ES.md",
+    "docs/CHANNELS_ES.md",
+    "docs/COMMUNITY_FEEDBACK_ES.md",
+    "templates/adapters"
+  ],
+  "validations": [
+    "QA-20260813-33B694BC"
+  ],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "git": {
+    "branch": "main",
+    "commit": "6dfffd7814bc1a15533b40e8bbbab6e77eb76407",
+    "tree": "f9db00b71b70f5a9a61bcdacd57685eb34f9f48d",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "CONTRIBUTING.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "SPECIFICATION.md"
+      },
+      {
+        "code": " M",
+        "path": "VERSION"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS.md"
+      },
+      {
+        "code": " M",
+        "path": "package.json"
+      },
+      {
+        "code": " M",
+        "path": "scripts/validate.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/constants.mjs"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/chatgpt/AHP_MOBILE.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/claude/CLAUDE.fragment.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/codex/.agents/skills/ahp/SKILL.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/cursor/ahp.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/generic/AHP_INSTRUCTIONS.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/opencode/ahp.md"
+      },
+      {
+        "code": " M",
+        "path": "tests/core.test.mjs"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-7ADB1D26.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-8BE86898.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-A080C9F5.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/decisions/DEC-20260813-7D51BE5F.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/decisions/DEC-20260813-926E7C61.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-33B694BC.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-EB883190.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/sessions/codex-ahp-stable-prelaunch/CHK-20260813-C7DF6C1C.json"
+      },
+      {
+        "code": "??",
+        "path": "docs/CHANNELS_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/COMMANDS_BY_SURFACE_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/COMMUNITY_FEEDBACK_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/GETTING_STARTED_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/OPERATIONS_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/WHY_AHP_ES.md"
+      }
+    ],
+    "working_tree_digest": "14c64fa599392233de33a864b1c70caf01900abd432451f2f6a696868ad6e79b",
+    "project_working_tree": "DIRTY",
+    "project_changed_files": [
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "CONTRIBUTING.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "SPECIFICATION.md"
+      },
+      {
+        "code": " M",
+        "path": "VERSION"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS.md"
+      },
+      {
+        "code": " M",
+        "path": "package.json"
+      },
+      {
+        "code": " M",
+        "path": "scripts/validate.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/constants.mjs"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/chatgpt/AHP_MOBILE.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/claude/CLAUDE.fragment.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/codex/.agents/skills/ahp/SKILL.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/cursor/ahp.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/generic/AHP_INSTRUCTIONS.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/opencode/ahp.md"
+      },
+      {
+        "code": " M",
+        "path": "tests/core.test.mjs"
+      },
+      {
+        "code": "??",
+        "path": "docs/CHANNELS_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/COMMANDS_BY_SURFACE_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/COMMUNITY_FEEDBACK_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/GETTING_STARTED_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/OPERATIONS_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/WHY_AHP_ES.md"
+      }
+    ],
+    "project_working_tree_digest": "8bf56f42f755d4232e6679305fca6f23ba9992f39409ff26b0eaf9d9e18bec7e",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/INDEX.md"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-7ADB1D26.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-8BE86898.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-A080C9F5.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/decisions/DEC-20260813-7D51BE5F.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/decisions/DEC-20260813-926E7C61.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-33B694BC.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-EB883190.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/sessions/codex-ahp-stable-prelaunch/CHK-20260813-C7DF6C1C.json"
+      }
+    ],
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-08-13T00:40:04.228Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "9fdfb88b29b6528af3ede6c25d26bf45a495f2817492759a27d0a7605a2e348a"
+  }
+}

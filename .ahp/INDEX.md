@@ -1,15 +1,15 @@
 # AHP+ Project Context
 
 - Project: ahp-plus
-- Phase: COMPLETED
-- Objective: Entregar AHP+ como protocolo y CLI interplataforma instalable por proyecto
-- Confidence: VERIFIED
+- Phase: READY_FOR_QA
+- Objective: Liberar AHP+ 1.1.0 estable como producto público en GitHub y npm
+- Confidence: USER_CONFIRMED
 - Git branch: main
-- Git commit: 798790a68f310a64dce0b12a241f1c8f2b55a114
+- Git commit: 6dfffd7814bc1a15533b40e8bbbab6e77eb76407
 - Working tree: DIRTY
-- Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
-- State revision: efe736a8d4573779ee98ab631150b34f9427cc15dba2881b05ec3db089e56d43
-- Next action: Publicar candidato v1.1.0-emancipation.1 y exigir matriz GitHub Actions verde
+- Portability: LOCAL_ONLY — Project working-tree changes are not transported by Git.
+- State revision: 6c35cc90bfff2f8617b5adce8ee3cdad034ccb9ed5606422498f0c0ad29f1627
+- Next action: Commit and push the stable candidate, require green CI, then publish GitHub and npm latest
 
 ## Blockers
 
@@ -17,10 +17,17 @@
 
 ## Latest checkpoint
 
-- CHK-20260812-004DF6A4: v1.1.0-emancipation.1 preparado con matriz interplataforma verde
+- CHK-20260813-DAE37CDB: AHP+ 1.1.0 stable candidate, public docs, commands, and distribution channels validated
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260813-33B694BC: AHP+ 1.1.0 stable release candidate gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260813-8BE86898: AHP+ 1.1.0 stable local and package gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260813-7ADB1D26: Iris public consumer interplatform acceptance
+- [decision/ACCEPTED/USER_CONFIRMED] DEC-20260813-926E7C61: Liberar AHP+ 1.1.0 como producto público con canales stable y dev
+- [qa/PASS/VERIFIED] QA-20260813-EB883190: AHP+ prelaunch documentation acceptance gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260813-A080C9F5: AHP+ prelaunch user documentation gate
+- [decision/ACCEPTED/USER_CONFIRMED] DEC-20260813-7D51BE5F: Condicionar v1.1.0 estable a documentación y piloto de usuarios
 - [qa/PASS/VERIFIED] QA-20260812-ADC41D98: AHP+ 1.1.0-emancipation.1 public acceptance
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-EC0A1631: Emancipation.1 public tag installation
 - [evidence/OBSERVED/VERIFIED] EVD-20260812-AA674A5F: AHP+ Emancipation.1 GitHub prerelease

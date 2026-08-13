@@ -14,9 +14,9 @@ import {
   temporaryDirectory,
 } from './helpers.mjs';
 
-test('CLI reports the prerelease version', () => {
+test('CLI reports the stable version', () => {
   const result = runAhp(process.cwd(), ['version']);
-  assert.equal(result.stdout.trim(), '1.1.0-emancipation.1');
+  assert.equal(result.stdout.trim(), '1.1.0');
 });
 
 test('repository resolution works from subdirectories', (context) => {

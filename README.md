@@ -11,10 +11,25 @@ of truth.
 
 ## Status
 
-`1.1.0-emancipation.1` is the current public engineering prerelease. It
-supersedes `.0` with verified shallow-clone CI and native Windows support. The
-CLI and protocol are distributed under Apache-2.0. GitHub installation is
-supported; the npm registry package has not been published.
+`1.1.0` is the first stable public release. It includes verified
+shallow-clone CI, native Windows support, and a real consumer handoff from Codex
+to Cursor in `iris-foundation`. The CLI and protocol are distributed under
+Apache-2.0. Publication is through the npm `latest` channel and GitHub release
+`v1.1.0`; development builds use the separate `next` channel.
+
+## User documentation
+
+Public user guides:
+
+- [Instalación y primeros 15 minutos](docs/GETTING_STARTED_ES.md)
+- [Gestión y uso cotidiano](docs/OPERATIONS_ES.md)
+- [Qué diferencia a AHP+ y dónde encaja](docs/WHY_AHP_ES.md)
+- [Comandos por terminal, IDE y app](docs/COMMANDS_BY_SURFACE_ES.md)
+- [Canales estable y de desarrollo](docs/CHANNELS_ES.md)
+- [Feedback y contribución pública](docs/COMMUNITY_FEEDBACK_ES.md)
+
+The normative protocol remains [SPECIFICATION.md](SPECIFICATION.md). The user
+guides explain the reference CLI without changing its semantics.
 
 ## Core invariant
 
@@ -59,14 +74,18 @@ node /absolute/path/to/ahp_plus/bin/ahp.mjs init . \
   --project your-project
 ```
 
-## GitHub installation
+## Stable installation
 
-Install the reviewed GitHub prerelease directly by tag:
+From the official npm stable channel:
 
 ```bash
-npm install --save-dev github:jossuealcacao-exe/ahp_plus#v1.1.0-emancipation.1
+npm install --save-dev @jossuealcala/ahp-plus@latest
 npx ahp init --owner "Your name" --project your-project
 ```
+
+For an exact reproducible pin, use `@jossuealcala/ahp-plus@1.1.0`. The same
+release is available on GitHub as tag `v1.1.0` with a downloadable package and
+checksum. Do not install production work from `main`.
 
 ## First heartbeat
 

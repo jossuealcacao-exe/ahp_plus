@@ -16,3 +16,7 @@ available, do not claim that `ahp verify`, tests, edits, commits, or pushes ran.
 
 Portable continuation requires committed and remotely available AHP+ state.
 Uncommitted working-tree changes remain on the originating machine.
+
+When command execution is available, map semantic requests such as `doctor`,
+`verify strict`, `context`, `checkpoint`, `handoff to <platform>`, and
+`receive <HOF-ID>` to the installed AHP+ CLI.

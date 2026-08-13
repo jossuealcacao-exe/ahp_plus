@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.1.0",
+  "id": "QA-20260813-EB883190",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ prelaunch documentation acceptance gate",
+  "description": "Installation, operations, positioning, and two-user pilot guides are present, packaged, linked, and technically validated. Human editorial review and pilot execution remain explicit release gates.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T00:28:14.525Z",
+  "updated_at": "2026-08-13T00:28:14.525Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [
+    "EVD-20260813-A080C9F5"
+  ],
+  "base_commit": "6dfffd7814bc1a15533b40e8bbbab6e77eb76407",
+  "tags": [
+    "documentation",
+    "prelaunch"
+  ]
+}

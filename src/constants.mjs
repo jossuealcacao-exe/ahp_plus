@@ -1,4 +1,4 @@
-export const CLI_VERSION = '1.1.0-emancipation.1';
+export const CLI_VERSION = '1.1.0';
 export const PROTOCOL_VERSION = '1.1.0';
 export const STATE_DIRECTORY = '.ahp';
 export const LEGACY_STATE_DIRECTORY = 'agent';

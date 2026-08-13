@@ -1,5 +1,8 @@
 # Command contract
 
+For user-facing examples across terminals, IDEs, and apps, see
+[COMMANDS_BY_SURFACE_ES.md](COMMANDS_BY_SURFACE_ES.md).
+
 ## Repository
 
 | Command | Meaning |

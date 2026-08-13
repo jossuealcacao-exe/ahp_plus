@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.1.0",
+  "id": "EVD-20260813-7ADB1D26",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "Iris public consumer interplatform acceptance",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T00:39:21.432Z",
+  "updated_at": "2026-08-13T00:39:21.432Z",
+  "observed_at": "2026-08-13T00:39:21.432Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "github",
+    "model": "GPT-5"
+  },
+  "source_refs": [],
+  "base_commit": "6dfffd7814bc1a15533b40e8bbbab6e77eb76407",
+  "tags": [
+    "public-consumer",
+    "interplatform",
+    "stable-release"
+  ],
+  "evidence_type": "url",
+  "locator": "https://github.com/jossuealcacao-exe/bloqio-builder/commit/cc2b2bdaf93f5cb29f39fdd29bfe31f1f6114564",
+  "result": "PASS: AHP+ 1.1.0-emancipation.1 installed in iris-foundation; Codex handoff HOF-20260813-13EB4B73 received from Cursor with outcome READY; project state VERIFIED and REMOTE_READY",
+  "limitations": "Consumer acceptance used the reviewed prerelease package that is promoted unchanged in protocol behavior to stable 1.1.0; stable package installation is gated separately",
+  "artifact_sha256": null,
+  "exit_code": null
+}

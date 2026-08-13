@@ -1,6 +1,6 @@
 # AHP+ Protocol Specification 1.1
 
-Status: prerelease candidate for owner review.
+Status: stable protocol specification for AHP+ 1.1.0.
 
 ## 1. Scope
 

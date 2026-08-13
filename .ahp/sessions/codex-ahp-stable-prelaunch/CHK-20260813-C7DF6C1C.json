@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.1.0",
+  "id": "CHK-20260813-C7DF6C1C",
+  "kind": "checkpoint",
+  "session_id": "codex-ahp-stable-prelaunch",
+  "project_id": "ahp-plus",
+  "summary": "Documentación de usuario y diseño del piloto preparados y validados",
+  "objective": "Preparar AHP+ v1.1.0 estable con documentación de usuario y piloto verificable",
+  "next_action": "Revisión editorial humana y onboarding de los dos participantes antes de autorizar la release estable",
+  "files": [
+    "README.md",
+    "CONTRIBUTING.md",
+    "docs/GETTING_STARTED_ES.md",
+    "docs/OPERATIONS_ES.md",
+    "docs/WHY_AHP_ES.md",
+    "docs/PILOT_ES.md",
+    "scripts/validate.mjs"
+  ],
+  "validations": [
+    "QA-20260813-EB883190"
+  ],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "git": {
+    "branch": "main",
+    "commit": "6dfffd7814bc1a15533b40e8bbbab6e77eb76407",
+    "tree": "f9db00b71b70f5a9a61bcdacd57685eb34f9f48d",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": " M",
+        "path": "CONTRIBUTING.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "scripts/validate.mjs"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-A080C9F5.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/decisions/DEC-20260813-7D51BE5F.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-EB883190.json"
+      },
+      {
+        "code": "??",
+        "path": "docs/GETTING_STARTED_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/OPERATIONS_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/PILOT_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/WHY_AHP_ES.md"
+      }
+    ],
+    "working_tree_digest": "7c706cceadde6e7cdfd7f2aa94bead458ca9181c8153c9db2be7a5f8b15e81d3",
+    "project_working_tree": "DIRTY",
+    "project_changed_files": [
+      {
+        "code": " M",
+        "path": "CONTRIBUTING.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "scripts/validate.mjs"
+      },
+      {
+        "code": "??",
+        "path": "docs/GETTING_STARTED_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/OPERATIONS_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/PILOT_ES.md"
+      },
+      {
+        "code": "??",
+        "path": "docs/WHY_AHP_ES.md"
+      }
+    ],
+    "project_working_tree_digest": "cc424a508fd054b4b1d45e4c0e9709c5d14bc9d296a9612593a00d35611e2aca",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260813-A080C9F5.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/decisions/DEC-20260813-7D51BE5F.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260813-EB883190.json"
+      }
+    ],
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-08-13T00:28:25.307Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "5bb55a4c30f441344835c5956c4732f2f31a6419262e94bcf700a527fb7bcdae"
+  }
+}

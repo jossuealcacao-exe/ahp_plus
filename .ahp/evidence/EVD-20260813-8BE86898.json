@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.1.0",
+  "id": "EVD-20260813-8BE86898",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.1.0 stable local and package gate",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T00:39:37.057Z",
+  "updated_at": "2026-08-13T00:39:37.057Z",
+  "observed_at": "2026-08-13T00:39:37.057Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [],
+  "base_commit": "6dfffd7814bc1a15533b40e8bbbab6e77eb76407",
+  "tags": [
+    "stable-release",
+    "package",
+    "consumer"
+  ],
+  "evidence_type": "test",
+  "locator": "npm test; npm run conformance; npm run validate; npm pack; install generated tarball into independent Git repository; init; adapter install all --apply; doctor; verify --strict",
+  "result": "PASS: version 1.1.0; 11/11 core tests; 3/3 conformance; validation clean; 53 packaged files; tarball SHA-256 c953fe7eb0c67070bf91d6342d1d1efe5fc036045eb5b3edf6897efa5cfc0548; independent consumer doctor and strict verify true; 8 adapter files installed without collisions",
+  "limitations": "GitHub Actions matrix, GitHub tag/release installation, and npm Registry installation require the committed candidate; npm publication also requires interactive account authentication",
+  "artifact_sha256": "c953fe7eb0c67070bf91d6342d1d1efe5fc036045eb5b3edf6897efa5cfc0548",
+  "exit_code": 0
+}

@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.1.0 — 2026-08-12
+
+- Promote the independently versioned AHP+ protocol and reference CLI to its
+  first stable public release.
+- Validate a real public-consumer handoff from Codex to Cursor in
+  `iris-foundation` with receiver outcome `READY`.
+- Add public Spanish guides for installation, daily operations, product
+  positioning, commands by host surface, and community feedback.
+- Define `latest` as the stable npm channel and `next` as the prerelease
+  development channel.
+- Distribute the stable release through npm and GitHub with a downloadable
+  package artifact and checksum.
+
 ## 1.1.0-emancipation.1 — 2026-08-12
 
 - Fetch complete Git history in CI so strict AHP+ ancestry verification has

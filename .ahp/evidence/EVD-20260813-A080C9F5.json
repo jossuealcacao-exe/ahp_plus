@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.1.0",
+  "id": "EVD-20260813-A080C9F5",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ prelaunch user documentation gate",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-08-13T00:28:05.239Z",
+  "updated_at": "2026-08-13T00:28:05.239Z",
+  "observed_at": "2026-08-13T00:28:05.239Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "GPT-5"
+  },
+  "source_refs": [],
+  "base_commit": "6dfffd7814bc1a15533b40e8bbbab6e77eb76407",
+  "tags": [
+    "documentation",
+    "pilot",
+    "prelaunch"
+  ],
+  "evidence_type": "test",
+  "locator": "npm test; npm run conformance; npm run validate; npm run pack:dry-run; relative Markdown link validation",
+  "result": "PASS: 11/11 core tests, 3/3 conformance tests, repository validation, 51-file package dry run, and 11 Markdown files with valid relative links",
+  "limitations": "Two-user pilot execution and human editorial acceptance remain pending; stable v1.1.0 is not yet authorized",
+  "artifact_sha256": null,
+  "exit_code": 0
+}

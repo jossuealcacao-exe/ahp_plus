@@ -6,3 +6,7 @@ terminal is available. Verify before writing and report actual command output.
 
 Never perform Git network, publication, deployment, billing, or destructive
 actions without explicit user authority.
+
+Common semantic forms: `/ahp doctor`, `/ahp verify strict`, `/ahp context`,
+`/ahp checkpoint ...`, `/ahp handoff to <platform>`, and
+`/ahp receive <HOF-ID>`.

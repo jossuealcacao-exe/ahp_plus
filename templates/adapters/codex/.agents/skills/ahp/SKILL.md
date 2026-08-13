@@ -23,3 +23,7 @@ as cooperative notices, not distributed synchronization.
 Never claim a command or external action occurred without tool evidence. AHP+
 does not authorize commit, push, pull, merge, deploy, publish, destructive
 operations, or access to secrets.
+
+Map explicit `$ahp` requests such as `doctor`, `verify strict`, `context`,
+`status`, `checkpoint`, `handoff to <platform>`, and `receive <HOF-ID>` to the
+corresponding installed CLI operations.

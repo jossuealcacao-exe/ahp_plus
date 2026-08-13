@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.1.0",
+  "id": "DEC-20260813-926E7C61",
+  "kind": "decision",
+  "project_id": "ahp-plus",
+  "title": "Liberar AHP+ 1.1.0 como producto público con canales stable y dev",
+  "description": "Se elimina la cohorte cerrada A/B. AHP+ será público con documentación por terminal, IDE y app; npm latest y GitHub v1.1.0 serán los canales estables; npm next y GitHub prereleases serán el canal de desarrollo. El propietario autoriza commit, push, tag y GitHub Release, además de npm publish cuando exista una sesión npm autenticada.",
+  "status": "ACCEPTED",
+  "confidence": "USER_CONFIRMED",
+  "created_at": "2026-08-13T00:37:39.007Z",
+  "updated_at": "2026-08-13T00:37:39.007Z",
+  "actor": {
+    "name": "Jossue Alcalá",
+    "platform": "human",
+    "model": "n/a"
+  },
+  "source_refs": [
+    "user:2026-08-12-public-stable-release-authorization"
+  ],
+  "base_commit": "6dfffd7814bc1a15533b40e8bbbab6e77eb76407",
+  "tags": [
+    "public-release",
+    "stable",
+    "next",
+    "npm",
+    "github",
+    "authority"
+  ],
+  "supersedes": "DEC-20260813-7D51BE5F"
+}
