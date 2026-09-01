@@ -2,14 +2,14 @@
 
 - Project: ahp-plus
 - Phase: IN_PROGRESS
-- Objective: Desarrollar AHP+ 1.2 con field hardening y Continuity Event Capsules verificables
+- Objective: Publish AHP+ 1.2 through next, consumer validation, and explicit stable promotion
 - Confidence: USER_CONFIRMED
 - Git branch: codex/v1.2-field-hardening
-- Git commit: 24c21367f5b15465107f9e9b03201d8498f51962
+- Git commit: bbe25be73f401a39602dffd1c631e131fb6f4d8f
 - Working tree: DIRTY
-- Portability: PUSH_REQUIRED — No upstream branch is configured.
-- State revision: 3bbedfd03af1219fe2030c1650abdcc37856a318458a4b51992a226a490b23eb
-- Next action: Inspect the Ubuntu, macOS, and Windows CI matrix before authorizing npm next publication
+- Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
+- State revision: 4f30913f47a27623ed53d7d295fd1ac27007abe7f125b4b9242afbabd1da1451
+- Next action: Request explicit authorization before publishing 1.2.0-dev.0 to npm next
 
 ## Blockers
 
@@ -17,10 +17,12 @@
 
 ## Latest checkpoint
 
-- CHK-20260901-9571A981: Prepared and locally validated the guarded AHP+ 1.2 prerelease route
+- CHK-20260901-81866A81: Pushed AHP+ 1.2 candidate and verified the six-job cross-platform matrix
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260901-9A1FFD04: AHP+ 1.2 cross-platform prerelease branch gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-551BCD64: AHP+ 1.2 cross-platform branch CI
 - [evidence/OBSERVED/VERIFIED] EVD-20260901-BD0872B4: AHP+ 1.2 npm next publication dry-run
 - [qa/PASS/VERIFIED] QA-20260901-78F3E093: AHP+ 1.2 local prerelease candidate gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260901-31CC84AB: AHP+ 1.2 prerelease route and packed consumer gate

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.2.0",
+  "id": "QA-20260901-9A1FFD04",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.2 cross-platform prerelease branch gate",
+  "description": "All six Ubuntu, macOS, and Windows jobs passed on Node.js 20 and 22 for the pushed 1.2.0-dev.0 branch",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-01T02:40:25.834Z",
+  "updated_at": "2026-09-01T02:40:25.834Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [
+    "EVD-20260901-551BCD64"
+  ],
+  "base_commit": "bbe25be73f401a39602dffd1c631e131fb6f4d8f",
+  "tags": []
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.2.0",
+  "id": "CHK-20260901-81866A81",
+  "kind": "checkpoint",
+  "session_id": "ahp-1.2-update",
+  "project_id": "ahp-plus",
+  "summary": "Pushed AHP+ 1.2 candidate and verified the six-job cross-platform matrix",
+  "objective": "Publish AHP+ 1.2 through next, consumer validation, and explicit stable promotion",
+  "next_action": "Request explicit authorization before publishing 1.2.0-dev.0 to npm next",
+  "files": [
+    ".github/workflows/validate.yml",
+    "package.json",
+    "src/events.mjs",
+    "src/upgrade.mjs"
+  ],
+  "validations": [
+    "QA-20260901-9A1FFD04"
+  ],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "git": {
+    "branch": "codex/v1.2-field-hardening",
+    "commit": "bbe25be73f401a39602dffd1c631e131fb6f4d8f",
+    "tree": "3d6e7c39ba4009bbc19111bf071faa1081bd148d",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": "??",
+        "path": ".ahp/events/ahp-1.2-update/EVT-20260901-36B1662E.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260901-551BCD64.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260901-9A1FFD04.json"
+      }
+    ],
+    "working_tree_digest": "0f0b0f17aeaff03143e99a686d165494277046e591c6065c3284370fdcb0537c",
+    "project_working_tree": "CLEAN",
+    "project_changed_files": [],
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": "??",
+        "path": ".ahp/events/ahp-1.2-update/EVT-20260901-36B1662E.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260901-551BCD64.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260901-9A1FFD04.json"
+      }
+    ],
+    "upstream": "origin/codex/v1.2-field-hardening",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-09-01T02:40:58.562Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "3ab63e87afff2e5937d168f679d9a0db79cdd38358dcf773007c900724942e23"
+  }
+}
