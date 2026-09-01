@@ -2,14 +2,14 @@
 
 - Project: ahp-plus
 - Phase: IN_PROGRESS
-- Objective: Publish AHP+ 1.2 through next, cross-platform validation, and explicit stable promotion
+- Objective: Desarrollar AHP+ 1.2 con field hardening y Continuity Event Capsules verificables
 - Confidence: USER_CONFIRMED
 - Git branch: codex/v1.2-field-hardening
-- Git commit: 2d965e8b0c71ee4fbfa9940e6a4f2c01fef75d6d
+- Git commit: 24c21367f5b15465107f9e9b03201d8498f51962
 - Working tree: DIRTY
-- Portability: LOCAL_ONLY — Project working-tree changes are not transported by Git.
-- State revision: 8805cee8ce6f6ac11f990f9d65fa9675303d72858fac8f7ae9242b5b0da560d3
-- Next action: Obtain explicit authority for commit and push, then validate GitHub Actions before npm next publication
+- Portability: PUSH_REQUIRED — No upstream branch is configured.
+- State revision: 3bbedfd03af1219fe2030c1650abdcc37856a318458a4b51992a226a490b23eb
+- Next action: Inspect the Ubuntu, macOS, and Windows CI matrix before authorizing npm next publication
 
 ## Blockers
 
