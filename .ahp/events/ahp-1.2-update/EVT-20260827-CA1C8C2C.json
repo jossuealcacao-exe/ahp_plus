@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.2.0",
+  "id": "EVT-20260827-CA1C8C2C",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "ahp-1.2-update",
+  "correlation_id": "ahp-1.2-update",
+  "sequence": 2,
+  "event_type": "VALIDATION",
+  "summary": "AHP+ 1.2 local foundation passed the development gate",
+  "from": "codex",
+  "to": "human",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "capabilities": [],
+  "causal": {
+    "parent_event_id": "EVT-20260827-2E7459CD",
+    "parent_fingerprint": "c59e4e58410be1212741cec85b9450a7521f83db9c6a9a6dd956c3e5a0f0be34"
+  },
+  "intent": {
+    "requested": "",
+    "authority": "NOT_GRANTED"
+  },
+  "observation": {
+    "status": "VERIFIED",
+    "result": "19/19 tests, 3/3 conformance, validation, pack dry-run, strict verification, and diff check passed",
+    "evidence_refs": [
+      "EVD-20260827-532D391E"
+    ],
+    "artifacts": [
+      "src/events.mjs",
+      "src/upgrade.mjs",
+      "schemas/continuity-event.schema.json",
+      "docs/CONTINUITY_EVENTS.md",
+      "SPECIFICATION.md"
+    ]
+  },
+  "git": {
+    "branch": "codex/v1.2-field-hardening",
+    "commit": "2d965e8b0c71ee4fbfa9940e6a4f2c01fef75d6d",
+    "tree": "373241fa3623dd2f9425ee376b7bef7632b18a0c",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "6042950c300420ef7066815371562de2024f981d372eadd1e03e2d5c3ac4d719"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [
+    "Windows consumer behavior and the authenticated realtime relay are not yet validated"
+  ],
+  "next_action": "Review the diff and decide whether to run the Windows and consumer prerelease gate",
+  "created_at": "2026-08-27T19:39:43.758Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "dae7726b7c64d91da1a5bbf344091969c88b68e9050bdeadfcb49f5e913ff2da"
+  }
+}

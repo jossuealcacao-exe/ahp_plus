@@ -2,10 +2,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {
   CERTAINTY_LEVELS,
+  CONTINUITY_ACTION_STATUSES,
+  CONTINUITY_EVENT_TYPES,
+  CONTINUITY_TRANSPORT_STATUSES,
   EVIDENCE_TYPES,
   PHASES,
   PROTOCOL_VERSION,
   RECORD_KINDS,
+  SUPPORTED_PROTOCOL_VERSIONS,
   STATUS_BY_KIND,
 } from './constants.mjs';
 import { digestObject } from './canonical-json.mjs';
@@ -31,6 +35,10 @@ function validTimestamp(value) {
   return typeof value === 'string' && Number.isFinite(Date.parse(value));
 }
 
+function validateSchemaVersion(value, file, errors, allowed = SUPPORTED_PROTOCOL_VERSIONS) {
+  if (!allowed.includes(value)) errors.push(`${file}: unsupported schema_version ${value}`);
+}
+
 function validateActor(actor, file, errors) {
   if (!actor || typeof actor !== 'object') {
     errors.push(`${file}: actor must be an object`);
@@ -44,6 +52,7 @@ function validateRecord(record, file, errors, warnings) {
     'schema_version', 'id', 'kind', 'project_id', 'title', 'status', 'confidence',
     'created_at', 'updated_at', 'actor', 'source_refs', 'base_commit',
   ], file, errors);
+  validateSchemaVersion(record.schema_version, file, errors);
   if (![...RECORD_KINDS, 'evidence'].includes(record.kind)) errors.push(`${file}: invalid kind ${record.kind}`);
   if (!CERTAINTY_LEVELS.includes(record.confidence)) errors.push(`${file}: invalid confidence ${record.confidence}`);
   if (!Array.isArray(record.source_refs)) errors.push(`${file}: source_refs must be an array`);
@@ -85,6 +94,7 @@ function validateCheckpoint(checkpoint, file, errors) {
     'schema_version', 'id', 'kind', 'session_id', 'project_id', 'summary',
     'next_action', 'actor', 'git', 'created_at', 'integrity',
   ], file, errors);
+  validateSchemaVersion(checkpoint.schema_version, file, errors);
   if (checkpoint.kind !== 'checkpoint') errors.push(`${file}: kind must be checkpoint`);
   validateActor(checkpoint.actor, file, errors);
   validateIntegrity(checkpoint, file, errors);
@@ -97,12 +107,38 @@ function validateHandoff(handoff, file, errors) {
     'validations', 'risks', 'relevant_files', 'next_action', 'done_criteria',
     'created_at', 'receiver_preflight', 'integrity',
   ], file, errors);
+  validateSchemaVersion(handoff.schema_version, file, errors);
   if (handoff.kind !== 'handoff') errors.push(`${file}: kind must be handoff`);
   validateIntegrity(handoff, file, errors);
 }
 
+function validateContinuityEvent(event, file, errors) {
+  required(event, [
+    'schema_version', 'id', 'kind', 'project_id', 'session_id', 'correlation_id',
+    'sequence', 'event_type', 'summary', 'from', 'actor', 'causal', 'intent',
+    'observation', 'git', 'privacy', 'transport', 'limitations', 'next_action',
+    'created_at', 'integrity',
+  ], file, errors);
+  validateSchemaVersion(event.schema_version, file, errors, [PROTOCOL_VERSION]);
+  if (event.kind !== 'continuity_event') errors.push(`${file}: kind must be continuity_event`);
+  if (!CONTINUITY_EVENT_TYPES.includes(event.event_type)) errors.push(`${file}: invalid event_type ${event.event_type}`);
+  if (!Number.isInteger(event.sequence) || event.sequence < 1) errors.push(`${file}: sequence must be a positive integer`);
+  if (!CONTINUITY_ACTION_STATUSES.includes(event.observation?.status)) errors.push(`${file}: invalid observation status ${event.observation?.status}`);
+  if (['EXECUTED', 'VERIFIED'].includes(event.observation?.status)
+    && (!Array.isArray(event.observation?.evidence_refs)
+      || event.observation.evidence_refs.length === 0
+      || event.observation.evidence_refs.some((reference) => !String(reference).startsWith('EVD-')))) {
+    errors.push(`${file}: ${event.observation?.status} continuity event requires evidence_refs with EVD IDs`);
+  }
+  if (!CONTINUITY_TRANSPORT_STATUSES.includes(event.transport?.status)) errors.push(`${file}: invalid transport status ${event.transport?.status}`);
+  if (!Array.isArray(event.limitations)) errors.push(`${file}: limitations must be an array`);
+  validateActor(event.actor, file, errors);
+  validateIntegrity(event, file, errors);
+}
+
 function validateLock(lock, file, errors, warnings) {
   required(lock, ['schema_version', 'id', 'scope', 'owner', 'created_at', 'expires_at', 'base_commit'], file, errors);
+  validateSchemaVersion(lock.schema_version, file, errors);
   if (!validTimestamp(lock.created_at) || !validTimestamp(lock.expires_at)) errors.push(`${file}: invalid timestamp`);
   if (validTimestamp(lock.expires_at) && Date.parse(lock.expires_at) <= Date.now()) warnings.push(`${file}: expired lock`);
 }
@@ -162,10 +198,14 @@ export function verifyRepository(input = '.', options = {}) {
   const manifest = readJson(paths.manifest);
   const project = readJson(paths.projectState);
   required(manifest, ['schema_version', 'protocol', 'protocol_version', 'instance_id', 'project_id', 'owner', 'root', 'created_at', 'governance'], 'manifest.json', errors);
+  validateSchemaVersion(manifest.schema_version, 'manifest.json', errors);
   if (manifest.protocol !== 'AHP+') errors.push('manifest.json: protocol must be AHP+');
-  if (manifest.protocol_version !== PROTOCOL_VERSION) warnings.push(`manifest protocol version ${manifest.protocol_version} differs from CLI protocol ${PROTOCOL_VERSION}`);
+  if (!SUPPORTED_PROTOCOL_VERSIONS.includes(manifest.protocol_version)) {
+    errors.push(`manifest protocol version ${manifest.protocol_version} is not supported by CLI protocol ${PROTOCOL_VERSION}`);
+  }
   if (manifest.root !== '.ahp') errors.push('manifest.json: root must be .ahp');
   required(project, ['schema_version', 'project_id', 'phase', 'objective', 'next_action', 'confidence', 'blockers', 'base_commit', 'created_at', 'updated_at'], 'state/project.json', errors);
+  validateSchemaVersion(project.schema_version, 'state/project.json', errors);
   if (project.project_id !== manifest.project_id) errors.push('state/project.json: project_id differs from manifest');
   if (!PHASES.includes(project.phase)) errors.push(`state/project.json: invalid phase ${project.phase}`);
   if (!CERTAINTY_LEVELS.includes(project.confidence)) errors.push(`state/project.json: invalid confidence ${project.confidence}`);
@@ -211,6 +251,44 @@ export function verifyRepository(input = '.', options = {}) {
     }
   }
 
+  const events = new Map();
+  const sessionSequences = new Map();
+  for (const file of walkJson(paths.events)) {
+    const relative = relativeUnix(resolved.stateRoot, file);
+    const event = readJson(file);
+    validateContinuityEvent(event, relative, errors);
+    if (event.project_id !== manifest.project_id) errors.push(`${relative}: project_id differs from manifest`);
+    if (event.id) {
+      if (ids.has(event.id)) errors.push(`${relative}: duplicate ID also in ${ids.get(event.id)}`);
+      else ids.set(event.id, relative);
+      events.set(event.id, { event, relative });
+    }
+    const sequenceKey = `${event.session_id}:${event.sequence}`;
+    if (sessionSequences.has(sequenceKey)) errors.push(`${relative}: duplicate session sequence also in ${sessionSequences.get(sequenceKey)}`);
+    else sessionSequences.set(sequenceKey, relative);
+    for (const reference of event.observation?.evidence_refs || []) references.push({ file: relative, reference });
+  }
+  for (const { event, relative } of events.values()) {
+    const parentId = event.causal?.parent_event_id;
+    if (!parentId) continue;
+    const parent = events.get(parentId)?.event;
+    if (!parent) errors.push(`${relative}: missing causal parent ${parentId}`);
+    else if (parent.integrity?.digest !== event.causal?.parent_fingerprint) errors.push(`${relative}: causal parent fingerprint mismatch`);
+    else if (parent.session_id === event.session_id && Number(parent.sequence) >= Number(event.sequence)) errors.push(`${relative}: causal parent sequence must precede child sequence`);
+  }
+  const sequencesBySession = new Map();
+  for (const { event, relative } of events.values()) {
+    const values = sequencesBySession.get(event.session_id) || [];
+    values.push({ sequence: Number(event.sequence), relative });
+    sequencesBySession.set(event.session_id, values);
+  }
+  for (const values of sequencesBySession.values()) {
+    values.sort((left, right) => left.sequence - right.sequence);
+    values.forEach((value, index) => {
+      if (value.sequence !== index + 1) errors.push(`${value.relative}: session sequence gap; expected ${index + 1}, found ${value.sequence}`);
+    });
+  }
+
   for (const file of walkJson(paths.locks)) validateLock(readJson(file), relativeUnix(resolved.stateRoot, file), errors, warnings);
   for (const { file, reference } of references) {
     if (typeof reference !== 'string' || !/^(DEC|TASK|BUG|RISK|QA|REQ|EVD|CHK|HOF)-/.test(reference)) continue;
@@ -223,13 +301,17 @@ export function verifyRepository(input = '.', options = {}) {
     if (relation.relation === 'BASE_UNAVAILABLE') {
       warnings.push(`state/project.json: base_commit ${project.base_commit.slice(0, 8)} is unavailable in this Git history; fetch sufficient history to verify ancestry`);
     } else if (relation.relation !== 'AHP_ENVELOPE_DESCENDANT') {
-      warnings.push(`state/project.json: base_commit is stale (${project.base_commit.slice(0, 8)} != ${git.commit.slice(0, 8)})`);
+      warnings.push(`state/project.json: base_commit is stale (${project.base_commit.slice(0, 8)} != ${git.commit.slice(0, 8)}); after review run \`ahp set-state . --accept-head --expected-head ${git.commit}\``);
     }
   }
   scanSecrets(resolved.stateRoot, errors);
 
+  const valid = errors.length === 0;
+  const strictConformance = valid && warnings.length === 0;
   return {
-    ok: errors.length === 0 && !(options.strict && warnings.length > 0),
+    ok: valid && !(options.strict && warnings.length > 0),
+    valid,
+    strict_conformance: strictConformance ? 'PASS' : 'FAIL',
     protocol: 'AHP+',
     protocol_version: PROTOCOL_VERSION,
     layout: 'modern',

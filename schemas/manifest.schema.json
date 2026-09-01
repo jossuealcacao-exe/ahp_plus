@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ahp-plus:schema:manifest:1.1.0",
+  "$id": "urn:ahp-plus:schema:manifest:1.2.0",
   "title": "AHP+ Manifest",
   "type": "object",
   "required": [
@@ -16,15 +16,17 @@
     "governance"
   ],
   "properties": {
-    "schema_version": { "const": "1.1.0" },
+    "schema_version": { "enum": ["1.1.0", "1.2.0"] },
     "protocol": { "const": "AHP+" },
-    "protocol_version": { "type": "string" },
+    "protocol_version": { "enum": ["1.1.0", "1.2.0"] },
     "cli_version_created": { "type": "string" },
     "instance_id": { "type": "string", "minLength": 1 },
     "project_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$" },
     "owner": { "type": "string", "minLength": 1 },
     "root": { "const": ".ahp" },
     "created_at": { "type": "string", "format": "date-time" },
+    "upgraded_at": { "type": "string", "format": "date-time" },
+    "upgraded_from": { "type": "string" },
     "certainty_levels": {
       "type": "array",
       "uniqueItems": true,

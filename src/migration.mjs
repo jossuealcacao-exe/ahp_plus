@@ -25,7 +25,7 @@ import { resolveRepository } from './root.mjs';
 const DIRECTORIES = [
   'state', 'sessions', 'records/decisions', 'records/tasks', 'records/bugs',
   'records/risks', 'records/qa', 'records/requirements', 'evidence', 'handoffs',
-  'locks', 'archive/legacy-records', 'archive/legacy-metadata', 'archive/locks',
+    'locks', 'events', 'archive/legacy-records', 'archive/legacy-metadata', 'archive/locks',
   'backups', 'cache', 'tmp',
 ];
 

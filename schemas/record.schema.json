@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ahp-plus:schema:record:1.1.0",
+  "$id": "urn:ahp-plus:schema:record:1.2.0",
   "title": "AHP+ Governance Record",
   "type": "object",
   "required": [
@@ -30,7 +30,7 @@
     }
   },
   "properties": {
-    "schema_version": { "const": "1.1.0" },
+    "schema_version": { "enum": ["1.1.0", "1.2.0"] },
     "id": { "type": "string", "pattern": "^(DEC|TASK|BUG|RISK|QA|REQ|EVD)-[0-9]{8}-[A-F0-9]{8}$" },
     "kind": { "enum": ["decision", "task", "bug", "risk", "qa", "requirement", "evidence"] },
     "project_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$" },

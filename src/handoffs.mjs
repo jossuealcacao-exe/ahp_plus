@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { pipeList } from './args.mjs';
-import { ID_PREFIXES, PROTOCOL_VERSION, TERMINAL_STATUSES } from './constants.mjs';
+import { ID_PREFIXES, TERMINAL_STATUSES } from './constants.mjs';
 import { latestCheckpoint } from './checkpoints.mjs';
 import { portability } from './context.mjs';
 import { invariant } from './errors.mjs';
@@ -9,7 +9,7 @@ import { gitCommitRelation } from './git.mjs';
 import { seal, verifySeal } from './integrity.mjs';
 import { preflightWrite } from './preflight.mjs';
 import { allRecords } from './records.mjs';
-import { projectId, repository } from './state.mjs';
+import { documentVersion, projectId, repository } from './state.mjs';
 
 function handoffFile(repo, id) {
   return path.join(repo.paths.handoffs, `${id}.json`);
@@ -30,7 +30,7 @@ export function createHandoff(input, options = {}) {
     : observedPortability;
   const id = makeId(ID_PREFIXES.handoff);
   const value = seal({
-    schema_version: PROTOCOL_VERSION,
+    schema_version: documentVersion(repo),
     id,
     kind: 'handoff',
     from: String(options.from || options.platform || 'current-agent'),

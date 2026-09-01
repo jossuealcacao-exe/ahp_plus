@@ -25,12 +25,15 @@ const required = [
   'package.json',
   'bin/ahp.mjs',
   'src/cli.mjs',
+  'src/events.mjs',
+  'src/upgrade.mjs',
   'schemas/manifest.schema.json',
   'schemas/project-state.schema.json',
   'schemas/record.schema.json',
   'schemas/checkpoint.schema.json',
   'schemas/handoff.schema.json',
   'schemas/lock.schema.json',
+  'schemas/continuity-event.schema.json',
   'docs/CONFORMANCE.md',
   'docs/GETTING_STARTED_ES.md',
   'docs/OPERATIONS_ES.md',
@@ -70,6 +73,10 @@ const versionFile = fs.readFileSync(path.join(root, 'VERSION'), 'utf8').trim();
 if (packageJson.version !== CLI_VERSION) errors.push(`package version ${packageJson.version} differs from CLI ${CLI_VERSION}`);
 if (versionFile !== CLI_VERSION) errors.push(`VERSION ${versionFile} differs from CLI ${CLI_VERSION}`);
 if (packageJson.scripts?.test !== 'node --test') errors.push('test script must use shell-independent Node.js test discovery');
+if (packageJson.scripts?.prepublishOnly !== 'npm run release:check') errors.push('npm publication must run the release gate');
+for (const command of ['npm test', 'npm run conformance', 'npm run validate', 'npm run pack:dry-run']) {
+  if (!packageJson.scripts?.['release:check']?.includes(command)) errors.push(`release gate omits ${command}`);
+}
 for (const entry of [
   'bin', 'src', 'schemas', 'templates', 'docs', 'SPECIFICATION.md', 'README.md',
   'CHANGELOG.md', 'SECURITY.md', 'VERSION', 'LICENSE', 'NOTICE',

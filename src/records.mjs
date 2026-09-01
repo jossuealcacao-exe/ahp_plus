@@ -4,7 +4,6 @@ import {
   CERTAINTY_LEVELS,
   EVIDENCE_TYPES,
   ID_PREFIXES,
-  PROTOCOL_VERSION,
   RECORD_KINDS,
   STATUS_BY_KIND,
   TERMINAL_STATUSES,
@@ -13,7 +12,7 @@ import { csv } from './args.mjs';
 import { AhpError, invariant } from './errors.mjs';
 import { makeId, now, readJson, walkJson, writeJsonAtomic, writeJsonExclusive } from './fs-utils.mjs';
 import { preflightWrite, recordFile } from './preflight.mjs';
-import { projectId, repository } from './state.mjs';
+import { documentVersion, projectId, repository } from './state.mjs';
 
 const DEFAULT_STATUS = Object.freeze({
   decision: 'PROPOSED',
@@ -37,8 +36,13 @@ function assertCommon(kind, options) {
   invariant(options.title, '--title is required', { code: 'INVALID_ARGUMENT' });
   const status = String(options.status || DEFAULT_STATUS[kind]);
   const confidence = String(options.confidence || 'UNVERIFIED');
-  invariant(STATUS_BY_KIND[kind]?.has(status), `Invalid ${kind} status ${status}`, { code: 'INVALID_STATUS' });
-  invariant(CERTAINTY_LEVELS.includes(confidence), `Invalid confidence ${confidence}`, { code: 'INVALID_CONFIDENCE' });
+  const allowedStatuses = [...(STATUS_BY_KIND[kind] || [])];
+  invariant(STATUS_BY_KIND[kind]?.has(status), `Invalid ${kind} status ${status}. Allowed values: ${allowedStatuses.join(', ')}`, {
+    code: 'INVALID_STATUS', details: { kind, value: status, allowed: allowedStatuses },
+  });
+  invariant(CERTAINTY_LEVELS.includes(confidence), `Invalid confidence ${confidence}. Allowed values: ${CERTAINTY_LEVELS.join(', ')}`, {
+    code: 'INVALID_CONFIDENCE', details: { value: confidence, allowed: CERTAINTY_LEVELS },
+  });
   if (kind === 'decision' && status === 'ACCEPTED') {
     invariant(['VERIFIED', 'USER_CONFIRMED'].includes(confidence), 'Accepted decisions require VERIFIED or USER_CONFIRMED confidence', { code: 'INVALID_CONFIDENCE' });
   }
@@ -74,7 +78,7 @@ export function createRecord(input, kind, options = {}) {
   const timestamp = now();
   const id = makeId(ID_PREFIXES[kind]);
   const record = {
-    schema_version: PROTOCOL_VERSION,
+    schema_version: documentVersion(repo),
     id,
     kind,
     project_id: projectId(repo, options.project),
@@ -97,13 +101,15 @@ export function createRecord(input, kind, options = {}) {
 export function createEvidence(input, options = {}) {
   const { repo } = preflightWrite(input, options, 'evidence');
   const { status, confidence } = assertCommon('evidence', options);
-  invariant(options.type && EVIDENCE_TYPES.includes(options.type), `Invalid evidence type ${options.type || 'missing'}`, { code: 'INVALID_EVIDENCE_TYPE' });
+  invariant(options.type && EVIDENCE_TYPES.includes(options.type), `Invalid evidence type ${options.type || 'missing'}. Allowed values: ${EVIDENCE_TYPES.join(', ')}`, {
+    code: 'INVALID_EVIDENCE_TYPE', details: { value: options.type || null, allowed: EVIDENCE_TYPES },
+  });
   invariant(options.locator, '--locator is required', { code: 'INVALID_ARGUMENT' });
   invariant(options.result !== undefined, '--result is required', { code: 'INVALID_ARGUMENT' });
   const timestamp = now();
   const id = makeId(ID_PREFIXES.evidence);
   const record = {
-    schema_version: PROTOCOL_VERSION,
+    schema_version: documentVersion(repo),
     id,
     kind: 'evidence',
     project_id: projectId(repo, options.project),
@@ -172,7 +178,7 @@ export function supersedeDecision(input, id, options = {}) {
   if (status === 'ACCEPTED') invariant(['VERIFIED', 'USER_CONFIRMED'].includes(confidence), 'Accepted decisions require verified authority', { code: 'INVALID_CONFIDENCE' });
   const timestamp = now();
   const replacement = {
-    schema_version: PROTOCOL_VERSION,
+    schema_version: documentVersion(repo),
     id: makeId(ID_PREFIXES.decision),
     kind: 'decision',
     project_id: projectId(repo),

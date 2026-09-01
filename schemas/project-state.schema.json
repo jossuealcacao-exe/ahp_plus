@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ahp-plus:schema:project-state:1.1.0",
+  "$id": "urn:ahp-plus:schema:project-state:1.2.0",
   "title": "AHP+ Project State",
   "type": "object",
   "required": [
@@ -16,7 +16,7 @@
     "updated_at"
   ],
   "properties": {
-    "schema_version": { "const": "1.1.0" },
+    "schema_version": { "enum": ["1.1.0", "1.2.0"] },
     "project_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$" },
     "phase": {
       "enum": ["DISCOVERY", "PLANNED", "IN_PROGRESS", "BLOCKED", "READY_FOR_QA", "VERIFIED", "COMPLETED", "ARCHIVED", "REJECTED"]

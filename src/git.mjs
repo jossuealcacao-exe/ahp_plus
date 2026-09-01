@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { relativeUnix } from './fs-utils.mjs';
 
 export function runGit(cwd, args, fallback = null) {
@@ -14,6 +14,34 @@ export function runGit(cwd, args, fallback = null) {
   } catch {
     return fallback;
   }
+}
+
+function bounded(value, limit = 4000) {
+  const text = String(value || '').trim();
+  return text.length > limit ? `${text.slice(0, limit)}…` : text;
+}
+
+export function diagnoseGit(cwd) {
+  const absoluteCwd = path.resolve(cwd || '.');
+  const resolver = process.platform === 'win32' ? 'where.exe' : 'which';
+  const resolution = spawnSync(resolver, ['git'], { encoding: 'utf8' });
+  const argv = ['rev-parse', '--show-toplevel'];
+  const probe = spawnSync('git', argv, { cwd: absoluteCwd, encoding: 'utf8' });
+  return {
+    command: 'git',
+    resolved_executable: bounded(resolution.stdout).split(/\r?\n/).filter(Boolean)[0] || null,
+    resolver_exit_code: resolution.status,
+    cwd: absoluteCwd,
+    argv,
+    exit_code: probe.status,
+    signal: probe.signal || null,
+    spawn_error: probe.error ? { code: probe.error.code || null, message: probe.error.message } : null,
+    stdout: bounded(probe.stdout),
+    stderr: bounded(probe.stderr),
+    process_platform: process.platform,
+    process_arch: process.arch,
+    process_exec_path: process.execPath,
+  };
 }
 
 function runGitRaw(cwd, args, fallback = null) {

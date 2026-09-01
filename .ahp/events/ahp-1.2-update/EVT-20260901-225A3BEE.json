@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.2.0",
+  "id": "EVT-20260901-225A3BEE",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "ahp-1.2-update",
+  "correlation_id": "ahp-1.2-update",
+  "sequence": 4,
+  "event_type": "VALIDATION",
+  "summary": "The npm next publication path passed a guarded dry-run",
+  "from": "codex",
+  "to": "human",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "capabilities": [],
+  "causal": {
+    "parent_event_id": "EVT-20260901-72DE8083",
+    "parent_fingerprint": "e012a7b531c64bc2404dee777e07c0834f1cc1fe431d6ca9ba9ce2842d03af77"
+  },
+  "intent": {
+    "requested": "",
+    "authority": "NOT_GRANTED"
+  },
+  "observation": {
+    "status": "VERIFIED",
+    "result": "prepublishOnly executed all gates and npm selected next for 1.2.0-dev.0 without mutating the registry",
+    "evidence_refs": [
+      "EVD-20260901-BD0872B4"
+    ],
+    "artifacts": [
+      "package.json",
+      "docs/CHANNELS_ES.md"
+    ]
+  },
+  "git": {
+    "branch": "codex/v1.2-field-hardening",
+    "commit": "2d965e8b0c71ee4fbfa9940e6a4f2c01fef75d6d",
+    "tree": "373241fa3623dd2f9425ee376b7bef7632b18a0c",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "5cd0035bdb4c1c069624f59229bc33eee553f6100ad50d683b88a786b4664758"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [
+    "Actual commit, push, CI, npm publication, and remote consumer receipt remain pending explicit authority"
+  ],
+  "next_action": "Authorize the release commit and push to begin the remote cross-platform gate",
+  "created_at": "2026-09-01T02:30:40.031Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "be5bdf3ead58b3537fbf1f1bf44317c42544d5b10f63b6af0653bb92cc101043"
+  }
+}

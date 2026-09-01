@@ -1,0 +1,439 @@
+{
+  "schema_version": "1.2.0",
+  "id": "CHK-20260827-4386A4B6",
+  "kind": "checkpoint",
+  "session_id": "ahp-1.2-update",
+  "project_id": "ahp-plus",
+  "summary": "Implemented and validated the AHP+ 1.2 local development foundation",
+  "objective": "Develop AHP+ 1.2 with field hardening and verifiable Continuity Event Capsules",
+  "next_action": "Review the diff and run the Windows and consumer prerelease gate before considering publication",
+  "files": [
+    "src/events.mjs",
+    "src/upgrade.mjs",
+    "src/git.mjs",
+    "src/context.mjs",
+    "schemas/continuity-event.schema.json",
+    "docs/CONTINUITY_EVENTS.md",
+    "SPECIFICATION.md",
+    "tests/core.test.mjs",
+    "tests/conformance.test.mjs"
+  ],
+  "validations": [
+    "QA-20260827-1E4E58E8"
+  ],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "git": {
+    "branch": "codex/v1.2-field-hardening",
+    "commit": "2d965e8b0c71ee4fbfa9940e6a4f2c01fef75d6d",
+    "tree": "373241fa3623dd2f9425ee376b7bef7632b18a0c",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/manifest.json"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "README.es.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "SPECIFICATION.md"
+      },
+      {
+        "code": " M",
+        "path": "VERSION"
+      },
+      {
+        "code": " M",
+        "path": "docs/ARCHITECTURE.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS_BY_SURFACE_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/CONFORMANCE.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/GETTING_STARTED_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/MOBILE_AND_REMOTE.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/OPERATIONS_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "package.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/checkpoint.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/handoff.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/lock.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/manifest.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/project-state.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/record.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "scripts/validate.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/args.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/checkpoints.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/cli.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/constants.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/context.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/git.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/handoffs.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/locks.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/migration.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/records.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/root.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/state.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/validation.mjs"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/codex/.agents/skills/ahp/SKILL.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/generic/AHP_INSTRUCTIONS.md"
+      },
+      {
+        "code": " M",
+        "path": "tests/conformance.test.mjs"
+      },
+      {
+        "code": " M",
+        "path": "tests/core.test.mjs"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/events/ahp-1.2-update/EVT-20260827-2E7459CD.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/events/ahp-1.2-update/EVT-20260827-CA1C8C2C.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260827-532D391E.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260827-B497AD25.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260827-1E4E58E8.json"
+      },
+      {
+        "code": "??",
+        "path": "docs/CONTINUITY_EVENTS.md"
+      },
+      {
+        "code": "??",
+        "path": "schemas/continuity-event.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "src/events.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/upgrade.mjs"
+      }
+    ],
+    "working_tree_digest": "1a7fec00887ffab79bf55fdde72b569d643e04ae719a71e0634cbdf481cb0ad7",
+    "project_working_tree": "DIRTY",
+    "project_changed_files": [
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "README.es.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "SPECIFICATION.md"
+      },
+      {
+        "code": " M",
+        "path": "VERSION"
+      },
+      {
+        "code": " M",
+        "path": "docs/ARCHITECTURE.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS_BY_SURFACE_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/CONFORMANCE.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/GETTING_STARTED_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/MOBILE_AND_REMOTE.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/OPERATIONS_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "package.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/checkpoint.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/handoff.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/lock.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/manifest.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/project-state.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/record.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "scripts/validate.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/args.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/checkpoints.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/cli.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/constants.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/context.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/git.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/handoffs.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/locks.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/migration.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/records.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/root.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/state.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/validation.mjs"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/codex/.agents/skills/ahp/SKILL.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/generic/AHP_INSTRUCTIONS.md"
+      },
+      {
+        "code": " M",
+        "path": "tests/conformance.test.mjs"
+      },
+      {
+        "code": " M",
+        "path": "tests/core.test.mjs"
+      },
+      {
+        "code": "??",
+        "path": "docs/CONTINUITY_EVENTS.md"
+      },
+      {
+        "code": "??",
+        "path": "schemas/continuity-event.schema.json"
+      },
+      {
+        "code": "??",
+        "path": "src/events.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/upgrade.mjs"
+      }
+    ],
+    "project_working_tree_digest": "6042950c300420ef7066815371562de2024f981d372eadd1e03e2d5c3ac4d719",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/manifest.json"
+      },
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/events/ahp-1.2-update/EVT-20260827-2E7459CD.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/events/ahp-1.2-update/EVT-20260827-CA1C8C2C.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260827-532D391E.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260827-B497AD25.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260827-1E4E58E8.json"
+      }
+    ],
+    "upstream": null,
+    "ahead": null,
+    "behind": null
+  },
+  "created_at": "2026-08-27T19:40:16.220Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "135915ab54a07c3c6b354bc2e2cbb08e664a0a7aa1d52608835557f56d49f415"
+  }
+}

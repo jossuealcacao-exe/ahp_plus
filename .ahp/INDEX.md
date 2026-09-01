@@ -1,15 +1,15 @@
 # AHP+ Project Context
 
 - Project: ahp-plus
-- Phase: COMPLETED
-- Objective: Presentar AHP+ profesionalmente en GitHub con portada bilingüe, identidad visual y portafolio
-- Confidence: VERIFIED
-- Git branch: main
-- Git commit: 34b8586cc950d2f4dcb574ec7619caf9dd69ee2c
+- Phase: IN_PROGRESS
+- Objective: Publish AHP+ 1.2 through next, cross-platform validation, and explicit stable promotion
+- Confidence: USER_CONFIRMED
+- Git branch: codex/v1.2-field-hardening
+- Git commit: 2d965e8b0c71ee4fbfa9940e6a4f2c01fef75d6d
 - Working tree: DIRTY
-- Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
-- State revision: 9cb5839f3ff9e6908c73d8d9a93403e87f2ad9f6390e0523dda07166a48f3e1e
-- Next action: Recibir feedback público y opcionalmente usar .github/assets/ahp-plus-hero.jpg como social preview en GitHub Settings
+- Portability: LOCAL_ONLY — Project working-tree changes are not transported by Git.
+- State revision: 8805cee8ce6f6ac11f990f9d65fa9675303d72858fac8f7ae9242b5b0da560d3
+- Next action: Obtain explicit authority for commit and push, then validate GitHub Actions before npm next publication
 
 ## Blockers
 
@@ -17,10 +17,16 @@
 
 ## Latest checkpoint
 
-- CHK-20260813-E9498083: Presentación pública bilingüe de AHP+ verificada en GitHub con identidad visual, portafolio, metadata, plantillas comunitarias y matriz CI interplataformas en verde
+- CHK-20260901-9571A981: Prepared and locally validated the guarded AHP+ 1.2 prerelease route
 
 ## Active records
 
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-BD0872B4: AHP+ 1.2 npm next publication dry-run
+- [qa/PASS/VERIFIED] QA-20260901-78F3E093: AHP+ 1.2 local prerelease candidate gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-31CC84AB: AHP+ 1.2 prerelease route and packed consumer gate
+- [qa/PASS/VERIFIED] QA-20260827-1E4E58E8: AHP+ 1.2 development gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260827-532D391E: AHP+ 1.2 dev field hardening and Continuity Event gate
+- [evidence/OBSERVED/USER_CONFIRMED] EVD-20260827-B497AD25: SmartSell Claude to Codex field report
 - [qa/PASS/VERIFIED] QA-20260813-6C97A11E: AHP+ public GitHub presentation remote acceptance
 - [evidence/OBSERVED/VERIFIED] EVD-20260813-5E853474: Public GitHub presentation and cross-platform CI
 - [qa/PASS/VERIFIED] QA-20260813-1BA18B8F: AHP+ professional GitHub presentation acceptance

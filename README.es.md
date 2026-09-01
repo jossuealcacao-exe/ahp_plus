@@ -18,6 +18,10 @@
 
 ---
 
+> **Estado de desarrollo:** esta rama documenta AHP+ 1.2.0 antes de su release.
+> npm `latest` permanece en 1.1.0 hasta superar conformidad y validación en un
+> consumidor real.
+
 AHP+ (**Agent Handoff Protocol Plus**) es un protocolo abierto respaldado por
 Git y una CLI de referencia para conservar la verdad operativa de un proyecto:
 estado, decisiones, evidencia, checkpoints, límites de autoridad y handoffs
@@ -91,6 +95,7 @@ nunca debe prestar su rama o commit a un repositorio anidado.
 | QA | Gates PASS/FAIL respaldados por IDs de evidencia |
 | Checkpoints | Límites de sesión recuperables |
 | Handoffs | Continuidad sellada entre plataformas con verificación del receptor |
+| Eventos de continuidad | Mensajes operativos append-only enlazados por fingerprints SHA-256 |
 | Riesgos y locks | Riesgos visibles y avisos cooperativos de concurrencia |
 
 Las afirmaciones usan niveles explícitos: `VERIFIED`, `USER_CONFIRMED`,
@@ -144,6 +149,7 @@ En el entorno receptor:
 
 ```bash
 npx ahp verify . --strict
+npx ahp ready . --platform cursor
 npx ahp handoff inspect HOF-... .
 npx ahp handoff receive HOF-... .
 npx ahp sync check . --require-remote
@@ -151,6 +157,36 @@ npx ahp sync check . --require-remote
 
 `READY` prueba compatibilidad con el límite registrado. No autoriza commit,
 push, merge, deploy, publicación, pagos, eliminación ni acceso a secretos.
+
+`ready` separa la capacidad de continuar localmente de la portabilidad remota.
+Una copia local compartida puede estar lista aunque todavía muestre
+`PUSH_REQUIRED`.
+
+## Fingerprints de Continuity Events
+
+AHP+ 1.2 puede registrar mensajes operativos seleccionados bajo `.ahp/events/`.
+Cada evento se sella con SHA-256 y referencia el ID y fingerprint de su padre
+causal:
+
+```bash
+npx --no-install ahp event append . \
+  --type MESSAGE \
+  --session cross-agent \
+  --from claude \
+  --to codex \
+  --summary "Continuar desde la frontera de reconciliación verificada"
+
+npx --no-install ahp event verify EVT-... .
+```
+
+La cadena detecta mutaciones y relaciones causales rotas. No autentica a una IA
+ni entrega mensajes en tiempo real. Un relay futuro sobre A2A/MCP deberá añadir
+autenticación, cifrado, protección contra replay, control de acceso y recibos
+independientes. Consulta [Continuity Events](docs/CONTINUITY_EVENTS.md).
+
+Los proyectos AHP+ 1.1 siguen siendo legibles. Ejecuta
+`ahp upgrade . --plan` y revisa el resultado antes de `--apply`; los records,
+checkpoints y handoffs 1.1 conservan su schema y fingerprint originales.
 
 ## Estados de portabilidad
 
@@ -200,15 +236,16 @@ Los artefactos de npm y GitHub comparten el SHA-256
 | [Comandos](docs/COMMANDS.md) | Contrato normativo de la CLI |
 | [Comandos por superficie](docs/COMMANDS_BY_SURFACE_ES.md) | Invocación en terminal, IDE y app |
 | [Arquitectura](docs/ARCHITECTURE.md) | Identidad del repositorio y layout del protocolo |
+| [Continuity Events](docs/CONTINUITY_EVENTS.md) | Fingerprints causales y límite del relay futuro |
 | [Conformidad](docs/CONFORMANCE.md) | Criterios de aceptación interplataforma |
 | [Canales de distribución](docs/CHANNELS_ES.md) | Estable `latest` y desarrollo `next` |
 | [Feedback público](docs/COMMUNITY_FEEDBACK_ES.md) | Reportes seguros y reproducibles |
-| [Especificación](SPECIFICATION.md) | Protocolo normativo AHP+ 1.1 |
+| [Especificación](SPECIFICATION.md) | Protocolo AHP+ 1.2 en desarrollo |
 
 ## Canales de distribución
 
 - **Estable:** versiones semánticas en npm `latest` y GitHub Releases normales.
-- **Desarrollo:** versiones como `1.1.1-dev.0` en npm `next` y GitHub
+- **Desarrollo:** versiones como `1.2.0-dev.0` en npm `next` y GitHub
   prereleases.
 
 ## Seguridad y contribución

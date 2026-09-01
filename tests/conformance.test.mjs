@@ -33,6 +33,11 @@ test('a committed handoff is receivable from an independent clone', (context) =>
   const handoff = jsonAhp(source, [
     'handoff', 'create', '--from', 'codex', '--to', 'cursor', '--session', 'codex-portable',
   ]);
+  const event = jsonAhp(source, [
+    'event', 'append', '--type', 'HANDOFF', '--session', 'codex-portable',
+    '--from', 'codex', '--to', 'cursor', '--summary', 'Handoff capsule created',
+    '--status', 'NOT_APPLICABLE', '--artifacts', handoff.file,
+  ]);
   assert.equal(handoff.portability.status, 'PUSH_REQUIRED');
   commitAll(source, 'test: publish AHP handoff envelope');
   git(source, 'push');
@@ -44,6 +49,9 @@ test('a committed handoff is receivable from an independent clone', (context) =>
   const receipt = jsonAhp(receiver, ['handoff', 'receive', handoff.id]);
   assert.equal(receipt.ok, true);
   assert.equal(receipt.outcome, 'READY');
+  const eventReceipt = jsonAhp(receiver, ['event', 'verify', event.id]);
+  assert.equal(eventReceipt.ok, true);
+  assert.equal(eventReceipt.fingerprint, event.fingerprint);
   assert.equal(jsonAhp(receiver, ['status']).portability.status, 'REMOTE_READY');
 });
 
@@ -58,6 +66,9 @@ test('adapter installation is plan-first and idempotent', (context) => {
   const applied = jsonAhp(repo, ['adapter', 'install', 'all', '--apply']);
   assert.ok(applied.applied.includes('AHP_INSTRUCTIONS.md'));
   assert.ok(fs.existsSync(path.join(repo, '.agents/skills/ahp/SKILL.md')));
+  const codexSkill = fs.readFileSync(path.join(repo, '.agents/skills/ahp/SKILL.md'), 'utf8');
+  assert.match(codexSkill, /npx --no-install ahp/);
+  assert.match(codexSkill, /node_modules\/.bin\/ahp\.cmd/);
   assert.ok(fs.existsSync(path.join(repo, '.cursor/commands/ahp.md')));
   assert.ok(fs.existsSync(path.join(repo, '.opencode/commands/ahp.md')));
   const second = jsonAhp(repo, ['adapter', 'install', 'all', '--apply']);

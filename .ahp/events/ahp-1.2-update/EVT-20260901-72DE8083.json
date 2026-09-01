@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.2.0",
+  "id": "EVT-20260901-72DE8083",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "ahp-1.2-update",
+  "correlation_id": "ahp-1.2-update",
+  "sequence": 3,
+  "event_type": "VALIDATION",
+  "summary": "AHP+ 1.2 packed consumer and guarded release route passed locally",
+  "from": "codex",
+  "to": "human",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "capabilities": [],
+  "causal": {
+    "parent_event_id": "EVT-20260827-CA1C8C2C",
+    "parent_fingerprint": "dae7726b7c64d91da1a5bbf344091969c88b68e9050bdeadfcb49f5e913ff2da"
+  },
+  "intent": {
+    "requested": "",
+    "authority": "NOT_GRANTED"
+  },
+  "observation": {
+    "status": "VERIFIED",
+    "result": "The release gate and independent tarball consumer flow passed; npm publication is protected by prepublishOnly",
+    "evidence_refs": [
+      "EVD-20260901-31CC84AB"
+    ],
+    "artifacts": [
+      "package.json",
+      "scripts/validate.mjs",
+      "docs/CHANNELS_ES.md",
+      "src/cli.mjs",
+      "tests/core.test.mjs"
+    ]
+  },
+  "git": {
+    "branch": "codex/v1.2-field-hardening",
+    "commit": "2d965e8b0c71ee4fbfa9940e6a4f2c01fef75d6d",
+    "tree": "373241fa3623dd2f9425ee376b7bef7632b18a0c",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "5cd0035bdb4c1c069624f59229bc33eee553f6100ad50d683b88a786b4664758"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [
+    "Windows CI and installation from npm next require an authorized push and publication"
+  ],
+  "next_action": "Obtain explicit authority for the release commit and branch push, then inspect the cross-platform CI result",
+  "created_at": "2026-09-01T02:29:15.129Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "e012a7b531c64bc2404dee777e07c0834f1cc1fe431d6ca9ba9ce2842d03af77"
+  }
+}

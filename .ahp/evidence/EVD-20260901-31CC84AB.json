@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.2.0",
+  "id": "EVD-20260901-31CC84AB",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.2 prerelease route and packed consumer gate",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-01T02:29:04.496Z",
+  "updated_at": "2026-09-01T02:29:04.496Z",
+  "observed_at": "2026-09-01T02:29:04.496Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [],
+  "base_commit": "2d965e8b0c71ee4fbfa9940e6a4f2c01fef75d6d",
+  "tags": [],
+  "evidence_type": "test",
+  "locator": "npm run release:check; install generated 1.2.0-dev.0 tarball in independent temporary consumer; ahp --version; ahp init; ahp event append; ahp verify --strict",
+  "result": "PASS: release gate completed; packed package resolved exact version 1.2.0-dev.0; independent consumer initialized protocol 1.2.0, appended a continuity event, and passed strict verification",
+  "limitations": "Validated locally on macOS only; GitHub Actions Windows matrix, npm next publication, remote installation, and receiver-side relay remain unverified",
+  "artifact_sha256": null,
+  "exit_code": 0
+}

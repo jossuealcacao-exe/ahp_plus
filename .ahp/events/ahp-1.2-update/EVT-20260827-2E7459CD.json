@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.2.0",
+  "id": "EVT-20260827-2E7459CD",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "ahp-1.2-update",
+  "correlation_id": "ahp-1.2-update",
+  "sequence": 1,
+  "event_type": "DIRECTIVE",
+  "summary": "Begin the AHP+ update and revisit cross-platform message fingerprints",
+  "from": "human",
+  "to": "codex",
+  "actor": {
+    "name": "Jossue Alcalá",
+    "platform": "human",
+    "model": "n/a"
+  },
+  "capabilities": [],
+  "causal": {
+    "parent_event_id": null,
+    "parent_fingerprint": null
+  },
+  "intent": {
+    "requested": "Start the protocol update and recover the prior design for realtime AI project communication",
+    "authority": "USER_CONFIRMED"
+  },
+  "observation": {
+    "status": "REQUESTED",
+    "result": null,
+    "evidence_refs": [
+      "EVD-20260827-B497AD25"
+    ],
+    "artifacts": []
+  },
+  "git": {
+    "branch": "codex/v1.2-field-hardening",
+    "commit": "2d965e8b0c71ee4fbfa9940e6a4f2c01fef75d6d",
+    "tree": "373241fa3623dd2f9425ee376b7bef7632b18a0c",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "cbf4269ac71c7c5f5b9ab71632d3af944c5be062b5585a0a0384ac7611a29c9c"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [],
+  "next_action": "Implement and validate the local Continuity Event foundation without claiming a realtime relay",
+  "created_at": "2026-08-27T19:31:08.448Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "c59e4e58410be1212741cec85b9450a7521f83db9c6a9a6dd956c3e5a0f0be34"
+  }
+}

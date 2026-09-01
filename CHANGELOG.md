@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Start AHP+ 1.2 field hardening from the first external Claude-to-Codex field
+  report: local-first CLI resolution, observable Git diagnostics, actionable
+  enum errors, explicit HEAD acceptance, and separate local/transport readiness.
+- Add append-only Continuity Event Capsules with SHA-256 fingerprints, causal
+  parent links, local verification, privacy/authority fields, and an explicit
+  boundary for future authenticated A2A/MCP relay providers.
+- Retain read compatibility with sealed AHP+ 1.1.0 documents and reject unknown
+  command options instead of silently ignoring typos.
+- Require the complete release gate through npm `prepublishOnly` and document
+  the `1.2.0-dev.0` → `next` → consumer/Windows validation → `1.2.0` promotion
+  path without automatically updating existing installations.
 - Add professional English and Spanish GitHub landing pages, a repository hero
   image, bilingual contribution templates, and clearer product positioning.
 - Link the public repository to the maintainer portfolio and expand discovery

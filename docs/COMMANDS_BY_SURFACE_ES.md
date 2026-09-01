@@ -12,14 +12,18 @@ Dentro de un proyecto que instaló AHP+ como dependencia local, usa `npx ahp`:
 |---|---|
 | Resolver la raíz | `npx ahp root .` |
 | Diagnosticar instalación | `npx ahp doctor .` |
+| Diagnosticar Git del host | `npx ahp doctor . --diagnose-git` |
 | Verificar estrictamente | `npx ahp verify . --strict` |
 | Ver estado y portabilidad | `npx ahp status .` |
+| Separar readiness local/remoto | `npx ahp ready . --platform codex` |
 | Generar contexto acotado | `npx ahp context . --format markdown --budget 8000` |
 | Comprobar sincronización | `npx ahp sync check . --require-remote` |
 | Regenerar el brief | `npx ahp brief . --budget 8000` |
 | Crear checkpoint | `npx ahp checkpoint . --summary "..." --next-action "..."` |
 | Ver historial | `npx ahp history .` |
 | Crear handoff | `npx ahp handoff create . --from codex --to cursor --summary "..."` |
+| Añadir evento causal | `npx ahp event append . --type MESSAGE --summary "..."` |
+| Verificar fingerprint | `npx ahp event verify EVT-... .` |
 | Inspeccionar handoff | `npx ahp handoff inspect HOF-... .` |
 | Recibir handoff | `npx ahp handoff receive HOF-... .` |
 | Planear adaptadores | `npx ahp adapter install all .` |
@@ -39,6 +43,9 @@ En IDEs y apps puedes pedir estas operaciones sin copiar toda la sintaxis:
 - `handoff to <plataforma>`: prepara continuidad sellada para otro host.
 - `receive <HOF-ID>`: valida un handoff antes de continuar.
 - `status` o `sync check`: comprueba Git y transporte remoto.
+- `ready`: separa continuidad local de transporte remoto.
+- `event append` y `event verify`: persisten y validan fronteras operativas con
+  fingerprints causales.
 - `record evidence`: conserva el resultado observado de una prueba o artefacto.
 
 El adaptador debe traducir esta intención al CLI instalado y mostrar resultados

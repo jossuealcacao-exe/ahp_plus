@@ -63,6 +63,7 @@ export function statePaths(resolved) {
     records: path.join(resolved.stateRoot, 'records'),
     evidence: path.join(resolved.stateRoot, 'evidence'),
     handoffs: path.join(resolved.stateRoot, 'handoffs'),
+    events: path.join(resolved.stateRoot, 'events'),
     locks: path.join(resolved.stateRoot, 'locks'),
     sessions: path.join(resolved.stateRoot, 'sessions'),
     archive: path.join(resolved.stateRoot, 'archive'),

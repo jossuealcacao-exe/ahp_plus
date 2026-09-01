@@ -1,12 +1,12 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "project_id": "ahp-plus",
-  "phase": "COMPLETED",
-  "objective": "Presentar AHP+ profesionalmente en GitHub con portada bilingüe, identidad visual y portafolio",
-  "next_action": "Recibir feedback público; opcionalmente asignar .github/assets/ahp-plus-hero.jpg como social preview desde GitHub Settings con sesión web autenticada",
-  "confidence": "VERIFIED",
+  "phase": "IN_PROGRESS",
+  "objective": "Desarrollar AHP+ 1.2 con field hardening y Continuity Event Capsules verificables",
+  "next_action": "Completar schemas, documentación y gates de compatibilidad 1.1 antes de preparar un prerelease",
+  "confidence": "USER_CONFIRMED",
   "blockers": [],
   "base_commit": "b5e6097bcc6b4add1cabc6c4e585271431172839",
   "created_at": "2026-08-12T22:55:21.478Z",
-  "updated_at": "2026-08-13T01:54:35.295Z"
+  "updated_at": "2026-08-27T19:27:02.000Z"
 }

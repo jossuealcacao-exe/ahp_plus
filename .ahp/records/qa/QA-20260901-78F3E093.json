@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.2.0",
+  "id": "QA-20260901-78F3E093",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.2 local prerelease candidate gate",
+  "description": "Release automation and an independent packed consumer passed locally; remote Windows CI and npm next remain pending",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-01T02:29:26.753Z",
+  "updated_at": "2026-09-01T02:29:26.753Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [
+    "EVD-20260901-31CC84AB"
+  ],
+  "base_commit": "2d965e8b0c71ee4fbfa9940e6a4f2c01fef75d6d",
+  "tags": []
+}

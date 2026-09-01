@@ -5,10 +5,13 @@ This repository uses AHP+ as its Git-backed governance and handoff state.
 Before substantive work:
 
 1. Resolve the repository with `ahp root`.
-2. Run `ahp doctor` and `ahp verify --strict`.
+2. Resolve the local CLI with `npx --no-install ahp` or the platform-specific
+   `node_modules/.bin` shim, then run `doctor` and `verify --strict`.
 3. Read `.ahp/manifest.json`, `.ahp/state/project.json`, and `.ahp/INDEX.md`.
 4. Inspect Git branch, commit, upstream, and working tree.
 5. Create checkpoints during material work and a handoff before changing platforms.
+6. Record only material operational boundaries as continuity events; do not
+   copy whole chats or hidden reasoning.
 
 Useful commands:
 

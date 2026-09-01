@@ -13,6 +13,10 @@ fixtures and demonstrates the following behaviors:
 8. Preserves legacy state during migration.
 9. Installs adapters without silent overwrites.
 10. Performs no Git network, commit, merge, branch-switch, or publication action.
+11. Separates local continuation readiness from remote transport readiness.
+12. Validates continuity-event integrity, causal parent fingerprints, and
+    append-only history.
+13. Reads sealed 1.1.0 documents without rewriting their provenance.
 
 Reference checks:
 

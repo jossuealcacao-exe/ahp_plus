@@ -7,6 +7,7 @@ import { allRecords } from './records.mjs';
 import { activeLocks } from './preflight.mjs';
 import { projectId, repository, stateRevision } from './state.mjs';
 import { verifyRepository } from './validation.mjs';
+import { diagnoseGit } from './git.mjs';
 
 export function portability(git) {
   if (!git.is_git || !git.commit) return { status: 'LOCAL_ONLY', reason: 'Repository has no committed HEAD.' };
@@ -19,16 +20,70 @@ export function portability(git) {
   return { status: 'PUSH_REQUIRED', reason: 'Remote synchronization could not be proven.' };
 }
 
+export function readiness(input = '.', options = {}) {
+  const repo = repository(input);
+  const verification = verifyRepository(input, { strict: true });
+  const transport = portability(repo.git);
+  const locks = activeLocks(repo).map(({ lock }) => lock);
+  const platform = options.platform ? String(options.platform) : null;
+  const candidateHandoffs = handoffs(repo).filter((handoff) => !platform || handoff.to === platform);
+  const blockers = [];
+  if (!verification.ok) blockers.push(...verification.errors, ...verification.warnings);
+  if (repo.projectState.confidence === 'CONFLICTED') blockers.push('Project state confidence is CONFLICTED.');
+  return {
+    protocol: 'AHP+',
+    protocol_version: repo.manifest.protocol_version,
+    project_id: projectId(repo),
+    local_readiness: {
+      status: blockers.length ? 'BLOCKED' : 'READY',
+      blockers,
+      working_tree: repo.git.project_working_tree,
+      working_tree_digest: repo.git.project_working_tree_digest,
+    },
+    transport_readiness: {
+      status: transport.status === 'REMOTE_READY' ? 'READY' : 'BLOCKED',
+      portability: transport,
+    },
+    platform,
+    candidate_handoffs: candidateHandoffs.map((handoff) => ({
+      id: handoff.id,
+      from: handoff.from,
+      to: handoff.to,
+      created_at: handoff.created_at,
+      next_action: handoff.next_action,
+      fingerprint: handoff.integrity?.digest || null,
+    })),
+    active_locks: locks,
+    limitations: ['Candidate handoffs are filtered by destination; receipt state is not persisted by AHP+ Core.'],
+    git: repo.git,
+    verification,
+  };
+}
+
 function handoffs(repo) {
   return walkJson(repo.paths.handoffs)
     .map((file) => readJson(file))
     .sort((left, right) => String(right.created_at).localeCompare(String(left.created_at)));
 }
 
+function continuityEvents(repo) {
+  return walkJson(repo.paths.events)
+    .map((file) => readJson(file))
+    .sort((left, right) => String(right.created_at).localeCompare(String(left.created_at)));
+}
+
+function effectiveCheckpoint(repo, checkpoint) {
+  if (!checkpoint) return null;
+  const checkpointTime = Date.parse(checkpoint.created_at || '');
+  const stateTime = Date.parse(repo.projectState.updated_at || '');
+  return Number.isFinite(checkpointTime) && checkpointTime > stateTime ? checkpoint : null;
+}
+
 export function status(input = '.') {
   const repo = repository(input);
   const verification = verifyRepository(input, { strict: false });
   const latest = latestCheckpoint(repo)?.checkpoint || null;
+  const effective = effectiveCheckpoint(repo, latest);
   const records = allRecords(repo).map(({ record }) => record);
   const counts = {};
   for (const record of records) counts[record.kind] = (counts[record.kind] || 0) + 1;
@@ -38,14 +93,20 @@ export function status(input = '.') {
     cli_layout: repo.layout,
     project_id: projectId(repo),
     phase: repo.projectState.phase,
-    objective: latest?.objective || repo.projectState.objective,
-    next_action: latest?.next_action || repo.projectState.next_action,
+    objective: effective?.objective || repo.projectState.objective,
+    next_action: effective?.next_action || repo.projectState.next_action,
     confidence: repo.projectState.confidence,
     git: repo.git,
     portability: portability(repo.git),
+    readiness: {
+      local: verification.ok && repo.projectState.confidence !== 'CONFLICTED' ? 'READY' : 'BLOCKED',
+      transport: portability(repo.git).status === 'REMOTE_READY' ? 'READY' : 'BLOCKED',
+    },
     state_revision: stateRevision(repo),
     records: counts,
+    continuity_events: continuityEvents(repo).length,
     latest_checkpoint: latest,
+    effective_checkpoint: effective,
     active_locks: activeLocks(repo).map(({ lock }) => lock),
     warnings: verification.warnings,
   };
@@ -55,7 +116,8 @@ export function projectContext(input = '.', options = {}) {
   const repo = repository(input);
   const records = allRecords(repo).map(({ record }) => record);
   const activeRecords = records.filter((record) => !TERMINAL_STATUSES.has(record.status));
-  const checkpoint = latestCheckpoint(repo, { session: options.session })?.checkpoint || null;
+  const latest = latestCheckpoint(repo, { session: options.session })?.checkpoint || null;
+  const checkpoint = effectiveCheckpoint(repo, latest);
   return {
     protocol: 'AHP+',
     protocol_version: repo.manifest.protocol_version,
@@ -70,9 +132,11 @@ export function projectContext(input = '.', options = {}) {
     git: repo.git,
     portability: portability(repo.git),
     state_revision: stateRevision(repo),
-    latest_checkpoint: checkpoint,
+    latest_checkpoint: latest,
+    effective_checkpoint: checkpoint,
     active_records: activeRecords.slice(0, Number(options.limit || 100)),
     recent_handoffs: handoffs(repo).slice(0, Number(options['handoff-limit'] || 5)),
+    recent_continuity_events: continuityEvents(repo).slice(0, Number(options['event-limit'] || 10)),
     active_locks: activeLocks(repo).map(({ lock }) => lock),
     warnings: verifyRepository(input, { strict: false }).warnings,
   };
@@ -135,7 +199,7 @@ export function writeBrief(input = '.', options = {}) {
   return { file: path.relative(repo.repoRoot, repo.paths.index).split(path.sep).join('/'), markdown };
 }
 
-export function doctor(input = '.') {
+export function doctor(input = '.', options = {}) {
   const repo = repository(input);
   const verification = verifyRepository(input, { strict: false });
   const checks = [
@@ -145,7 +209,7 @@ export function doctor(input = '.') {
     { name: 'state_validation', status: verification.ok ? 'PASS' : 'FAIL', detail: `${verification.errors.length} error(s), ${verification.warnings.length} warning(s)` },
     { name: 'project_identity', status: repo.manifest.project_id === repo.projectState.project_id ? 'PASS' : 'FAIL', detail: repo.manifest.project_id },
   ];
-  return {
+  const result = {
     ok: checks.every((check) => check.status !== 'FAIL'),
     protocol: 'AHP+',
     root: repo.repoRoot,
@@ -154,6 +218,17 @@ export function doctor(input = '.') {
     portability: portability(repo.git),
     verification,
   };
+  const staleBoundary = verification.warnings.some((warning) => warning.includes('base_commit is stale'));
+  if (staleBoundary) {
+    result.recommendations = [{
+      code: 'ACCEPT_REVIEWED_HEAD',
+      reason: 'The current HEAD contains project changes newer than the accepted state boundary.',
+      command: `ahp set-state . --accept-head --expected-head ${repo.git.commit} --expected-state ${stateRevision(repo)}`,
+      authority_required: true,
+    }];
+  }
+  if (options['diagnose-git'] || options.verbose || !repo.git.is_git) result.git_diagnostic = diagnoseGit(repo.repoRoot);
+  return result;
 }
 
 export function history(input = '.', options = {}) {

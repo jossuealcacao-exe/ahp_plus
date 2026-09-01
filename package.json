@@ -1,6 +1,6 @@
 {
   "name": "@jossuealcala/ahp-plus",
-  "version": "1.1.0",
+  "version": "1.2.0-dev.0",
   "private": false,
   "description": "Git-backed governance, continuity, evidence, and handoff protocol for AI agents",
   "type": "module",
@@ -25,7 +25,9 @@
     "test": "node --test",
     "validate": "node scripts/validate.mjs",
     "conformance": "node scripts/conformance.mjs",
-    "pack:dry-run": "npm pack --dry-run"
+    "pack:dry-run": "npm pack --dry-run",
+    "release:check": "npm test && npm run conformance && npm run validate && npm run pack:dry-run",
+    "prepublishOnly": "npm run release:check"
   },
   "engines": {
     "node": ">=20"

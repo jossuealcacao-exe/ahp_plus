@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ahp-plus:schema:continuity-event:1.2.0",
+  "title": "AHP+ Continuity Event Capsule",
+  "type": "object",
+  "required": [
+    "schema_version", "id", "kind", "project_id", "session_id",
+    "correlation_id", "sequence", "event_type", "summary", "from", "actor",
+    "causal", "intent", "observation", "git", "privacy", "transport",
+    "limitations", "next_action", "created_at", "integrity"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.2.0" },
+    "id": { "type": "string", "pattern": "^EVT-[0-9]{8}-[A-F0-9]{8}$" },
+    "kind": { "const": "continuity_event" },
+    "project_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "sequence": { "type": "integer", "minimum": 1 },
+    "event_type": {
+      "enum": ["DIRECTIVE", "DECISION", "ACTION", "OBSERVATION", "VALIDATION", "ERROR", "BLOCKER", "CHECKPOINT", "HANDOFF", "CAPABILITY_CHANGE", "MESSAGE"]
+    },
+    "summary": { "type": "string", "minLength": 1 },
+    "from": { "type": "string", "minLength": 1 },
+    "to": { "type": ["string", "null"] },
+    "actor": {
+      "type": "object",
+      "required": ["name", "platform", "model"]
+    },
+    "capabilities": { "type": "array", "items": { "type": "string" } },
+    "causal": {
+      "type": "object",
+      "required": ["parent_event_id", "parent_fingerprint"],
+      "properties": {
+        "parent_event_id": { "type": ["string", "null"] },
+        "parent_fingerprint": { "type": ["string", "null"] }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "required": ["requested", "authority"]
+    },
+    "observation": {
+      "type": "object",
+      "required": ["status", "result", "evidence_refs", "artifacts"],
+      "properties": {
+        "status": { "enum": ["REQUESTED", "ATTEMPTED", "EXECUTED", "REJECTED", "VERIFIED", "NOT_APPLICABLE"] },
+        "evidence_refs": { "type": "array", "items": { "type": "string" } },
+        "artifacts": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "git": { "type": "object" },
+    "privacy": { "type": "object", "required": ["classification", "redactions"] },
+    "transport": {
+      "type": "object",
+      "required": ["status", "provider"],
+      "properties": {
+        "status": { "enum": ["LOCAL_CAPTURED", "SYNC_PENDING", "REMOTE_AVAILABLE", "GIT_ANCHORED", "RECEIVED", "CONFLICTED", "REDACTED"] },
+        "provider": { "type": ["string", "null"] }
+      }
+    },
+    "limitations": { "type": "array", "items": { "type": "string" } },
+    "next_action": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "integrity": {
+      "type": "object",
+      "required": ["algorithm", "canonicalization", "digest"]
+    }
+  },
+  "additionalProperties": true
+}

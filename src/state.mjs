@@ -6,6 +6,7 @@ import {
   CLI_VERSION,
   PHASES,
   PROTOCOL_VERSION,
+  SUPPORTED_PROTOCOL_VERSIONS,
   STATE_DIRECTORY,
 } from './constants.mjs';
 import { digestObject, sha256 } from './canonical-json.mjs';
@@ -34,6 +35,7 @@ const LAYOUT_DIRECTORIES = [
   'records/requirements',
   'evidence',
   'handoffs',
+  'events',
   'locks',
   'archive/locks',
   'backups',
@@ -107,8 +109,12 @@ export function initializeRepository(input, options = {}) {
     created_at: timestamp,
     updated_at: timestamp,
   };
-  invariant(PHASES.includes(projectState.phase), `Invalid phase ${projectState.phase}`, { code: 'INVALID_PHASE' });
-  invariant(CERTAINTY_LEVELS.includes(projectState.confidence), `Invalid confidence ${projectState.confidence}`, { code: 'INVALID_CONFIDENCE' });
+  invariant(PHASES.includes(projectState.phase), `Invalid phase ${projectState.phase}. Allowed phases: ${PHASES.join(', ')}`, {
+    code: 'INVALID_PHASE', details: { value: projectState.phase, allowed: PHASES },
+  });
+  invariant(CERTAINTY_LEVELS.includes(projectState.confidence), `Invalid confidence ${projectState.confidence}. Allowed values: ${CERTAINTY_LEVELS.join(', ')}`, {
+    code: 'INVALID_CONFIDENCE', details: { value: projectState.confidence, allowed: CERTAINTY_LEVELS },
+  });
 
   writeJsonAtomic(path.join(stateRoot, 'manifest.json'), manifest);
   writeJsonAtomic(path.join(stateRoot, 'state/project.json'), projectState);
@@ -138,6 +144,12 @@ export function projectId(repositoryValue, requested = null) {
   return canonical;
 }
 
+export function documentVersion(repositoryValue) {
+  return SUPPORTED_PROTOCOL_VERSIONS.includes(repositoryValue.manifest?.protocol_version)
+    ? repositoryValue.manifest.protocol_version
+    : PROTOCOL_VERSION;
+}
+
 export function stateRevision(repositoryValue) {
   const hash = crypto.createHash('sha256');
   const files = walkJson(repositoryValue.stateRoot)
@@ -153,12 +165,17 @@ export function stateRevision(repositoryValue) {
 
 export function updateProjectState(repositoryValue, options = {}) {
   const current = structuredClone(repositoryValue.projectState);
+  current.schema_version = documentVersion(repositoryValue);
   if (options.phase !== undefined) {
-    invariant(PHASES.includes(options.phase), `Invalid phase ${options.phase}`, { code: 'INVALID_PHASE' });
+    invariant(PHASES.includes(options.phase), `Invalid phase ${options.phase}. Allowed phases: ${PHASES.join(', ')}. Use --objective for a work-unit identifier.`, {
+      code: 'INVALID_PHASE', details: { value: options.phase, allowed: PHASES, work_unit_field: 'objective' },
+    });
     current.phase = options.phase;
   }
   if (options.confidence !== undefined) {
-    invariant(CERTAINTY_LEVELS.includes(options.confidence), `Invalid confidence ${options.confidence}`, { code: 'INVALID_CONFIDENCE' });
+    invariant(CERTAINTY_LEVELS.includes(options.confidence), `Invalid confidence ${options.confidence}. Allowed values: ${CERTAINTY_LEVELS.join(', ')}`, {
+      code: 'INVALID_CONFIDENCE', details: { value: options.confidence, allowed: CERTAINTY_LEVELS },
+    });
     current.confidence = options.confidence;
   }
   if (options.objective !== undefined) current.objective = String(options.objective);

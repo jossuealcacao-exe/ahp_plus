@@ -1,9 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { ID_PREFIXES, PROTOCOL_VERSION } from './constants.mjs';
+import { ID_PREFIXES } from './constants.mjs';
 import { AhpError, invariant } from './errors.mjs';
 import { ensureDirectory, makeId, now, readJson, writeJsonExclusive } from './fs-utils.mjs';
 import { activeLocks, preflightWrite } from './preflight.mjs';
+import { documentVersion } from './state.mjs';
 
 function overlaps(left, right) {
   return left === '*' || right === '*' || left === right || left.startsWith(`${right}/`) || right.startsWith(`${left}/`);
@@ -20,7 +21,7 @@ export function acquireLock(input, options = {}) {
   const id = makeId(ID_PREFIXES.lock);
   const createdAt = now();
   const lock = {
-    schema_version: PROTOCOL_VERSION,
+    schema_version: documentVersion(repo),
     id,
     scope,
     owner,

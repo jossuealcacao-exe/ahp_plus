@@ -25,6 +25,18 @@ Para uso normal instala el canal estable de npm:
 npm install --save-dev @jossuealcala/ahp-plus@latest
 ```
 
+Durante el desarrollo de 1.2, `latest` continúa siendo 1.1.0. Las pruebas de
+1.2 deben usar un prerelease exacto o un checkout revisado; nunca `main` como
+dependencia de producción.
+
+Para un proyecto AHP+ 1.1 existente, revisa y aplica la migración de protocolo
+sin reescribir checkpoints, records ni handoffs sellados:
+
+```bash
+npx ahp upgrade . --plan
+npx ahp upgrade . --apply
+```
+
 Para fijar exactamente la primera versión estable:
 
 ```bash
@@ -57,6 +69,7 @@ npx ahp root .
 npx ahp doctor .
 npx ahp verify . --strict
 npx ahp status .
+npx ahp ready . --platform tu-plataforma
 ```
 
 Debes confirmar que `root`, `project_id`, rama y commit pertenecen al proyecto
@@ -92,12 +105,13 @@ Después del commit de instalación, actualiza la frontera canónica:
 ```bash
 npx ahp status .
 npx ahp set-state . \
+  --accept-head \
   --confidence USER_CONFIRMED \
   --next-action "Crear el primer checkpoint"
 npx ahp verify . --strict
 ```
 
-`set-state` actualiza `base_commit`; tampoco hace commit. El cambio de estado
+`set-state --accept-head` actualiza explícitamente `base_commit`; tampoco hace commit. El cambio de estado
 debe confirmarse como un sobre AHP+ separado. Solo después de que ambos commits
 estén en el remoto el proyecto podrá reportar `REMOTE_READY`.
 

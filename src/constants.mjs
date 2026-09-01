@@ -1,5 +1,6 @@
-export const CLI_VERSION = '1.1.0';
-export const PROTOCOL_VERSION = '1.1.0';
+export const CLI_VERSION = '1.2.0-dev.0';
+export const PROTOCOL_VERSION = '1.2.0';
+export const SUPPORTED_PROTOCOL_VERSIONS = Object.freeze(['1.1.0', '1.2.0']);
 export const STATE_DIRECTORY = '.ahp';
 export const LEGACY_STATE_DIRECTORY = 'agent';
 export const CERTAINTY_LEVELS = Object.freeze([
@@ -20,6 +21,36 @@ export const PHASES = Object.freeze([
   'COMPLETED',
   'ARCHIVED',
   'REJECTED',
+]);
+export const CONTINUITY_EVENT_TYPES = Object.freeze([
+  'DIRECTIVE',
+  'DECISION',
+  'ACTION',
+  'OBSERVATION',
+  'VALIDATION',
+  'ERROR',
+  'BLOCKER',
+  'CHECKPOINT',
+  'HANDOFF',
+  'CAPABILITY_CHANGE',
+  'MESSAGE',
+]);
+export const CONTINUITY_ACTION_STATUSES = Object.freeze([
+  'REQUESTED',
+  'ATTEMPTED',
+  'EXECUTED',
+  'REJECTED',
+  'VERIFIED',
+  'NOT_APPLICABLE',
+]);
+export const CONTINUITY_TRANSPORT_STATUSES = Object.freeze([
+  'LOCAL_CAPTURED',
+  'SYNC_PENDING',
+  'REMOTE_AVAILABLE',
+  'GIT_ANCHORED',
+  'RECEIVED',
+  'CONFLICTED',
+  'REDACTED',
 ]);
 export const RECORD_KINDS = Object.freeze([
   'decision',
@@ -66,4 +97,5 @@ export const ID_PREFIXES = Object.freeze({
   checkpoint: 'CHK',
   handoff: 'HOF',
   lock: 'LOCK',
+  continuity_event: 'EVT',
 });

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.2.0",
+  "id": "EVD-20260827-B497AD25",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "SmartSell Claude to Codex field report",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "USER_CONFIRMED",
+  "created_at": "2026-08-27T19:30:29.002Z",
+  "updated_at": "2026-08-27T19:30:29.002Z",
+  "observed_at": "2026-08-27T19:30:29.002Z",
+  "actor": {
+    "name": "Jossue Alcalá",
+    "platform": "human",
+    "model": "n/a"
+  },
+  "source_refs": [],
+  "base_commit": "2d965e8b0c71ee4fbfa9940e6a4f2c01fef75d6d",
+  "tags": [],
+  "evidence_type": "user_confirmation",
+  "locator": "User-provided field report received 2026-08-27",
+  "result": "AHP+ 1.1 preserved project identity, constraints, partial work, next action, and receiver outcome READY in a real Claude to Codex recovery; onboarding and CLI UX issues were reported",
+  "limitations": "Original SmartSell repository, HOF capsule, and raw command logs were not supplied; host-specific Git root cause remains unverified",
+  "artifact_sha256": null,
+  "exit_code": null
+}

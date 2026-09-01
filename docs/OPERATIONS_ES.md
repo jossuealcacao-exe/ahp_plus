@@ -13,6 +13,7 @@ npx ahp root .
 npx ahp doctor .
 npx ahp verify . --strict
 npx ahp status .
+npx ahp ready . --platform tu-plataforma
 npx ahp context . --format markdown --budget 8000
 ```
 
@@ -31,6 +32,7 @@ quedado antiguo.
 | Riesgo | mantener visible un riesgo activo | ocultar problemas para obtener un PASS |
 | Checkpoint | recuperar una sesión desde un punto concreto | reemplazar commits o backups |
 | Handoff | transferir continuidad a otra plataforma | conceder permiso para publicar, desplegar o fusionar |
+| Evento de continuidad | conservar una frontera operativa y su fingerprint causal | copiar todo el chat o afirmar entrega remota |
 | Lock | anunciar una zona de trabajo concurrente | bloquear archivos a nivel de sistema operativo |
 
 ## Flujo de una sesión

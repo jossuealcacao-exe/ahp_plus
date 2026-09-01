@@ -1,12 +1,12 @@
 import path from 'node:path';
 import { csv, pipeList } from './args.mjs';
-import { ID_PREFIXES, PROTOCOL_VERSION } from './constants.mjs';
+import { ID_PREFIXES } from './constants.mjs';
 import { invariant } from './errors.mjs';
 import { makeId, now, readJson, safeSegment, walkJson, writeJsonExclusive } from './fs-utils.mjs';
 import { seal } from './integrity.mjs';
 import { preflightWrite } from './preflight.mjs';
 import { actorFrom } from './records.mjs';
-import { projectId, repository } from './state.mjs';
+import { documentVersion, projectId, repository } from './state.mjs';
 
 export function createCheckpoint(input, options = {}) {
   invariant(options.summary, '--summary is required', { code: 'INVALID_ARGUMENT' });
@@ -15,7 +15,7 @@ export function createCheckpoint(input, options = {}) {
   const sessionId = safeSegment(options.session || `${options.platform || 'generic'}-${owner}`);
   const id = makeId(ID_PREFIXES.checkpoint);
   const checkpoint = seal({
-    schema_version: PROTOCOL_VERSION,
+    schema_version: documentVersion(repo),
     id,
     kind: 'checkpoint',
     session_id: sessionId,

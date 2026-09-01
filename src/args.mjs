@@ -49,6 +49,20 @@ export function parseArgs(argv) {
   return { options, positionals };
 }
 
+export function assertKnownOptions(options, allowed, command) {
+  const accepted = new Set(['help', 'version', 'root', ...allowed]);
+  const unknown = Object.keys(options).filter((key) => !accepted.has(key));
+  if (!unknown.length) return;
+  const rendered = unknown.map((key) => `--${key}`).join(', ');
+  throw new AhpError(
+    `Unknown option${unknown.length === 1 ? '' : 's'} for ${command}: ${rendered}`,
+    {
+      code: 'INVALID_ARGUMENT',
+      details: { command, unknown_options: unknown, allowed_options: [...accepted].sort() },
+    },
+  );
+}
+
 export function csv(value) {
   if (value === undefined || value === null || value === '') return [];
   return String(value).split(',').map((item) => item.trim()).filter(Boolean);
