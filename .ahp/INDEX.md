@@ -1,15 +1,15 @@
 # AHP+ Project Context
 
 - Project: ahp-plus
-- Phase: IN_PROGRESS
+- Phase: READY_FOR_QA
 - Objective: Publish AHP+ 1.2 through next, consumer validation, and explicit stable promotion
 - Confidence: USER_CONFIRMED
 - Git branch: codex/v1.2-field-hardening
-- Git commit: bbe25be73f401a39602dffd1c631e131fb6f4d8f
+- Git commit: abdb692fb459d1db4e2754429a247d74a5aa3948
 - Working tree: DIRTY
 - Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
-- State revision: 4f30913f47a27623ed53d7d295fd1ac27007abe7f125b4b9242afbabd1da1451
-- Next action: Request explicit authorization before publishing 1.2.0-dev.0 to npm next
+- State revision: 0002ae1e8121fb84a03fc93ba9b5d1732c4c4eace2589f7f17add77212f995c0
+- Next action: Collect prerelease field feedback before requesting explicit authority for stable v1.2.0 and npm latest
 
 ## Blockers
 
@@ -17,10 +17,14 @@
 
 ## Latest checkpoint
 
-- CHK-20260901-81866A81: Pushed AHP+ 1.2 candidate and verified the six-job cross-platform matrix
+- CHK-20260901-4B59FF3C: Published AHP+ 1.2.0-dev.0 to GitHub prerelease and npm next with a verified public consumer receipt
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260901-B2A1604A: AHP+ 1.2.0-dev.0 prerelease publication acceptance
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-F1577F99: AHP+ 1.2.0-dev.0 public registry consumer acceptance
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-023FC8ED: AHP+ 1.2.0-dev.0 npm next publication
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-4EB420D9: AHP+ 1.2.0-dev.0 GitHub prerelease publication
 - [qa/PASS/VERIFIED] QA-20260901-9A1FFD04: AHP+ 1.2 cross-platform prerelease branch gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260901-551BCD64: AHP+ 1.2 cross-platform branch CI
 - [evidence/OBSERVED/VERIFIED] EVD-20260901-BD0872B4: AHP+ 1.2 npm next publication dry-run

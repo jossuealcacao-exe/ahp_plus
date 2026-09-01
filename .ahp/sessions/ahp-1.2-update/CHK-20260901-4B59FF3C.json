@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.2.0",
+  "id": "CHK-20260901-4B59FF3C",
+  "kind": "checkpoint",
+  "session_id": "ahp-1.2-update",
+  "project_id": "ahp-plus",
+  "summary": "Published AHP+ 1.2.0-dev.0 to GitHub prerelease and npm next with a verified public consumer receipt",
+  "objective": "Desarrollar AHP+ 1.2 con field hardening y Continuity Event Capsules verificables",
+  "next_action": "Collect prerelease field feedback before requesting explicit stable promotion authority",
+  "files": [],
+  "validations": [],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "git": {
+    "branch": "codex/v1.2-field-hardening",
+    "commit": "abdb692fb459d1db4e2754429a247d74a5aa3948",
+    "tree": "9821dfed654c56ec3212e11cd8db69c19a5c54d0",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": "??",
+        "path": ".ahp/events/ahp-1.2-update/EVT-20260901-51D10754.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260901-023FC8ED.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260901-4EB420D9.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260901-F1577F99.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260901-B2A1604A.json"
+      }
+    ],
+    "working_tree_digest": "66dd5c66cc1717c6df7a12dc85f8a5c0f0cbe85a4d0673d23d8a8949ec0a535b",
+    "project_working_tree": "CLEAN",
+    "project_changed_files": [],
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": "??",
+        "path": ".ahp/events/ahp-1.2-update/EVT-20260901-51D10754.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260901-023FC8ED.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260901-4EB420D9.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/evidence/EVD-20260901-F1577F99.json"
+      },
+      {
+        "code": "??",
+        "path": ".ahp/records/qa/QA-20260901-B2A1604A.json"
+      }
+    ],
+    "upstream": "origin/codex/v1.2-field-hardening",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-09-01T03:32:27.068Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "3926c03cfbcc20bd3d9362d94d5336bb71a8fee8bead0357f3a997a66ff9c36f"
+  }
+}

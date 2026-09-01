@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.2.0",
+  "id": "EVD-20260901-023FC8ED",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.2.0-dev.0 npm next publication",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-01T03:31:54.597Z",
+  "updated_at": "2026-09-01T03:31:54.597Z",
+  "observed_at": "2026-09-01T03:31:54.597Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [],
+  "base_commit": "abdb692fb459d1db4e2754429a247d74a5aa3948",
+  "tags": [],
+  "evidence_type": "url",
+  "locator": "https://www.npmjs.com/package/@jossuealcala/ahp-plus/v/1.2.0-dev.0",
+  "result": "PASS: public npm registry reports 1.2.0-dev.0 and dist-tag next=1.2.0-dev.0 while latest remains 1.1.0; registry shasum f6923a3734336c626e7192ee532372f7fdb5ac14",
+  "limitations": "The stable 1.2.0 version was not published and latest was not moved",
+  "artifact_sha256": null,
+  "exit_code": null
+}

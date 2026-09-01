@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.2.0",
+  "id": "EVT-20260901-51D10754",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "ahp-1.2-update",
+  "correlation_id": "ahp-1.2-update",
+  "sequence": 6,
+  "event_type": "VALIDATION",
+  "summary": "AHP+ 1.2.0-dev.0 was published to GitHub prerelease and npm next and passed a fresh public-registry consumer gate",
+  "from": "codex",
+  "to": "human",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "capabilities": [],
+  "causal": {
+    "parent_event_id": "EVT-20260901-36B1662E",
+    "parent_fingerprint": "7f334f408b091b16c037fbcc495a0569dd2aa3c9e3604164696e350cc14fcd73"
+  },
+  "intent": {
+    "requested": "",
+    "authority": "NOT_GRANTED"
+  },
+  "observation": {
+    "status": "VERIFIED",
+    "result": "GitHub prerelease is live, npm next points to 1.2.0-dev.0, latest remains 1.1.0, and a fresh consumer passed verify --strict",
+    "evidence_refs": [
+      "EVD-20260901-4EB420D9",
+      "EVD-20260901-023FC8ED",
+      "EVD-20260901-F1577F99"
+    ],
+    "artifacts": [
+      "https://github.com/jossuealcacao-exe/ahp_plus/releases/tag/v1.2.0-dev.0",
+      "https://registry.npmjs.org/@jossuealcala/ahp-plus/-/ahp-plus-1.2.0-dev.0.tgz"
+    ]
+  },
+  "git": {
+    "branch": "codex/v1.2-field-hardening",
+    "commit": "abdb692fb459d1db4e2754429a247d74a5aa3948",
+    "tree": "9821dfed654c56ec3212e11cd8db69c19a5c54d0",
+    "project_working_tree": "CLEAN",
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": "github+npm"
+  },
+  "limitations": [
+    "No independent receiver-host receipt yet; stable v1.2.0 and npm latest promotion remain unauthorized"
+  ],
+  "next_action": "Collect prerelease field feedback before requesting explicit stable promotion authority",
+  "created_at": "2026-09-01T03:32:26.806Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "b69d857be7e9cdd8fb531b0ca7b8e84f6925f481e313fb94a41efa7e271625fc"
+  }
+}
