@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ahp-plus:schema:relay-receipt:1.4.0",
+  "title": "AHP+ Authenticated Relay Receipt",
+  "type": "object",
+  "required": [
+    "schema_version", "id", "kind", "project_id", "envelope", "message",
+    "receiver", "outcome", "transport", "received_at", "created_at",
+    "authentication", "integrity"
+  ],
+  "properties": {
+    "schema_version": { "enum": ["1.3.0", "1.4.0"] },
+    "id": { "type": "string", "pattern": "^RCP-[0-9]{8}-[A-F0-9]{8}$" },
+    "kind": { "const": "relay_receipt" },
+    "project_id": { "type": "string", "minLength": 1 },
+    "envelope": { "type": "object", "required": ["id", "fingerprint"] },
+    "message": { "type": "object", "required": ["event_id", "event_fingerprint", "session_id", "from", "to"] },
+    "receiver": { "type": "object", "required": ["platform", "actor", "model"] },
+    "outcome": { "enum": ["RECEIVED", "REJECTED", "CONFLICTED", "EXPIRED"] },
+    "transport": { "type": "object", "required": ["provider", "channel_id"] },
+    "received_at": { "type": "string", "format": "date-time" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "authentication": {
+      "type": "object",
+      "required": ["scheme", "key_id", "credential_scope", "signature"],
+      "properties": {
+        "scheme": { "const": "hmac-sha256" },
+        "key_id": { "type": "string", "pattern": "^hmac:[a-f0-9]{24}$" },
+        "credential_scope": { "const": "project-shared-secret" },
+        "signature": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "integrity": { "type": "object", "required": ["algorithm", "canonicalization", "digest"] }
+  },
+  "additionalProperties": true
+}

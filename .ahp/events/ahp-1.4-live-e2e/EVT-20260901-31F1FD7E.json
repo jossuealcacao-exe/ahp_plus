@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVT-20260901-31F1FD7E",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "ahp-1.4-live-e2e",
+  "correlation_id": "consult-34a91a5c-2e06-4c79-b43f-59a701551f96",
+  "sequence": 5,
+  "event_type": "ERROR",
+  "summary": "Claude CLI exited 1: error_max_budget_usd",
+  "from": "claude",
+  "to": "codex",
+  "actor": {
+    "name": "claude",
+    "platform": "claude",
+    "model": "unknown"
+  },
+  "capabilities": [
+    "consult-failure",
+    "read-only",
+    "max-hops-1"
+  ],
+  "causal": {
+    "parent_event_id": "EVT-20260901-4B568366",
+    "parent_fingerprint": "f1a9d2ea9349a783ee9076c49714d0a575c1f9c2d5505976fb181c46fdf23856"
+  },
+  "intent": {
+    "requested": "Record the failed bounded consultation without claiming delivery",
+    "authority": "READ_ONLY"
+  },
+  "observation": {
+    "status": "REJECTED",
+    "result": null,
+    "evidence_refs": [],
+    "artifacts": []
+  },
+  "git": {
+    "branch": "codex/v1.4-live-interoperability",
+    "commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+    "tree": "8300ce82ba11f6a802e631eb6eee806b363546dd",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "cba26cecf290f0725e25fa27ef127270d33d63e0ddbb60e2744e68d7fb2b3e82"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": "live-claude"
+  },
+  "limitations": [
+    "No provider response was received",
+    "No project mutation authority"
+  ],
+  "next_action": "Inspect provider availability and retry only if authorized",
+  "created_at": "2026-09-01T19:29:42.726Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "00f0dbaacacce2435fd5b7979b358c77e38e574c9581bc46c39327267d1d1ad0"
+  }
+}

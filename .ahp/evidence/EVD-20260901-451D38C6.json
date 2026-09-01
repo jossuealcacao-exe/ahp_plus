@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVD-20260901-451D38C6",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.4 packed consumer setup",
+  "description": "The exact npm tarball was installed into an independent empty Git repository and setup was run twice.",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-01T19:38:11.115Z",
+  "updated_at": "2026-09-01T19:38:11.115Z",
+  "observed_at": "2026-09-01T19:38:11.115Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [],
+  "base_commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+  "tags": [
+    "1.4",
+    "consumer",
+    "setup",
+    "tarball"
+  ],
+  "evidence_type": "artifact",
+  "locator": "jossuealcala-ahp-plus-1.4.0-dev.0.tgz",
+  "result": "PASS: first setup returned AHP_READY with Codex/Claude MCP adapters and two external identities; second setup made no duplicate writes; strict verification passed.",
+  "limitations": "Installed from local packed artifact, not the public npm registry; public registry verification requires authorized publication.",
+  "artifact_sha256": "31eb019df6fd5f19864a7f4094f35eaca9d00bf640b7b2d6b0e12ea9a630b65e",
+  "exit_code": null
+}

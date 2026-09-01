@@ -35,10 +35,11 @@ export function commitAll(root, message) {
   return git(root, 'rev-parse', 'HEAD');
 }
 
-export function runAhp(cwd, args, { expect = 0 } = {}) {
+export function runAhp(cwd, args, { expect = 0, env = {} } = {}) {
   const result = spawnSync(process.execPath, [cli, ...args], {
     cwd,
     encoding: 'utf8',
+    env: { ...process.env, ...env },
   });
   if (result.status !== expect) {
     throw new Error(`Expected AHP exit ${expect}, got ${result.status}.\nstdout:\n${result.stdout}\nstderr:\n${result.stderr}`);

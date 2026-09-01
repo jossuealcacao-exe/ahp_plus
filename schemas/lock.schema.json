@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ahp-plus:schema:lock:1.2.0",
+  "$id": "urn:ahp-plus:schema:lock:1.4.0",
   "title": "AHP+ Cooperative Lock",
   "type": "object",
   "required": ["schema_version", "id", "scope", "owner", "created_at", "expires_at", "base_commit"],
   "properties": {
-    "schema_version": { "enum": ["1.1.0", "1.2.0"] },
+    "schema_version": { "enum": ["1.1.0", "1.2.0", "1.3.0", "1.4.0"] },
     "id": { "type": "string", "pattern": "^LOCK-[0-9]{8}-[A-F0-9]{8}$" },
     "scope": { "type": "string", "minLength": 1 },
     "owner": { "type": "string", "minLength": 1 },

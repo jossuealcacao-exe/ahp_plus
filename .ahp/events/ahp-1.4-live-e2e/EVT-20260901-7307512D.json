@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVT-20260901-7307512D",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "ahp-1.4-live-e2e",
+  "correlation_id": "consult-ad6b7b2b-8e3d-4cf1-a072-3d58ea601b3f",
+  "sequence": 1,
+  "event_type": "CONSULT_REQUEST",
+  "summary": "Review the uncommitted AHP+ 1.4 implementation read-only. Identify the single highest-risk correctness or security issue in setup, live consultation, device identity, secure relay, secure network carrier, or hub. Cite the relevant file and explain a minimal fix. Do not edit files or invoke another agent.",
+  "from": "codex",
+  "to": "claude",
+  "actor": {
+    "name": "codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "capabilities": [
+    "consult-request",
+    "read-only",
+    "max-hops-1"
+  ],
+  "causal": {
+    "parent_event_id": null,
+    "parent_fingerprint": null
+  },
+  "intent": {
+    "requested": "Produce one read-only consultation response",
+    "authority": "READ_ONLY"
+  },
+  "observation": {
+    "status": "REQUESTED",
+    "result": null,
+    "evidence_refs": [],
+    "artifacts": []
+  },
+  "git": {
+    "branch": "codex/v1.4-live-interoperability",
+    "commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+    "tree": "8300ce82ba11f6a802e631eb6eee806b363546dd",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "021aa2250b7870090925ff1e70330cc812d65d0e62ef40bba4d390b4d3dfef96"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [
+    "One response only",
+    "No delegated consultation",
+    "No project mutation authority"
+  ],
+  "next_action": "Await one response from claude",
+  "created_at": "2026-09-01T19:21:32.636Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "a6122b3ee1b9144f3246576be1469ebab68b3a64b9667fa9261f666e82791b1a"
+  }
+}

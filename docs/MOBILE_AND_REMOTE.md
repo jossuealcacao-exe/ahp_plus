@@ -16,7 +16,16 @@ If the originating session ends abruptly, continuity reaches only the latest
 persisted checkpoint. If the checkpoint is not committed and available from a
 remote, it remains local to the originating machine.
 
-A future authenticated relay may make a Continuity Event Capsule remotely
-available before Git anchoring. That proves only relay availability. A mobile
-host without the repository and shell still cannot verify the originating
-working tree, and receipt requires independent receiver-side evidence.
+The AHP+ 1.3 relay may make a Continuity Event Capsule available before Git
+anchoring. `REMOTE_AVAILABLE` proves only that the configured carrier accepted
+the authenticated envelope. A mobile host without the repository and shell
+still cannot verify the originating working tree. `RECEIVED` requires a valid
+receiver-created RCP receipt; the reference shared-secret HMAC does not prove a
+unique mobile device or model identity.
+
+AHP+ 1.4 secure relay adds device-key assurance and payload encryption. A
+remote carrier may therefore transfer selected events without seeing their
+content, but the receiving host still needs the repository state, its private
+device key, and the sender's committed public identity to complete verification.
+A signed `SRC` receipt proves possession of the registered receiver device key;
+it does not prove which human or exact AI model operated that device.

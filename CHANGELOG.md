@@ -2,6 +2,27 @@
 
 ## Unreleased
 
+- Start AHP+ 1.4 as `1.4.0-dev.0` with one-command project setup, automatic
+  Codex/Claude MCP configuration, safe protocol upgrade, and idempotent device
+  identity provisioning.
+- Add bounded one-hop read-only consultation between Codex and Claude with
+  causally fingerprinted `CONSULT_REQUEST` and `CONSULT_RESPONSE` events.
+- Add Ed25519 device signatures, X25519/HKDF-SHA256 key agreement,
+  AES-256-GCM encrypted envelopes, and receiver-signed delivery receipts.
+- Add file and HTTP/HTTPS secure carriers plus a bundled immutable-object hub;
+  require TLS outside loopback and protected external bearer-token files.
+
+- Start AHP+ 1.3 with an intent-catalogued CLI and backward-compatible command
+  aliases for terminal and IDE chat operation.
+- Add per-message EVT fingerprints, authenticated RLY envelopes, a persistent
+  reference file channel, idempotent replay/reconnect behavior, and separately
+  fingerprinted RCP receiver receipts.
+- Make the relay security boundary explicit: HMAC-SHA256 uses a non-persisted
+  project-shared secret, while unique device identity and network transport
+  confidentiality remain provider responsibilities.
+- Harden the first Codex-to-Claude consumer findings: external protected secret
+  files for IDE chat processes, safe platform attribution from message origin,
+  and message-specific next-action defaults.
 - Start AHP+ 1.2 field hardening from the first external Claude-to-Codex field
   report: local-first CLI resolution, observable Git diagnostics, actionable
   enum errors, explicit HEAD acceptance, and separate local/transport readiness.

@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVT-20260901-20D27CC0",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "ahp-1.4-live-e2e-reverse",
+  "correlation_id": "consult-4619e66a-e640-45ba-b6be-07411b96dd20",
+  "sequence": 1,
+  "event_type": "CONSULT_REQUEST",
+  "summary": "Answer in one sentence: does this AHP+ consultation arrive as a read-only, one-hop request? Do not edit files or invoke another agent.",
+  "from": "claude",
+  "to": "codex",
+  "actor": {
+    "name": "claude",
+    "platform": "claude",
+    "model": "unknown"
+  },
+  "capabilities": [
+    "consult-request",
+    "read-only",
+    "max-hops-1"
+  ],
+  "causal": {
+    "parent_event_id": null,
+    "parent_fingerprint": null
+  },
+  "intent": {
+    "requested": "Produce one read-only consultation response",
+    "authority": "READ_ONLY"
+  },
+  "observation": {
+    "status": "REQUESTED",
+    "result": null,
+    "evidence_refs": [],
+    "artifacts": []
+  },
+  "git": {
+    "branch": "codex/v1.4-live-interoperability",
+    "commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+    "tree": "8300ce82ba11f6a802e631eb6eee806b363546dd",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "cba26cecf290f0725e25fa27ef127270d33d63e0ddbb60e2744e68d7fb2b3e82"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [
+    "One response only",
+    "No delegated consultation",
+    "No project mutation authority"
+  ],
+  "next_action": "Await one response from codex",
+  "created_at": "2026-09-01T19:30:10.339Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "0e977125e26b98511903de9fd15a4b2a259079e4de9dcd99ef463fc410d79d02"
+  }
+}

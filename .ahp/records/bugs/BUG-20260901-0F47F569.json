@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.3.0",
+  "id": "BUG-20260901-0F47F569",
+  "kind": "bug",
+  "project_id": "ahp-plus",
+  "title": "Operational messages inherit unrelated project next action",
+  "description": "The first relay message inherited the fixture's generic next_action Run ahp doctor then create the first checkpoint. Claude correctly treated it as content rather than authority. message send and reply need an explicit message-safe default instead of unrelated project-state guidance.",
+  "status": "CLOSED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-01T18:27:55.001Z",
+  "updated_at": "2026-09-01T18:31:49.640Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [
+    "EVD-20260901-B34B0736",
+    "EVD-20260901-F7E5176E"
+  ],
+  "base_commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+  "tags": [
+    "1.3",
+    "message",
+    "next-action",
+    "cli",
+    "ux"
+  ],
+  "closed_at": "2026-09-01T18:31:49.641Z",
+  "closed_by": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "close_base_commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+  "close_reason": "message send/reply now use a delivery-safe next_action unless explicitly overridden, instead of inheriting unrelated project state; verified by EVD-20260901-E7177047."
+}

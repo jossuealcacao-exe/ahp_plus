@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:ahp-plus:schema:handoff:1.2.0",
+  "$id": "urn:ahp-plus:schema:handoff:1.4.0",
   "title": "AHP+ Handoff",
   "type": "object",
   "required": [
@@ -27,7 +27,7 @@
     "integrity"
   ],
   "properties": {
-    "schema_version": { "enum": ["1.1.0", "1.2.0"] },
+    "schema_version": { "enum": ["1.1.0", "1.2.0", "1.3.0", "1.4.0"] },
     "id": { "type": "string", "pattern": "^HOF-[0-9]{8}-[A-F0-9]{8}$" },
     "kind": { "const": "handoff" },
     "from": { "type": "string", "minLength": 1 },

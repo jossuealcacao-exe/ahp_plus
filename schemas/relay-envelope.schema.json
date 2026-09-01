@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ahp-plus:schema:relay-envelope:1.4.0",
+  "title": "AHP+ Authenticated Relay Envelope",
+  "type": "object",
+  "required": [
+    "schema_version", "id", "kind", "project_id", "provider", "message",
+    "delivery", "payload", "created_at", "authentication", "integrity"
+  ],
+  "properties": {
+    "schema_version": { "enum": ["1.3.0", "1.4.0"] },
+    "id": { "type": "string", "pattern": "^RLY-[0-9]{8}-[A-F0-9]{8}$" },
+    "kind": { "const": "relay_envelope" },
+    "project_id": { "type": "string", "minLength": 1 },
+    "provider": { "type": "string", "minLength": 1 },
+    "message": {
+      "type": "object",
+      "required": ["event_id", "event_fingerprint", "session_id", "from", "to"]
+    },
+    "delivery": {
+      "type": "object",
+      "required": ["state", "attempt_id", "nonce", "created_at", "expires_at"],
+      "properties": { "state": { "const": "SYNC_PENDING" } }
+    },
+    "payload": { "$ref": "continuity-event.schema.json" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "authentication": {
+      "type": "object",
+      "required": ["scheme", "key_id", "credential_scope", "signature"],
+      "properties": {
+        "scheme": { "const": "hmac-sha256" },
+        "key_id": { "type": "string", "pattern": "^hmac:[a-f0-9]{24}$" },
+        "credential_scope": { "const": "project-shared-secret" },
+        "signature": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "integrity": { "type": "object", "required": ["algorithm", "canonicalization", "digest"] }
+  },
+  "additionalProperties": true
+}

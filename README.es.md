@@ -18,9 +18,11 @@
 
 ---
 
-> **Estado de desarrollo:** esta rama documenta AHP+ 1.2.0 antes de su release.
-> npm `latest` permanece en 1.1.0 hasta superar conformidad y validación en un
-> consumidor real.
+> **Estado de desarrollo:** esta rama desarrolla identidad de dispositivo,
+> transporte cifrado y consulta en vivo acotada de AHP+ 1.4 como
+> `1.4.0-dev.0`. npm `next` permanece
+> en `1.2.0-dev.0` y `latest` en `1.1.0` hasta una publicación autorizada por
+> separado.
 
 AHP+ (**Agent Handoff Protocol Plus**) es un protocolo abierto respaldado por
 Git y una CLI de referencia para conservar la verdad operativa de un proyecto:
@@ -48,20 +50,30 @@ cuando el trabajo cambia de entorno:
 Requisitos: Git, Node.js 20 o superior y un repositorio Git con al menos un
 commit. El runtime no tiene dependencias de terceros.
 
+Cuando 1.4 llegue al canal npm autorizado, la instalación local y configuración
+de IDE se harán con un solo comando:
+
 ```bash
-npm install --save-dev @jossuealcala/ahp-plus@latest
-npx ahp init . --owner "Tu nombre" --project tu-proyecto
+npx @jossuealcala/ahp-plus@next setup .
 ```
+
+`setup` fija la versión exacta, inicializa o actualiza `.ahp/` con respaldo,
+instala adaptadores y MCP para Codex/Claude, crea pares de claves separados
+fuera de Git y ejecuta doctor más verificación estricta. Es idempotente. Durante
+el desarrollo desde este checkout usa `node bin/ahp.mjs setup . --no-install`;
+1.4 todavía no está publicado en npm.
 
 Ejecuta el primer pulso:
 
 ```bash
-npx ahp root .
-npx ahp doctor .
-npx ahp verify . --strict
-npx ahp status .
-npx ahp context . --format markdown --budget 8000
+npx ahp project check .
+npx ahp project status .
+npx ahp session context . --format markdown --budget 8000
 ```
+
+Usa `npx ahp help`, `npx ahp help message` o
+`npx ahp catalog --format json` para descubrir el contrato. Los comandos 1.2,
+como `ahp verify --strict`, continúan funcionando como aliases.
 
 Revisa los archivos generados antes de confirmarlos. AHP+ nunca ejecuta commit,
 push, merge, deploy, publicación o eliminación, ni se concede autoridad.
@@ -96,6 +108,8 @@ nunca debe prestar su rama o commit a un repositorio anidado.
 | Checkpoints | Límites de sesión recuperables |
 | Handoffs | Continuidad sellada entre plataformas con verificación del receptor |
 | Eventos de continuidad | Mensajes operativos append-only enlazados por fingerprints SHA-256 |
+| Sobres y recibos de relay | Intentos de entrega autenticados y acuses creados por el receptor con fingerprints separados |
+| Identidades y sobres seguros | Firmas Ed25519, acuerdo X25519, payload AES-256-GCM y recibos firmados |
 | Riesgos y locks | Riesgos visibles y avisos cooperativos de concurrencia |
 
 Las afirmaciones usan niveles explícitos: `VERIFIED`, `USER_CONFIRMED`,
@@ -108,10 +122,10 @@ host sin cambiar la semántica del protocolo.
 
 | Superficie | Interfaz instalada | Ejemplo |
 |---|---|---|
-| Terminal | `npx ahp` | `npx ahp verify . --strict` |
-| Cursor | Comando `/ahp` | `/ahp verify strict` |
-| OpenCode | Comando `/ahp` | `/ahp handoff to claude` |
-| Codex | Skill local `$ahp` | `Usa $ahp para verificar este repositorio` |
+| Terminal | `npx ahp` | `npx ahp project check .` |
+| Cursor | Comando `/ahp` | `/ahp message inbox for=cursor` |
+| OpenCode | Comando `/ahp` | `/ahp message send to=claude text="Continúa"` |
+| Codex | Skill local `$ahp` | `Usa $ahp para revisar el proyecto y leer mi inbox` |
 | Claude Code | Instrucciones del repositorio | `Usa AHP+ para ejecutar doctor y verify strict` |
 | ChatGPT / móvil | Cápsula de lectura o CLI disponible | `Lee AHP_MOBILE.md e inspecciona HOF-...` |
 | Agentes genéricos | `AGENTS.md` + `AHP_INSTRUCTIONS.md` | `Sigue las instrucciones AHP+ del repositorio` |
@@ -125,6 +139,21 @@ npx ahp adapter install all . --apply
 
 Consulta [comandos por superficie](docs/COMMANDS_BY_SURFACE_ES.md) para ver los
 ejemplos completos de terminal, IDE y app.
+
+## Una opinión acotada de otra IA
+
+El adaptador MCP de 1.4 expone una consulta de solo lectura dentro del mismo
+chat del IDE. Puedes pedir “Usa AHP+ para preguntarle a Claude qué riesgo ve en
+esta implementación” o ejecutar:
+
+```bash
+ahp agent ask claude "Revisa la implementación actual e identifica el riesgo principal"
+```
+
+AHP+ abre el CLI destino en modo de solo lectura, comparte contexto acotado,
+acepta exactamente una respuesta y registra eventos `CONSULT_REQUEST` y
+`CONSULT_RESPONSE` enlazados por fingerprints. No crea un loop autónomo ni
+autoriza ediciones, Git remoto, deploy o publicación.
 
 ## Flujo de handoff
 
@@ -169,24 +198,67 @@ Cada evento se sella con SHA-256 y referencia el ID y fingerprint de su padre
 causal:
 
 ```bash
-npx --no-install ahp event append . \
-  --type MESSAGE \
+npx --no-install ahp message send "Continuar desde la frontera verificada" \
   --session cross-agent \
   --from claude \
-  --to codex \
-  --summary "Continuar desde la frontera de reconciliación verificada"
+  --to codex
 
-npx --no-install ahp event verify EVT-... .
+npx --no-install ahp message inbox . --for codex --session cross-agent
+npx --no-install ahp message reply EVT-... "Recibido y verificado" --from codex
+npx --no-install ahp message verify EVT-... .
 ```
 
 La cadena detecta mutaciones y relaciones causales rotas. No autentica a una IA
-ni entrega mensajes en tiempo real. Un relay futuro sobre A2A/MCP deberá añadir
-autenticación, cifrado, protección contra replay, control de acceso y recibos
-independientes. Consulta [Continuity Events](docs/CONTINUITY_EVENTS.md).
+ni por sí sola entrega mensajes en tiempo real. AHP+ 1.3 añade sobres de relay
+autenticados y recibos creados por el receptor con un canal de archivos
+persistente de referencia:
+
+```bash
+export AHP_RELAY_SECRET='reemplaza-con-un-secreto-aleatorio-de-32-bytes-o-mas'
+ahp relay send EVT-... --channel /shared/ahp-relay
+ahp relay wait --as codex --channel /shared/ahp-relay
+ahp relay confirm --as claude --channel /shared/ahp-relay
+ahp relay receipt verify RCP-...
+```
+
+El fingerprint EVT original sobrevive al transporte; RLY y RCP tienen
+fingerprints propios. Los replays son idempotentes y se rechazan antes de
+importar los payloads modificados, secretos incorrectos, sobres expirados,
+rutas equivocadas y padres causales faltantes. El HMAC de referencia prueba la
+posesión de un secreto compartido del proyecto, no la identidad única del
+modelo o dispositivo. El canal de archivos es un carrier de prueba/referencia
+reconectable, no un relay cifrado de Internet. Un proveedor de producción sobre
+A2A, MCP o WebSocket debe añadir confidencialidad de transporte y control de
+acceso. Consulta [Continuity Events](docs/CONTINUITY_EVENTS.md).
+
+Los procesos del chat de un IDE pueden no heredar las variables exportadas en
+su terminal integrada. Los adaptadores de producción deben usar inyección de
+secretos del host o un archivo externo restringido mediante `--secret-file`,
+nunca un secreto pegado en la conversación.
 
 Los proyectos AHP+ 1.1 siguen siendo legibles. Ejecuta
 `ahp upgrade . --plan` y revisa el resultado antes de `--apply`; los records,
 checkpoints y handoffs 1.1 conservan su schema y fingerprint originales.
+
+## Entrega cifrada entre dispositivos
+
+AHP+ 1.4 puede usar identidad por dispositivo y cifrado de payload:
+
+```bash
+ahp identity list
+ahp secure network send EVT-... \
+  --from-device DEV-EMISOR --to-device DEV-RECEPTOR \
+  --url https://relay.example --token-file /protegido/ahp.token
+ahp secure network receive --as-device DEV-RECEPTOR \
+  --url https://relay.example --token-file /protegido/ahp.token
+ahp secure network confirm --as-device DEV-EMISOR \
+  --url https://relay.example --token-file /protegido/ahp.token
+```
+
+`ahp hub serve` incluye un carrier de objetos cifrados. Solo permite HTTP en
+loopback; una interfaz remota exige certificado y llave TLS. El carrier observa
+metadatos de ruta y ciphertext, no el contenido del evento. Consulta
+[interoperabilidad en vivo](docs/LIVE_INTEROP_ES.md).
 
 ## Estados de portabilidad
 
@@ -236,16 +308,17 @@ Los artefactos de npm y GitHub comparten el SHA-256
 | [Comandos](docs/COMMANDS.md) | Contrato normativo de la CLI |
 | [Comandos por superficie](docs/COMMANDS_BY_SURFACE_ES.md) | Invocación en terminal, IDE y app |
 | [Arquitectura](docs/ARCHITECTURE.md) | Identidad del repositorio y layout del protocolo |
-| [Continuity Events](docs/CONTINUITY_EVENTS.md) | Fingerprints causales y límite del relay futuro |
+| [Continuity Events](docs/CONTINUITY_EVENTS.md) | Fingerprints causales, relay autenticado y recibos del receptor |
 | [Conformidad](docs/CONFORMANCE.md) | Criterios de aceptación interplataforma |
 | [Canales de distribución](docs/CHANNELS_ES.md) | Estable `latest` y desarrollo `next` |
 | [Feedback público](docs/COMMUNITY_FEEDBACK_ES.md) | Reportes seguros y reproducibles |
-| [Especificación](SPECIFICATION.md) | Protocolo AHP+ 1.2 en desarrollo |
+| [Interoperabilidad en vivo](docs/LIVE_INTEROP_ES.md) | Setup de un comando, consulta entre IA, identidad y carrier cifrado |
+| [Especificación](SPECIFICATION.md) | Protocolo AHP+ 1.4 en desarrollo |
 
 ## Canales de distribución
 
 - **Estable:** versiones semánticas en npm `latest` y GitHub Releases normales.
-- **Desarrollo:** versiones como `1.2.0-dev.0` en npm `next` y GitHub
+- **Desarrollo:** versiones como `1.4.0-dev.0` en npm `next` y GitHub
   prereleases.
 
 ## Seguridad y contribución

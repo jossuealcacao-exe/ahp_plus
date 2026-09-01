@@ -2,25 +2,43 @@
 
 - Project: ahp-plus
 - Phase: READY_FOR_QA
-- Objective: Publish AHP+ 1.2 through next, consumer validation, and explicit stable promotion
-- Confidence: USER_CONFIRMED
-- Git branch: codex/v1.2-field-hardening
-- Git commit: abdb692fb459d1db4e2754429a247d74a5aa3948
+- Objective: Deliver AHP+ 1.4 simple setup, bounded live Codex-Claude consultation, and device-authenticated encrypted relay
+- Confidence: VERIFIED
+- Git branch: codex/v1.4-live-interoperability
+- Git commit: 7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196
 - Working tree: DIRTY
-- Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
-- State revision: 0002ae1e8121fb84a03fc93ba9b5d1732c4c4eace2589f7f17add77212f995c0
-- Next action: Collect prerelease field feedback before requesting explicit authority for stable v1.2.0 and npm latest
+- Portability: LOCAL_ONLY — Project working-tree changes are not transported by Git.
+- State revision: 558f49a94fff944d91ebfffca6128b247225a2f7c1bca8be12bb9cb48fd8840f
+- Next action: Commit and push the 1.4 candidate, then validate the full remote CI matrix before any npm publication
 
 ## Blockers
 
-- None.
+- Remote CI pending
+- npm publication requires explicit authorization
 
 ## Latest checkpoint
 
-- CHK-20260901-4B59FF3C: Published AHP+ 1.2.0-dev.0 to GitHub prerelease and npm next with a verified public consumer receipt
+- CHK-20260901-21E97A52: Bidirectional Codex-Claude relay passed and first field UX findings were hardened
 
 ## Active records
 
+- [qa/PASS/VERIFIED] QA-20260901-3B906545: AHP+ 1.4 local candidate and bidirectional live gate
+- [requirement/VERIFIED/VERIFIED] REQ-20260901-3A69504B: AHP+ 1.4 simple setup and secure live interoperability
+- [decision/ACCEPTED/USER_CONFIRMED] DEC-20260901-30D2B2DB: Develop AHP+ 1.4 as the live interoperability release
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-451D38C6: AHP+ 1.4 packed consumer setup
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-0261DC2D: AHP+ 1.4 real Codex-Claude live consultation
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-054D3276: AHP+ 1.4 local release gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-E7177047: AHP+ 1.3 first consumer feedback hardening gate
+- [qa/PASS/VERIFIED] QA-20260901-84F8092A: AHP+ 1.3 Codex to Claude bidirectional relay consumer gate
+- [evidence/OBSERVED/USER_CONFIRMED] EVD-20260901-F7E5176E: Claude receiver confirmation of bidirectional 1.3 relay
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-B34B0736: Codex side of bidirectional 1.3 relay consumer test
+- [requirement/VERIFIED/VERIFIED] REQ-20260901-C0E254B0: Authenticated relay and receiver-created receipts
+- [qa/PASS/VERIFIED] QA-20260901-8D90C95E: AHP+ 1.3 authenticated relay and receiver receipt gate
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-CC2F96E4: AHP+ 1.3 relay and receiver receipt local gate
+- [qa/PASS/VERIFIED] QA-20260901-A77312D5: AHP+ 1.3 intent CLI and local message surface gate
+- [decision/ACCEPTED/USER_CONFIRMED] DEC-20260901-974AB018: Develop AHP+ 1.3 as a backward-compatible minor release
+- [evidence/OBSERVED/VERIFIED] EVD-20260901-CC90E7D9: AHP+ 1.3 intent CLI and message surface local gate
+- [evidence/OBSERVED/USER_CONFIRMED] EVD-20260901-D4587A05: AHP+ 1.2 handoff field acceptance
 - [qa/PASS/VERIFIED] QA-20260901-B2A1604A: AHP+ 1.2.0-dev.0 prerelease publication acceptance
 - [evidence/OBSERVED/VERIFIED] EVD-20260901-F1577F99: AHP+ 1.2.0-dev.0 public registry consumer acceptance
 - [evidence/OBSERVED/VERIFIED] EVD-20260901-023FC8ED: AHP+ 1.2.0-dev.0 npm next publication
@@ -43,44 +61,4 @@
 - [evidence/OBSERVED/VERIFIED] EVD-20260813-BF41BAB7: AHP+ 1.1.0 GitHub stable publication and acceptance
 - [qa/PASS/VERIFIED] QA-20260813-33B694BC: AHP+ 1.1.0 stable release candidate gate
 - [evidence/OBSERVED/VERIFIED] EVD-20260813-8BE86898: AHP+ 1.1.0 stable local and package gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260813-7ADB1D26: Iris public consumer interplatform acceptance
-- [decision/ACCEPTED/USER_CONFIRMED] DEC-20260813-926E7C61: Liberar AHP+ 1.1.0 como producto público con canales stable y dev
-- [qa/PASS/VERIFIED] QA-20260813-EB883190: AHP+ prelaunch documentation acceptance gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260813-A080C9F5: AHP+ prelaunch user documentation gate
-- [decision/ACCEPTED/USER_CONFIRMED] DEC-20260813-7D51BE5F: Condicionar v1.1.0 estable a documentación y piloto de usuarios
-- [qa/PASS/VERIFIED] QA-20260812-ADC41D98: AHP+ 1.1.0-emancipation.1 public acceptance
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-EC0A1631: Emancipation.1 public tag installation
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-AA674A5F: AHP+ Emancipation.1 GitHub prerelease
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-9ABE54A5: Emancipation.1 release matrix
-- [qa/PASS/VERIFIED] QA-20260812-4B66222D: AHP+ 1.1.0-emancipation.1 release candidate gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-06806C27: Emancipation prerelease 1 local gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-F2E895D0: Cross-platform GitHub Actions matrix
-- [qa/PASS/VERIFIED] QA-20260812-2906F954: Windows Git root normalization gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-49107838: Native Git root normalization gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-43499C08: Windows Git path identity diagnosis
-- [qa/PASS/VERIFIED] QA-20260812-2FE0E94E: Windows CI compatibility fix gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-133E4E8A: Shell-independent test discovery gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-88F27795: Windows CI test discovery diagnosis
-- [qa/PASS/VERIFIED] QA-20260812-46EC6F6A: Shallow CI verification fix gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-F29ACE58: Shallow-history regression fix
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-7DAFF86E: GitHub Actions shallow-history diagnosis
-- [qa/PASS/VERIFIED] QA-20260812-A8BCAAFD: AHP+ public GitHub release acceptance
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-BE1BA620: Published tag installation
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-24693F72: GitHub prerelease publication
-- [qa/PASS/VERIFIED] QA-20260812-F0EAE74C: Remote commit installation gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-9AD2052C: GitHub commit installation
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-52909E96: Initial GitHub publication
-- [qa/PASS/VERIFIED] QA-20260812-96E2086F: AHP+ GitHub prerelease gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-F1267A9E: Public release gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-1678A12F: Apache-2.0 license text
-- [decision/ACCEPTED/USER_CONFIRMED] DEC-20260812-3F8CD0C9: Publicar AHP+ bajo Apache-2.0
-- [qa/PASS/VERIFIED] QA-20260812-07F06C0D: AHP+ 1.1.0-emancipation.0 final local gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-A6691ED4: Final tarball consumer flow
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-A26DF84E: Final regression and package contents
-- [qa/PASS/VERIFIED] QA-20260812-F98EE4C0: AHP+ emancipation local release gate
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-52A158DF: Codex adapter structure
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-53F6D2C7: Packed consumer installation
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-3C366E60: Repository validation
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-049DCED3: Cross-platform conformance suite
-- [evidence/OBSERVED/VERIFIED] EVD-20260812-AFA5CA74: Core test suite
-- [decision/ACCEPTED/USER_CONFIRMED] DEC-20260812-9D73F687: Emancipar AHP+ como protocolo independiente por repositorio
+_Context truncated to requested budget._

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ahp-plus:schema:device-identity:1.4.0",
+  "title": "AHP+ Device Identity",
+  "type": "object",
+  "required": ["schema_version", "id", "kind", "project_id", "name", "platform", "assurance", "status", "keys", "created_at", "integrity"],
+  "properties": {
+    "schema_version": { "const": "1.4.0" },
+    "id": { "type": "string", "pattern": "^DEV-[0-9]{8}-[A-F0-9]{8}$" },
+    "kind": { "const": "device_identity" },
+    "assurance": { "const": "device-key-pair" },
+    "status": { "enum": ["ACTIVE", "REVOKED"] },
+    "keys": { "type": "object", "required": ["signing", "encryption"] },
+    "integrity": { "type": "object", "required": ["algorithm", "canonicalization", "digest"] }
+  },
+  "additionalProperties": true
+}

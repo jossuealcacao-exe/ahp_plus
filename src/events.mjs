@@ -2,6 +2,7 @@ import path from 'node:path';
 import { csv, pipeList } from './args.mjs';
 import {
   CONTINUITY_ACTION_STATUSES,
+  CONTINUITY_EVENT_PROTOCOL_VERSIONS,
   CONTINUITY_EVENT_TYPES,
   CONTINUITY_TRANSPORT_STATUSES,
   ID_PREFIXES,
@@ -19,6 +20,8 @@ export function continuityEvents(repoOrInput = '.', options = {}) {
   let values = walkJson(repo.paths.events).map((file) => ({ file, event: readJson(file) }));
   if (options.session) values = values.filter(({ event }) => event.session_id === options.session);
   if (options.type) values = values.filter(({ event }) => event.event_type === options.type);
+  if (options.from) values = values.filter(({ event }) => event.from === options.from);
+  if (options.to) values = values.filter(({ event }) => event.to === options.to);
   values.sort((left, right) => {
     const byTime = String(left.event.created_at).localeCompare(String(right.event.created_at));
     return byTime || Number(left.event.sequence || 0) - Number(right.event.sequence || 0);
@@ -52,8 +55,8 @@ export function appendContinuityEvent(input, options = {}) {
   const type = eventType(options.type);
   const owner = options.actor || 'AI agent';
   const { repo } = preflightWrite(input, { ...options, actor: owner }, 'continuity:event');
-  invariant(repo.manifest.protocol_version === PROTOCOL_VERSION, `Continuity Events require protocol ${PROTOCOL_VERSION}; current project is ${repo.manifest.protocol_version}. Run \`ahp upgrade . --plan\`.`, {
-    code: 'PROTOCOL_UPGRADE_REQUIRED', exitCode: 2, details: { current: repo.manifest.protocol_version, required: PROTOCOL_VERSION },
+  invariant(CONTINUITY_EVENT_PROTOCOL_VERSIONS.includes(repo.manifest.protocol_version), `Continuity Events require protocol 1.2.0 or newer; current project is ${repo.manifest.protocol_version}. Run \`ahp upgrade . --plan\`.`, {
+    code: 'PROTOCOL_UPGRADE_REQUIRED', exitCode: 2, details: { current: repo.manifest.protocol_version, required: CONTINUITY_EVENT_PROTOCOL_VERSIONS },
   });
   const sessionId = safeSegment(options.session || `${options.platform || 'generic'}-${owner}`);
   const sessionEvents = continuityEvents(repo, { session: sessionId });
@@ -81,7 +84,7 @@ export function appendContinuityEvent(input, options = {}) {
   }
   const id = makeId(ID_PREFIXES.continuity_event);
   const value = seal({
-    schema_version: PROTOCOL_VERSION,
+    schema_version: repo.manifest.protocol_version,
     id,
     kind: 'continuity_event',
     project_id: projectId(repo),

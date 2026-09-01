@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.2.0",
+  "id": "EVT-20260901-C1BE17A5",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "ahp-1.3-development",
+  "correlation_id": "ahp-1.3-development",
+  "sequence": 1,
+  "event_type": "CAPABILITY_CHANGE",
+  "summary": "AHP+ 1.3 adds an intent-categorized CLI and fingerprinted IDE-chat message operations",
+  "from": "codex",
+  "to": "human",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "capabilities": [],
+  "causal": {
+    "parent_event_id": null,
+    "parent_fingerprint": null
+  },
+  "intent": {
+    "requested": "",
+    "authority": "NOT_GRANTED"
+  },
+  "observation": {
+    "status": "VERIFIED",
+    "result": "Local CLI implements project, session, message, and record routing; message send/reply/inbox/outbox/list/verify passed the release gate",
+    "evidence_refs": [
+      "EVD-20260901-CC90E7D9"
+    ],
+    "artifacts": [
+      "src/command-catalog.mjs",
+      "src/cli.mjs",
+      "templates/adapters"
+    ]
+  },
+  "git": {
+    "branch": "codex/v1.3-realtime-messaging",
+    "commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+    "tree": "8300ce82ba11f6a802e631eb6eee806b363546dd",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "0451e38ded81aa6b3fd04838f5da5f0a802ad80b9ec7e8faf4fe0759822892df"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [
+    "Authenticated realtime relay and independent cross-platform receiver receipt are not implemented in this slice"
+  ],
+  "next_action": "Design the authenticated relay envelope, receipt, replay, and reconnect contract",
+  "created_at": "2026-09-01T16:55:46.915Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "46294101ad4219b380099eb39ec2e37cea51daf89c3a9e0b8ee44522fd474232"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ahp-plus:schema:secure-receipt:1.4.0",
+  "title": "AHP+ Secure Receipt",
+  "type": "object",
+  "required": ["schema_version", "id", "kind", "project_id", "identity_assurance", "envelope", "message", "receiver", "outcome", "received_at", "created_at", "authentication", "integrity"],
+  "properties": {
+    "schema_version": { "const": "1.4.0" },
+    "id": { "type": "string", "pattern": "^SRC-[0-9]{8}-[A-F0-9]{8}$" },
+    "kind": { "const": "secure_receipt" },
+    "identity_assurance": { "const": "device-key-pair" },
+    "outcome": { "enum": ["RECEIVED", "REJECTED", "CONFLICTED", "EXPIRED"] },
+    "authentication": { "type": "object", "required": ["scheme", "key_id", "credential_scope", "signature"] },
+    "integrity": { "type": "object", "required": ["algorithm", "canonicalization", "digest"] }
+  },
+  "additionalProperties": true
+}

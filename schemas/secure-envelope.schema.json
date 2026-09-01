@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ahp-plus:schema:secure-envelope:1.4.0",
+  "title": "AHP+ Secure Envelope",
+  "type": "object",
+  "required": ["schema_version", "id", "kind", "project_id", "identity_assurance", "sender", "recipient", "message", "delivery", "encryption", "payload", "created_at", "authentication", "integrity"],
+  "properties": {
+    "schema_version": { "const": "1.4.0" },
+    "id": { "type": "string", "pattern": "^SEC-[0-9]{8}-[A-F0-9]{8}$" },
+    "kind": { "const": "secure_envelope" },
+    "identity_assurance": { "const": "device-key-pair" },
+    "encryption": { "type": "object", "required": ["algorithm", "key_agreement", "iv", "tag"] },
+    "payload": { "type": "object", "required": ["encoding", "ciphertext"] },
+    "authentication": { "type": "object", "required": ["scheme", "key_id", "credential_scope", "signature"] },
+    "integrity": { "type": "object", "required": ["algorithm", "canonicalization", "digest"] }
+  },
+  "additionalProperties": true
+}

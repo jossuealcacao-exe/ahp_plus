@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.2.0",
+  "id": "EVD-20260901-D4587A05",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.2 handoff field acceptance",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "USER_CONFIRMED",
+  "created_at": "2026-09-01T16:55:14.675Z",
+  "updated_at": "2026-09-01T16:55:14.675Z",
+  "observed_at": "2026-09-01T16:55:14.675Z",
+  "actor": {
+    "name": "Jossue Alcala",
+    "platform": "human",
+    "model": "n-a"
+  },
+  "source_refs": [],
+  "base_commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+  "tags": [],
+  "evidence_type": "user_confirmation",
+  "locator": "user-confirmation:2026-09-01",
+  "result": "USER_CONFIRMED: the release was launched, validated by a user, and the cross-platform handoff worked",
+  "limitations": "User confirmation establishes the field result; no additional receiver artifact was attached in this conversation",
+  "artifact_sha256": null,
+  "exit_code": null
+}

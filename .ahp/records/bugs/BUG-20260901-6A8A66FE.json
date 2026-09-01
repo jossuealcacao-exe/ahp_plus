@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.4.0",
+  "id": "BUG-20260901-6A8A66FE",
+  "kind": "bug",
+  "project_id": "ahp-plus",
+  "title": "Target model option was attributed to consultation origin",
+  "description": "The first live E2E request stored the requested Claude target model in the Codex origin actor field. Code now keeps both actors unknown unless host-verified and returns requested_target_model only as invocation metadata. Existing sealed events remain unchanged.",
+  "status": "CLOSED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-01T19:38:26.378Z",
+  "updated_at": "2026-09-01T19:38:26.378Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [
+    "EVD-20260901-0261DC2D"
+  ],
+  "base_commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+  "tags": [
+    "1.4",
+    "identity",
+    "attribution",
+    "append-only"
+  ]
+}

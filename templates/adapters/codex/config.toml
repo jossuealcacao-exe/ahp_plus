@@ -1,0 +1,3 @@
+[mcp_servers.ahp]
+command = "npx"
+args = ["--no-install", "ahp", "live", "serve", "."]

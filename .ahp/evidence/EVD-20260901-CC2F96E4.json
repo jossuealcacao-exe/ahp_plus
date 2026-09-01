@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.3.0",
+  "id": "EVD-20260901-CC2F96E4",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.3 relay and receiver receipt local gate",
+  "description": "",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-01T17:19:14.049Z",
+  "updated_at": "2026-09-01T17:19:14.049Z",
+  "observed_at": "2026-09-01T17:19:14.049Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [],
+  "base_commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+  "tags": [],
+  "evidence_type": "test",
+  "locator": "npm test; npm run conformance; npm run validate; npm run pack:dry-run; ahp verify --strict",
+  "result": "PASS: 25 core tests, 3 conformance tests, package validation, 62-file pack dry-run, and strict self-verification. Relay coverage includes independent clones, exact EVT fingerprint preservation, separate RLY/RCP fingerprints, idempotent replay/reconnect, causal ordering, missing-parent rejection, wrong-secret rejection, and payload/receipt tamper rejection.",
+  "limitations": "Local file-channel and cross-clone evidence only; no hosted network relay, per-device asymmetric identity, CI run, commit, push, tag, npm publication, or external user receiver validation for 1.3.",
+  "artifact_sha256": null,
+  "exit_code": null
+}

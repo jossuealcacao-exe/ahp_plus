@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.4.0",
+  "id": "REQ-20260901-3A69504B",
+  "kind": "requirement",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.4 simple setup and secure live interoperability",
+  "description": "A user can configure Codex and Claude with one idempotent project command, request one real read-only opinion in either direction, and exchange encrypted fingerprint-preserving events with device-signed receipts over file or HTTPS carriers.",
+  "status": "VERIFIED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-01T19:38:26.101Z",
+  "updated_at": "2026-09-01T19:38:26.101Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [
+    "EVD-20260901-054D3276",
+    "EVD-20260901-0261DC2D",
+    "EVD-20260901-451D38C6"
+  ],
+  "base_commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+  "tags": [
+    "1.4",
+    "setup",
+    "live",
+    "secure-relay"
+  ]
+}

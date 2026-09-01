@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.3.0",
+  "id": "EVT-20260901-9C953C0A",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "ahp-1.3-development",
+  "correlation_id": "ahp-1.3-development",
+  "sequence": 3,
+  "event_type": "VALIDATION",
+  "summary": "Codex and Claude completed a bidirectional AHP+ 1.3 relay consumer cycle",
+  "from": "claude",
+  "to": "codex",
+  "actor": {
+    "name": "Jossue Alcala",
+    "platform": "human",
+    "model": "n-a"
+  },
+  "capabilities": [],
+  "causal": {
+    "parent_event_id": "EVT-20260901-282EAA5B",
+    "parent_fingerprint": "a965c4849e4d9c22160af811b07ec7064a48ff230586d2687dee700b335021ae"
+  },
+  "intent": {
+    "requested": "Validate intercommunication between platforms before release",
+    "authority": "USER_CONFIRMED"
+  },
+  "observation": {
+    "status": "VERIFIED",
+    "result": "Both directions preserved exact EVT fingerprints, verified causal linkage, produced separate authenticated RLY and RCP fingerprints, and ended with delivery_confirmed true on sender and receiver.",
+    "evidence_refs": [
+      "EVD-20260901-B34B0736",
+      "EVD-20260901-F7E5176E"
+    ],
+    "artifacts": []
+  },
+  "git": {
+    "branch": "codex/v1.3-realtime-messaging",
+    "commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+    "tree": "8300ce82ba11f6a802e631eb6eee806b363546dd",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "f085e69a526f150d3cad66a8cb1291ce523f76f275c31bdd0f97ca05095bfee2"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [
+    "Same-host file-reference carrier",
+    "Disposable shared test credential",
+    "No per-device identity or channel encryption",
+    "Three field UX bugs remain open before release"
+  ],
+  "next_action": "Resolve IDE secret provisioning, actor origin inference, and message-safe next-action defaults, then repeat the consumer gate",
+  "created_at": "2026-09-01T18:28:05.677Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "04eba2a28dc3861445ac18e2a06bbe8c2f4ccd7c00291a04bc0c5e6d5ecd473e"
+  }
+}

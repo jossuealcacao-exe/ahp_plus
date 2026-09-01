@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVT-20260901-029B2DCA",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "ahp-1.4-live-e2e-reverse",
+  "correlation_id": "consult-4619e66a-e640-45ba-b6be-07411b96dd20",
+  "sequence": 2,
+  "event_type": "CONSULT_RESPONSE",
+  "summary": "Verified: yes—this consultation is explicitly read-only and limited to one hop from Claude to Codex, with no further delegation permitted.",
+  "from": "codex",
+  "to": "claude",
+  "actor": {
+    "name": "codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "capabilities": [
+    "consult-response",
+    "read-only",
+    "max-hops-1"
+  ],
+  "causal": {
+    "parent_event_id": "EVT-20260901-20D27CC0",
+    "parent_fingerprint": "0e977125e26b98511903de9fd15a4b2a259079e4de9dcd99ef463fc410d79d02"
+  },
+  "intent": {
+    "requested": "Return the bounded consultation result to the requesting chat",
+    "authority": "READ_ONLY"
+  },
+  "observation": {
+    "status": "NOT_APPLICABLE",
+    "result": null,
+    "evidence_refs": [],
+    "artifacts": []
+  },
+  "git": {
+    "branch": "codex/v1.4-live-interoperability",
+    "commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+    "tree": "8300ce82ba11f6a802e631eb6eee806b363546dd",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "cba26cecf290f0725e25fa27ef127270d33d63e0ddbb60e2744e68d7fb2b3e82"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": "live-codex"
+  },
+  "limitations": [
+    "Provider identity is platform-declared",
+    "No project mutation authority"
+  ],
+  "next_action": "Present this consultation to the human in the originating chat",
+  "created_at": "2026-09-01T19:31:14.187Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "41aa36536a2bdf649fcd7a49140289b773cccfdc7ab5bcf67b92c9d9c1ab601d"
+  }
+}

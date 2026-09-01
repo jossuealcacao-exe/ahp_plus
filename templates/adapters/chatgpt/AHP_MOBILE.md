@@ -17,6 +17,12 @@ available, do not claim that `ahp verify`, tests, edits, commits, or pushes ran.
 Portable continuation requires committed and remotely available AHP+ state.
 Uncommitted working-tree changes remain on the originating machine.
 
-When command execution is available, map semantic requests such as `doctor`,
-`verify strict`, `context`, `checkpoint`, `handoff to <platform>`, and
-`receive <HOF-ID>` to the installed AHP+ CLI.
+When command execution is available, map semantic requests such as
+`project check`, `session context`, `session checkpoint`, `message send`,
+`message inbox`, `message reply`, `message verify`, `handoff to <platform>`,
+`relay send`, `relay wait`, `relay confirm`, `relay receipt verify`,
+and `receive <HOF-ID>` to the installed AHP+ CLI. A local message fingerprint
+does not prove remote delivery.
+Relay commands require an executable CLI, an explicitly configured channel,
+and an environment secret. Report actual RLY/RCP IDs; shared-key authentication
+does not prove a unique mobile device or model identity.

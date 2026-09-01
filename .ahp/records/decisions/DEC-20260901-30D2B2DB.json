@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.4.0",
+  "id": "DEC-20260901-30D2B2DB",
+  "kind": "decision",
+  "project_id": "ahp-plus",
+  "title": "Develop AHP+ 1.4 as the live interoperability release",
+  "description": "AHP+ 1.4 combines one-command Codex-Claude setup, bounded one-hop read-only consultation, device-key identity, encrypted relay, signed receipts, and a reference HTTPS carrier while preserving 1.1-1.3 read compatibility and authority boundaries.",
+  "status": "ACCEPTED",
+  "confidence": "USER_CONFIRMED",
+  "created_at": "2026-09-01T19:38:25.732Z",
+  "updated_at": "2026-09-01T19:38:25.732Z",
+  "actor": {
+    "name": "Jossue Alcala",
+    "platform": "human",
+    "model": "n-a"
+  },
+  "source_refs": [
+    "user:2026-09-01-full-execution-to-1.4"
+  ],
+  "base_commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+  "tags": [
+    "1.4",
+    "setup",
+    "live",
+    "identity",
+    "encryption"
+  ]
+}

@@ -1,18 +1,21 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import {
   CERTAINTY_LEVELS,
   CONTINUITY_ACTION_STATUSES,
+  CONTINUITY_EVENT_PROTOCOL_VERSIONS,
   CONTINUITY_EVENT_TYPES,
   CONTINUITY_TRANSPORT_STATUSES,
   EVIDENCE_TYPES,
   PHASES,
   PROTOCOL_VERSION,
+  RELAY_RECEIPT_OUTCOMES,
   RECORD_KINDS,
   SUPPORTED_PROTOCOL_VERSIONS,
   STATUS_BY_KIND,
 } from './constants.mjs';
-import { digestObject } from './canonical-json.mjs';
+import { canonicalJson, digestObject } from './canonical-json.mjs';
 import { readJson, relativeUnix, walkFiles, walkJson } from './fs-utils.mjs';
 import { gitCommitRelation, gitState } from './git.mjs';
 import { resolveRepository, statePaths } from './root.mjs';
@@ -119,7 +122,7 @@ function validateContinuityEvent(event, file, errors) {
     'observation', 'git', 'privacy', 'transport', 'limitations', 'next_action',
     'created_at', 'integrity',
   ], file, errors);
-  validateSchemaVersion(event.schema_version, file, errors, [PROTOCOL_VERSION]);
+  validateSchemaVersion(event.schema_version, file, errors, CONTINUITY_EVENT_PROTOCOL_VERSIONS);
   if (event.kind !== 'continuity_event') errors.push(`${file}: kind must be continuity_event`);
   if (!CONTINUITY_EVENT_TYPES.includes(event.event_type)) errors.push(`${file}: invalid event_type ${event.event_type}`);
   if (!Number.isInteger(event.sequence) || event.sequence < 1) errors.push(`${file}: sequence must be a positive integer`);
@@ -134,6 +137,136 @@ function validateContinuityEvent(event, file, errors) {
   if (!Array.isArray(event.limitations)) errors.push(`${file}: limitations must be an array`);
   validateActor(event.actor, file, errors);
   validateIntegrity(event, file, errors);
+}
+
+function validateAuthentication(value, file, errors) {
+  const authentication = value?.authentication;
+  if (!authentication || authentication.scheme !== 'hmac-sha256') {
+    errors.push(`${file}: authentication scheme must be hmac-sha256`);
+    return;
+  }
+  if (authentication.credential_scope !== 'project-shared-secret') {
+    errors.push(`${file}: authentication credential_scope must be project-shared-secret`);
+  }
+  if (typeof authentication.key_id !== 'string' || !/^hmac:[a-f0-9]{24}$/.test(authentication.key_id)) {
+    errors.push(`${file}: invalid authentication key_id`);
+  }
+  if (typeof authentication.signature !== 'string' || !/^[a-f0-9]{64}$/.test(authentication.signature)) {
+    errors.push(`${file}: invalid authentication signature`);
+  }
+}
+
+function validateRelayEnvelope(envelope, file, errors) {
+  required(envelope, [
+    'schema_version', 'id', 'kind', 'project_id', 'provider', 'message',
+    'delivery', 'payload', 'created_at', 'authentication', 'integrity',
+  ], file, errors);
+  validateSchemaVersion(envelope.schema_version, file, errors, ['1.3.0', '1.4.0']);
+  if (envelope.kind !== 'relay_envelope') errors.push(`${file}: kind must be relay_envelope`);
+  if (!/^RLY-[0-9]{8}-[A-F0-9]{8}$/.test(envelope.id || '')) errors.push(`${file}: invalid relay envelope ID`);
+  required(envelope.message || {}, ['event_id', 'event_fingerprint', 'session_id', 'from', 'to'], `${file}.message`, errors);
+  required(envelope.delivery || {}, ['state', 'attempt_id', 'nonce', 'created_at', 'expires_at'], `${file}.delivery`, errors);
+  if (envelope.delivery?.state !== 'SYNC_PENDING') errors.push(`${file}: delivery state must be SYNC_PENDING`);
+  if (!validTimestamp(envelope.created_at) || !validTimestamp(envelope.delivery?.created_at) || !validTimestamp(envelope.delivery?.expires_at)) {
+    errors.push(`${file}: invalid relay timestamp`);
+  }
+  if (validTimestamp(envelope.delivery?.created_at) && validTimestamp(envelope.delivery?.expires_at)
+    && Date.parse(envelope.delivery.expires_at) <= Date.parse(envelope.delivery.created_at)) {
+    errors.push(`${file}: expires_at must be after delivery.created_at`);
+  }
+  validateAuthentication(envelope, file, errors);
+  validateIntegrity(envelope, file, errors);
+  validateContinuityEvent(envelope.payload || {}, `${file}.payload`, errors);
+  if (envelope.payload?.id !== envelope.message?.event_id) errors.push(`${file}: payload ID differs from message.event_id`);
+  if (envelope.payload?.integrity?.digest !== envelope.message?.event_fingerprint) errors.push(`${file}: payload fingerprint differs from message.event_fingerprint`);
+  if (envelope.payload?.session_id !== envelope.message?.session_id) errors.push(`${file}: payload session differs from message.session_id`);
+  if (envelope.payload?.from !== envelope.message?.from || envelope.payload?.to !== envelope.message?.to) errors.push(`${file}: payload route differs from message route`);
+}
+
+function validateRelayReceipt(receipt, file, errors) {
+  required(receipt, [
+    'schema_version', 'id', 'kind', 'project_id', 'envelope', 'message',
+    'receiver', 'outcome', 'transport', 'received_at', 'created_at',
+    'authentication', 'integrity',
+  ], file, errors);
+  validateSchemaVersion(receipt.schema_version, file, errors, ['1.3.0', '1.4.0']);
+  if (receipt.kind !== 'relay_receipt') errors.push(`${file}: kind must be relay_receipt`);
+  if (!/^RCP-[0-9]{8}-[A-F0-9]{8}$/.test(receipt.id || '')) errors.push(`${file}: invalid relay receipt ID`);
+  required(receipt.envelope || {}, ['id', 'fingerprint'], `${file}.envelope`, errors);
+  required(receipt.message || {}, ['event_id', 'event_fingerprint', 'session_id', 'from', 'to'], `${file}.message`, errors);
+  required(receipt.receiver || {}, ['platform', 'actor', 'model'], `${file}.receiver`, errors);
+  required(receipt.transport || {}, ['provider', 'channel_id'], `${file}.transport`, errors);
+  if (!RELAY_RECEIPT_OUTCOMES.includes(receipt.outcome)) errors.push(`${file}: invalid relay receipt outcome ${receipt.outcome}`);
+  if (!validTimestamp(receipt.received_at) || !validTimestamp(receipt.created_at)) errors.push(`${file}: invalid relay receipt timestamp`);
+  validateAuthentication(receipt, file, errors);
+  validateIntegrity(receipt, file, errors);
+}
+
+function validateDeviceIdentity(identity, file, errors) {
+  required(identity, [
+    'schema_version', 'id', 'kind', 'project_id', 'name', 'platform',
+    'assurance', 'status', 'keys', 'created_at', 'integrity',
+  ], file, errors);
+  validateSchemaVersion(identity.schema_version, file, errors, ['1.4.0']);
+  if (identity.kind !== 'device_identity') errors.push(`${file}: kind must be device_identity`);
+  if (!/^DEV-[0-9]{8}-[A-F0-9]{8}$/.test(identity.id || '')) errors.push(`${file}: invalid device identity ID`);
+  if (identity.assurance !== 'device-key-pair') errors.push(`${file}: assurance must be device-key-pair`);
+  if (!['ACTIVE', 'REVOKED'].includes(identity.status)) errors.push(`${file}: invalid device identity status ${identity.status}`);
+  if (identity.keys?.signing?.algorithm !== 'ed25519') errors.push(`${file}: signing algorithm must be ed25519`);
+  if (identity.keys?.encryption?.algorithm !== 'x25519') errors.push(`${file}: encryption algorithm must be x25519`);
+  if (identity.keys?.signing?.public_jwk?.d || identity.keys?.encryption?.public_jwk?.d) errors.push(`${file}: private key material must not be persisted`);
+  if (!validTimestamp(identity.created_at)) errors.push(`${file}: invalid device identity timestamp`);
+  validateIntegrity(identity, file, errors);
+}
+
+function verifyDeviceSignature(value, identity) {
+  try {
+    const payload = canonicalJson({
+      ...value,
+      authentication: { ...value.authentication, signature: null },
+      integrity: { ...value.integrity, digest: null },
+    });
+    const key = crypto.createPublicKey({ key: identity.keys.signing.public_jwk, format: 'jwk' });
+    return crypto.verify(null, Buffer.from(payload), key, Buffer.from(value.authentication.signature, 'base64'));
+  } catch {
+    return false;
+  }
+}
+
+function validateSecureEnvelope(envelope, file, errors, identities) {
+  required(envelope, [
+    'schema_version', 'id', 'kind', 'project_id', 'identity_assurance', 'sender',
+    'recipient', 'message', 'delivery', 'encryption', 'payload', 'created_at',
+    'authentication', 'integrity',
+  ], file, errors);
+  validateSchemaVersion(envelope.schema_version, file, errors, ['1.4.0']);
+  if (envelope.kind !== 'secure_envelope') errors.push(`${file}: kind must be secure_envelope`);
+  if (!/^SEC-[0-9]{8}-[A-F0-9]{8}$/.test(envelope.id || '')) errors.push(`${file}: invalid secure envelope ID`);
+  if (envelope.identity_assurance !== 'device-key-pair') errors.push(`${file}: identity assurance must be device-key-pair`);
+  if (envelope.encryption?.algorithm !== 'aes-256-gcm' || envelope.encryption?.key_agreement !== 'x25519-hkdf-sha256') errors.push(`${file}: unsupported secure encryption profile`);
+  if (envelope.authentication?.scheme !== 'ed25519' || envelope.authentication?.credential_scope !== 'device-key-pair') errors.push(`${file}: unsupported secure authentication profile`);
+  validateIntegrity(envelope, file, errors);
+  const sender = identities.get(envelope.sender?.device_id);
+  if (!sender) errors.push(`${file}: missing sender device identity ${envelope.sender?.device_id}`);
+  else if (!verifyDeviceSignature(envelope, sender)) errors.push(`${file}: invalid device signature`);
+}
+
+function validateSecureReceipt(receipt, file, errors, identities, envelopes) {
+  required(receipt, [
+    'schema_version', 'id', 'kind', 'project_id', 'identity_assurance', 'envelope',
+    'message', 'receiver', 'outcome', 'received_at', 'created_at', 'authentication', 'integrity',
+  ], file, errors);
+  validateSchemaVersion(receipt.schema_version, file, errors, ['1.4.0']);
+  if (receipt.kind !== 'secure_receipt') errors.push(`${file}: kind must be secure_receipt`);
+  if (!/^SRC-[0-9]{8}-[A-F0-9]{8}$/.test(receipt.id || '')) errors.push(`${file}: invalid secure receipt ID`);
+  if (!RELAY_RECEIPT_OUTCOMES.includes(receipt.outcome)) errors.push(`${file}: invalid secure receipt outcome ${receipt.outcome}`);
+  validateIntegrity(receipt, file, errors);
+  const receiver = identities.get(receipt.receiver?.device_id);
+  if (!receiver) errors.push(`${file}: missing receiver device identity ${receipt.receiver?.device_id}`);
+  else if (!verifyDeviceSignature(receipt, receiver)) errors.push(`${file}: invalid device signature`);
+  const envelope = envelopes.get(receipt.envelope?.id);
+  if (!envelope) errors.push(`${file}: missing secure envelope ${receipt.envelope?.id}`);
+  else if (envelope.integrity?.digest !== receipt.envelope?.fingerprint) errors.push(`${file}: secure envelope fingerprint mismatch`);
 }
 
 function validateLock(lock, file, errors, warnings) {
@@ -251,6 +384,36 @@ export function verifyRepository(input = '.', options = {}) {
     }
   }
 
+  const deviceIdentities = new Map();
+  for (const file of walkJson(paths.identitiesDevices)) {
+    const relative = relativeUnix(resolved.stateRoot, file);
+    const identity = readJson(file);
+    validateDeviceIdentity(identity, relative, errors);
+    if (identity.project_id !== manifest.project_id) errors.push(`${relative}: project_id differs from manifest`);
+    if (identity.id) {
+      if (ids.has(identity.id)) errors.push(`${relative}: duplicate ID also in ${ids.get(identity.id)}`);
+      else ids.set(identity.id, relative);
+      deviceIdentities.set(identity.id, identity);
+    }
+  }
+
+  const secureEnvelopes = new Map();
+  for (const file of [...walkJson(paths.secureOutbox), ...walkJson(paths.secureInbox)]) {
+    const relative = relativeUnix(resolved.stateRoot, file);
+    const envelope = readJson(file);
+    validateSecureEnvelope(envelope, relative, errors, deviceIdentities);
+    if (envelope.project_id !== manifest.project_id) errors.push(`${relative}: project_id differs from manifest`);
+    const prior = secureEnvelopes.get(envelope.id);
+    if (prior && prior.integrity?.digest !== envelope.integrity?.digest) errors.push(`${relative}: conflicting secure envelope ID`);
+    else if (!prior) secureEnvelopes.set(envelope.id, envelope);
+  }
+  for (const file of walkJson(paths.secureReceipts)) {
+    const relative = relativeUnix(resolved.stateRoot, file);
+    const receipt = readJson(file);
+    validateSecureReceipt(receipt, relative, errors, deviceIdentities, secureEnvelopes);
+    if (receipt.project_id !== manifest.project_id) errors.push(`${relative}: project_id differs from manifest`);
+  }
+
   const events = new Map();
   const sessionSequences = new Map();
   for (const file of walkJson(paths.events)) {
@@ -275,6 +438,45 @@ export function verifyRepository(input = '.', options = {}) {
     if (!parent) errors.push(`${relative}: missing causal parent ${parentId}`);
     else if (parent.integrity?.digest !== event.causal?.parent_fingerprint) errors.push(`${relative}: causal parent fingerprint mismatch`);
     else if (parent.session_id === event.session_id && Number(parent.sequence) >= Number(event.sequence)) errors.push(`${relative}: causal parent sequence must precede child sequence`);
+  }
+
+  const relayEnvelopes = new Map();
+  for (const file of [...walkJson(paths.relayOutbox), ...walkJson(paths.relayInbox)]) {
+    const relative = relativeUnix(resolved.stateRoot, file);
+    const envelope = readJson(file);
+    validateRelayEnvelope(envelope, relative, errors);
+    if (envelope.project_id !== manifest.project_id) errors.push(`${relative}: project_id differs from manifest`);
+    const prior = relayEnvelopes.get(envelope.id);
+    if (prior && prior.envelope.integrity?.digest !== envelope.integrity?.digest) {
+      errors.push(`${relative}: conflicting relay envelope ID also in ${prior.relative}`);
+    } else if (!prior) {
+      relayEnvelopes.set(envelope.id, { envelope, relative });
+      if (ids.has(envelope.id)) errors.push(`${relative}: duplicate ID also in ${ids.get(envelope.id)}`);
+      else ids.set(envelope.id, relative);
+    }
+    const event = events.get(envelope.message?.event_id)?.event;
+    if (!event) errors.push(`${relative}: missing relayed continuity event ${envelope.message?.event_id}`);
+    else if (event.integrity?.digest !== envelope.message?.event_fingerprint) errors.push(`${relative}: relayed event fingerprint mismatch`);
+  }
+
+  for (const file of walkJson(paths.relayReceipts)) {
+    const relative = relativeUnix(resolved.stateRoot, file);
+    const receipt = readJson(file);
+    validateRelayReceipt(receipt, relative, errors);
+    if (receipt.project_id !== manifest.project_id) errors.push(`${relative}: project_id differs from manifest`);
+    if (receipt.id) {
+      if (ids.has(receipt.id)) errors.push(`${relative}: duplicate ID also in ${ids.get(receipt.id)}`);
+      else ids.set(receipt.id, relative);
+    }
+    const envelope = relayEnvelopes.get(receipt.envelope?.id)?.envelope;
+    if (!envelope) errors.push(`${relative}: missing relay envelope ${receipt.envelope?.id}`);
+    else {
+      if (envelope.integrity?.digest !== receipt.envelope?.fingerprint) errors.push(`${relative}: relay envelope fingerprint mismatch`);
+      if (envelope.message?.event_id !== receipt.message?.event_id
+        || envelope.message?.event_fingerprint !== receipt.message?.event_fingerprint) errors.push(`${relative}: receipt message differs from relay envelope`);
+      if (envelope.message?.to !== receipt.receiver?.platform) errors.push(`${relative}: receipt receiver differs from relay destination`);
+      if (envelope.message?.from !== receipt.message?.from || envelope.message?.to !== receipt.message?.to) errors.push(`${relative}: receipt route differs from relay envelope`);
+    }
   }
   const sequencesBySession = new Map();
   for (const { event, relative } of events.values()) {

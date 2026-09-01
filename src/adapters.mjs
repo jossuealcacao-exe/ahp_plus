@@ -17,6 +17,7 @@ const PLATFORM_FILES = Object.freeze({
   ],
   claude: [
     { source: 'claude/CLAUDE.fragment.md', target: 'CLAUDE.md', mode: 'managed-append' },
+    { source: 'claude/mcp.json', target: '.mcp.json', mode: 'json-merge' },
   ],
   cursor: [
     { source: 'cursor/ahp.md', target: '.cursor/commands/ahp.md', mode: 'copy' },
@@ -27,6 +28,10 @@ const PLATFORM_FILES = Object.freeze({
   codex: [
     { source: 'codex/.agents/skills/ahp/SKILL.md', target: '.agents/skills/ahp/SKILL.md', mode: 'copy' },
     { source: 'codex/.agents/skills/ahp/agents/openai.yaml', target: '.agents/skills/ahp/agents/openai.yaml', mode: 'copy' },
+    {
+      source: 'codex/config.toml', target: '.codex/config.toml', mode: 'managed-append',
+      begin: '# AHP+:BEGIN', end: '# AHP+:END',
+    },
   ],
   chatgpt: [
     { source: 'chatgpt/AHP_MOBILE.md', target: 'AHP_MOBILE.md', mode: 'copy' },
@@ -43,8 +48,28 @@ function selectedPlatforms(name) {
   return name === 'generic' ? ['generic'] : ['generic', name];
 }
 
-function managedContent(fragment) {
-  return `${BEGIN}\n${fragment.trim()}\n${END}`;
+function managedContent(fragment, entry = {}) {
+  return `${entry.begin || BEGIN}\n${fragment.trim()}\n${entry.end || END}`;
+}
+
+function jsonMergePlan(existing, template, entry, options) {
+  let current;
+  let addition;
+  try {
+    current = JSON.parse(existing);
+    addition = JSON.parse(template);
+  } catch {
+    return { action: 'COLLISION' };
+  }
+  const desired = addition?.mcpServers?.ahp;
+  const present = current?.mcpServers?.ahp;
+  if (JSON.stringify(present) === JSON.stringify(desired)) return { action: 'UNCHANGED' };
+  if (present && !options.replace) return { action: 'COLLISION' };
+  const content = `${JSON.stringify({
+    ...current,
+    mcpServers: { ...(current.mcpServers || {}), ahp: desired },
+  }, null, 2)}\n`;
+  return { action: present ? 'REPLACE' : 'MERGE', content };
 }
 
 function planFile(repo, entry, platform, options) {
@@ -52,11 +77,17 @@ function planFile(repo, entry, platform, options) {
   invariant(fs.existsSync(source), `Adapter template missing: ${entry.source}`, { code: 'PACKAGE_CORRUPT' });
   const target = path.join(repo.repoRoot, entry.target);
   const template = fs.readFileSync(source, 'utf8');
-  if (!fs.existsSync(target)) return { platform, ...entry, action: 'CREATE', source, target, content: entry.mode === 'managed-append' ? `${managedContent(template)}\n` : template };
+  if (!fs.existsSync(target)) return {
+    platform, ...entry, action: 'CREATE', source, target,
+    content: entry.mode === 'managed-append' ? `${managedContent(template, entry)}\n` : template,
+  };
   const existing = fs.readFileSync(target, 'utf8');
+  if (entry.mode === 'json-merge') return { platform, ...entry, source, target, ...jsonMergePlan(existing, template, entry, options) };
   if (entry.mode === 'managed-append') {
-    if (existing.includes(BEGIN) && existing.includes(END)) return { platform, ...entry, action: 'UNCHANGED', source, target };
-    return { platform, ...entry, action: 'APPEND', source, target, content: `${existing.trimEnd()}\n\n${managedContent(template)}\n` };
+    const begin = entry.begin || BEGIN;
+    const end = entry.end || END;
+    if (existing.includes(begin) && existing.includes(end)) return { platform, ...entry, action: 'UNCHANGED', source, target };
+    return { platform, ...entry, action: 'APPEND', source, target, content: `${existing.trimEnd()}\n\n${managedContent(template, entry)}\n` };
   }
   if (existing === template) return { platform, ...entry, action: 'UNCHANGED', source, target };
   return { platform, ...entry, action: options.replace ? 'REPLACE' : 'COLLISION', source, target, content: template };

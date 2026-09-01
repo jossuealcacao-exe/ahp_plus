@@ -28,7 +28,7 @@ lockfile antes de adoptar una versión nueva.
 
 ## Desarrollo: `next`
 
-Los cambios de AHP+ 1.2 comienzan en `1.2.0-dev.0` bajo el dist-tag npm `next`:
+El dist-tag npm `next` publicado actualmente apunta a `1.2.0-dev.0`:
 
 ```bash
 npm install --save-dev @jossuealcala/ahp-plus@next
@@ -44,6 +44,11 @@ El mismo candidato se publica como GitHub prerelease bajo
 `v1.2.0-dev.0`. El canal `next` sirve para probar y reportar mejoras; puede
 cambiar y no debe sustituir un pin estable en proyectos sensibles.
 
+El desarrollo de identidad, cifrado y consulta acotada AHP+ 1.4 usa internamente
+`1.4.0-dev.0`. Esa versión no debe describirse como disponible en `next` hasta
+que exista autorización explícita, artefacto publicado y verificación desde el
+registro público.
+
 ## Política de promoción
 
 1. El trabajo ocurre en una rama revisable.
@@ -58,6 +63,6 @@ cambiar y no debe sustituir un pin estable en proyectos sensibles.
    una instalación desde ambos canales.
 
 Publicar `next` no mueve `latest`. La promoción estable debe usar la versión
-final `1.2.0`, no renombrar semánticamente el prerelease.
+final correspondiente, no renombrar semánticamente el prerelease.
 
 Nunca se presenta `main` como canal instalable oficial.

@@ -1,6 +1,7 @@
-export const CLI_VERSION = '1.2.0-dev.0';
-export const PROTOCOL_VERSION = '1.2.0';
-export const SUPPORTED_PROTOCOL_VERSIONS = Object.freeze(['1.1.0', '1.2.0']);
+export const CLI_VERSION = '1.4.0-dev.0';
+export const PROTOCOL_VERSION = '1.4.0';
+export const SUPPORTED_PROTOCOL_VERSIONS = Object.freeze(['1.1.0', '1.2.0', '1.3.0', '1.4.0']);
+export const CONTINUITY_EVENT_PROTOCOL_VERSIONS = Object.freeze(['1.2.0', '1.3.0', '1.4.0']);
 export const STATE_DIRECTORY = '.ahp';
 export const LEGACY_STATE_DIRECTORY = 'agent';
 export const CERTAINTY_LEVELS = Object.freeze([
@@ -34,6 +35,8 @@ export const CONTINUITY_EVENT_TYPES = Object.freeze([
   'HANDOFF',
   'CAPABILITY_CHANGE',
   'MESSAGE',
+  'CONSULT_REQUEST',
+  'CONSULT_RESPONSE',
 ]);
 export const CONTINUITY_ACTION_STATUSES = Object.freeze([
   'REQUESTED',
@@ -51,6 +54,12 @@ export const CONTINUITY_TRANSPORT_STATUSES = Object.freeze([
   'RECEIVED',
   'CONFLICTED',
   'REDACTED',
+]);
+export const RELAY_RECEIPT_OUTCOMES = Object.freeze([
+  'RECEIVED',
+  'REJECTED',
+  'CONFLICTED',
+  'EXPIRED',
 ]);
 export const RECORD_KINDS = Object.freeze([
   'decision',
@@ -98,4 +107,9 @@ export const ID_PREFIXES = Object.freeze({
   handoff: 'HOF',
   lock: 'LOCK',
   continuity_event: 'EVT',
+  relay_envelope: 'RLY',
+  relay_receipt: 'RCP',
+  device_identity: 'DEV',
+  secure_envelope: 'SEC',
+  secure_receipt: 'SRC',
 });

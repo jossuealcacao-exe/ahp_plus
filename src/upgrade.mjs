@@ -23,6 +23,13 @@ export function upgradePlan(input = '.') {
       '.ahp/manifest.json',
       '.ahp/state/project.json',
       '.ahp/events/',
+      '.ahp/relay/outbox/',
+      '.ahp/relay/inbox/',
+      '.ahp/relay/receipts/',
+      '.ahp/identities/devices/',
+      '.ahp/secure/outbox/',
+      '.ahp/secure/inbox/',
+      '.ahp/secure/receipts/',
     ],
     state_revision: stateRevision(repo),
     git_head: repo.git.commit,
@@ -57,6 +64,13 @@ export function applyUpgrade(input = '.', options = {}) {
   fs.copyFileSync(repo.paths.manifest, manifestBackup, fs.constants.COPYFILE_EXCL);
   fs.copyFileSync(repo.paths.projectState, projectBackup, fs.constants.COPYFILE_EXCL);
   ensureDirectory(repo.paths.events);
+  ensureDirectory(repo.paths.relayOutbox);
+  ensureDirectory(repo.paths.relayInbox);
+  ensureDirectory(repo.paths.relayReceipts);
+  ensureDirectory(repo.paths.identitiesDevices);
+  ensureDirectory(repo.paths.secureOutbox);
+  ensureDirectory(repo.paths.secureInbox);
+  ensureDirectory(repo.paths.secureReceipts);
   try {
     writeJsonAtomic(repo.paths.manifest, manifest);
     writeJsonAtomic(repo.paths.projectState, project);

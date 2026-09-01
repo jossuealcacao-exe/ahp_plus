@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.4.0",
+  "id": "QA-20260901-3B906545",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.4 local candidate and bidirectional live gate",
+  "description": "Setup, MCP, provider failure recording, real Codex-Claude consultations, external device keys, encrypted file and HTTP carriers, signed receipts, compatibility, tamper rejection, release check, and packed consumer setup passed locally.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-01T19:38:26.734Z",
+  "updated_at": "2026-09-01T19:38:26.734Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [
+    "EVD-20260901-054D3276",
+    "EVD-20260901-0261DC2D",
+    "EVD-20260901-451D38C6"
+  ],
+  "base_commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+  "tags": [
+    "1.4",
+    "qa",
+    "live",
+    "security",
+    "consumer"
+  ]
+}

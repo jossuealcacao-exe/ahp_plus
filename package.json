@@ -1,6 +1,6 @@
 {
   "name": "@jossuealcala/ahp-plus",
-  "version": "1.2.0-dev.0",
+  "version": "1.4.0-dev.0",
   "private": false,
   "description": "Git-backed governance, continuity, evidence, and handoff protocol for AI agents",
   "type": "module",

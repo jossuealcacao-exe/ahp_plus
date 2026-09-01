@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVD-20260901-0261DC2D",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.4 real Codex-Claude live consultation",
+  "description": "Real installed provider CLIs completed one bounded read-only consultation in each direction with sealed request/response events.",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-01T19:38:10.707Z",
+  "updated_at": "2026-09-01T19:38:10.707Z",
+  "observed_at": "2026-09-01T19:38:10.707Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [],
+  "base_commit": "7ae8987e9fbb7aba6d6f36584bfcdb7c57b22196",
+  "tags": [
+    "1.4",
+    "live",
+    "codex",
+    "claude",
+    "e2e"
+  ],
+  "evidence_type": "test",
+  "locator": ".ahp/events/ahp-1.4-live-e2e-minimal,.ahp/events/ahp-1.4-live-e2e-reverse",
+  "result": "PASS: Codex to Claude response EVT-20260901-D7B49991 and Claude to Codex response EVT-20260901-029B2DCA both have valid integrity and causal parent fingerprints.",
+  "limitations": "Exact provider model identity remains unknown. Two deeper Claude reviews correctly stopped at configured USD budget and were recorded as ERROR events.",
+  "artifact_sha256": null,
+  "exit_code": null
+}
