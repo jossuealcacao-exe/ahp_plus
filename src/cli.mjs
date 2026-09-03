@@ -27,6 +27,13 @@ import {
 } from './relay.mjs';
 import { setupProject } from './setup.mjs';
 import { consultAgent, liveStatus, serveMcp } from './live.mjs';
+import {
+  conversationInbox,
+  listConversations,
+  openConversation,
+  sendConversationMessage,
+  waitForConversationMessage,
+} from './conversations.mjs';
 import { createDeviceIdentity, inspectDeviceIdentity, listDeviceIdentities } from './identity.mjs';
 import {
   confirmSecureReceipts,
@@ -60,6 +67,11 @@ const COMMAND_OPTIONS = Object.freeze({
   'live:status': [],
   'live:serve': [],
   'agent:ask': ['to', 'from', 'question', 'text', 'session', 'correlation', 'timeout', 'model', 'max-budget-usd', ...WRITE_OPTIONS],
+  'conversation:open': ['title', 'summary', 'participants', 'from', ...ACTOR_OPTIONS, ...WRITE_OPTIONS],
+  'conversation:list': ['for'],
+  'conversation:send': ['text', 'summary', 'from', 'to', ...ACTOR_OPTIONS, ...WRITE_OPTIONS],
+  'conversation:inbox': ['for', 'to', 'after', 'limit'],
+  'conversation:wait': ['for', 'to', 'after', 'timeout', 'interval'],
   'identity:create': ['name', 'device', 'platform', 'actor', 'store', 'private-file', ...WRITE_OPTIONS],
   'identity:list': [],
   'identity:verify': [],
@@ -129,7 +141,7 @@ function commandKey(positionals) {
   if (command === 'relay' && action === 'receipt') return `relay:receipt-${positionals[2] || ''}`;
   if (command === 'secure' && action === 'receipt') return `secure:receipt-${positionals[2] || ''}`;
   if (command === 'secure' && action === 'network') return `secure:network-${positionals[2] || ''}`;
-  if (['project', 'message', 'handoff', 'lock', 'adapter', 'sync', 'event', 'live', 'agent', 'identity', 'secure', 'hub'].includes(command)) return `${command}:${action || ''}`;
+  if (['project', 'message', 'handoff', 'lock', 'adapter', 'sync', 'event', 'live', 'agent', 'conversation', 'identity', 'secure', 'hub'].includes(command)) return `${command}:${action || ''}`;
   if (command === 'relay') return `relay:${action || ''}`;
   if (recordShortcut(command)) return 'list';
   return command;
@@ -239,6 +251,25 @@ export async function run(argv) {
       return { value, exitCode: value.ok ? 0 : 3 };
     }
     throw new AhpError('Expected `agent ask`', { code: 'INVALID_ARGUMENT' });
+  }
+  if (command === 'conversation') {
+    const action = positionals[1];
+    if (action === 'open') {
+      const titleFromOption = options.title || options.summary;
+      const title = titleFromOption || positionals[2];
+      const input = target(options, titleFromOption ? positionals[2] : positionals[3]);
+      return { value: openConversation(input, { ...options, title }), exitCode: 0 };
+    }
+    if (action === 'list') return { value: listConversations(target(options, positionals[2]), options), exitCode: 0 };
+    if (action === 'send') {
+      const textFromOption = options.text || options.summary;
+      const text = textFromOption || positionals[3];
+      const input = target(options, textFromOption ? positionals[3] : positionals[4]);
+      return { value: sendConversationMessage(input, positionals[2], text, options), exitCode: 0 };
+    }
+    if (action === 'inbox') return { value: conversationInbox(target(options, positionals[3]), positionals[2], options), exitCode: 0 };
+    if (action === 'wait') return { value: await waitForConversationMessage(target(options, positionals[3]), positionals[2], options), exitCode: 0 };
+    throw new AhpError('Expected `conversation open|list|send|inbox|wait`', { code: 'INVALID_ARGUMENT' });
   }
   if (command === 'identity') {
     const action = positionals[1];

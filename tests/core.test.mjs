@@ -14,6 +14,7 @@ import {
   temporaryDirectory,
 } from './helpers.mjs';
 import { consultAgent, handleMcpRequest } from '../src/live.mjs';
+import { waitForConversationMessage } from '../src/conversations.mjs';
 import {
   confirmSecureNetworkReceipts,
   pushSecureNetworkEnvelope,
@@ -25,7 +26,7 @@ import { createSecureHub } from '../src/hub.mjs';
 test('CLI reports the development version', () => {
   for (const argv of [['version'], ['--version']]) {
     const result = runAhp(process.cwd(), argv);
-    assert.equal(result.stdout.trim(), '1.4.0-dev.0');
+    assert.equal(result.stdout.trim(), '1.4.0-dev.1');
   }
 });
 
@@ -94,6 +95,7 @@ test('live bridge records a bounded fingerprinted consultation and exposes it th
 
   const tools = await handleMcpRequest(repo, { method: 'tools/list', id: 1, params: {} });
   assert.ok(tools.tools.some((tool) => tool.name === 'ahp_consult'));
+  assert.ok(tools.tools.some((tool) => tool.name === 'ahp_conversation_open'));
   const consultTool = tools.tools.find((tool) => tool.name === 'ahp_consult');
   assert.equal(consultTool.inputSchema.properties.max_budget_usd.maximum, 20);
   const called = await handleMcpRequest(repo, {
@@ -107,6 +109,87 @@ test('live bridge records a bounded fingerprinted consultation and exposes it th
     },
   }, { invoke });
   assert.equal(called.structuredContent.status, 'CONSULTED');
+  assert.equal(jsonAhp(repo, ['verify', '--strict']).ok, true);
+});
+
+test('conversation rooms preserve participants, causal messages, and inbox boundaries', async (context) => {
+  const temporary = temporaryDirectory('ahp-conversation-');
+  context.after(() => removeTemporary(temporary));
+  const repo = createGitRepository(path.join(temporary, 'project'));
+  initializeAhp(repo, 'conversation-room');
+  commitAll(repo, 'test: initialize conversation room');
+
+  const opened = jsonAhp(repo, [
+    'conversation', 'open', 'Cross-platform architecture review',
+    '--participants', 'codex,claude,cursor', '--from', 'codex',
+  ]);
+  assert.equal(opened.status, 'OPEN');
+  assert.match(opened.room.room_id, /^conv-/);
+  assert.deepEqual(opened.room.participants, ['codex', 'claude', 'cursor']);
+  const listed = jsonAhp(repo, ['conversation', 'list', '--for', 'claude']);
+  assert.equal(listed.count, 1);
+  assert.equal(listed.rooms[0].room_id, opened.room.room_id);
+
+  const sent = jsonAhp(repo, [
+    'conversation', 'send', opened.room.room_id, 'Please assess the migration risk.', '--from', 'codex', '--to', 'claude',
+  ]);
+  assert.equal(sent.status, 'POSTED');
+  assert.equal(sent.message.sequence, 2);
+  assert.equal(sent.message.parent_event_id, opened.room.open_event_id);
+
+  const claudeInbox = jsonAhp(repo, ['conversation', 'inbox', opened.room.room_id, '--for', 'claude']);
+  assert.equal(claudeInbox.status, 'MESSAGES_AVAILABLE');
+  assert.equal(claudeInbox.count, 1);
+  assert.equal(claudeInbox.messages[0].event_id, sent.message.event_id);
+  const cursorInbox = jsonAhp(repo, ['conversation', 'inbox', opened.room.room_id, '--for', 'cursor']);
+  assert.equal(cursorInbox.status, 'EMPTY');
+
+  const reply = jsonAhp(repo, [
+    'conversation', 'send', opened.room.room_id, 'Risk is stale protocol metadata after CI.', '--from', 'claude', '--to', 'codex',
+  ]);
+  const verified = jsonAhp(repo, ['message', 'verify', reply.message.event_id]);
+  assert.equal(verified.causal_parent_valid, true);
+  const codexInbox = jsonAhp(repo, ['conversation', 'inbox', opened.room.room_id, '--for', 'codex', '--after', sent.message.event_id]);
+  assert.equal(codexInbox.count, 1);
+  assert.equal(codexInbox.messages[0].event_id, reply.message.event_id);
+
+  const timedOut = await waitForConversationMessage(repo, opened.room.room_id, {
+    for: 'cursor', timeout: 0.2, interval: 0.2,
+  });
+  assert.equal(timedOut.status, 'TIMEOUT');
+
+  const waiting = waitForConversationMessage(repo, opened.room.room_id, {
+    for: 'cursor', timeout: 2, interval: 0.2,
+  });
+  await new Promise((resolve) => setTimeout(resolve, 50));
+  const delayed = jsonAhp(repo, [
+    'conversation', 'send', opened.room.room_id, 'Message delivered during an active wait.', '--from', 'codex', '--to', 'cursor',
+  ]);
+  const arrived = await waiting;
+  assert.equal(arrived.status, 'MESSAGE_AVAILABLE');
+  assert.equal(arrived.count, 1);
+  assert.equal(arrived.messages[0].event_id, delayed.message.event_id);
+
+  const mcpOpened = await handleMcpRequest(repo, {
+    method: 'tools/call', id: 8, params: {
+      name: 'ahp_conversation_open',
+      arguments: { title: 'MCP room', participants: 'codex,claude', from: 'codex' },
+    },
+  });
+  const mcpRoom = mcpOpened.structuredContent.room.room_id;
+  const mcpSent = await handleMcpRequest(repo, {
+    method: 'tools/call', id: 9, params: {
+      name: 'ahp_conversation_send',
+      arguments: { room_id: mcpRoom, text: 'Visible in Claude MCP.', from: 'codex' },
+    },
+  });
+  assert.equal(mcpSent.structuredContent.status, 'POSTED');
+  const mcpInbox = await handleMcpRequest(repo, {
+    method: 'tools/call', id: 10, params: {
+      name: 'ahp_conversation_inbox', arguments: { room_id: mcpRoom, for: 'claude' },
+    },
+  });
+  assert.equal(mcpInbox.structuredContent.messages[0].text, 'Visible in Claude MCP.');
   assert.equal(jsonAhp(repo, ['verify', '--strict']).ok, true);
 });
 

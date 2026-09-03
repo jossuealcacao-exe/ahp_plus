@@ -45,7 +45,7 @@ El mismo candidato se publica como GitHub prerelease bajo
 cambiar y no debe sustituir un pin estable en proyectos sensibles.
 
 El desarrollo de identidad, cifrado y consulta acotada AHP+ 1.4 usa internamente
-`1.4.0-dev.0`. Esa versión no debe describirse como disponible en `next` hasta
+`1.4.0-dev.1`. Esa versión no debe describirse como disponible en `next` hasta
 que exista autorización explícita, artefacto publicado y verificación desde el
 registro público.
 

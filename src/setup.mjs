@@ -148,6 +148,6 @@ export function setupProject(input = '.', options = {}) {
       doctor: diagnostic.ok ? 'PASS' : 'FAIL',
       strict_verification: verification.ok ? 'PASS' : 'FAIL',
     },
-    next: 'Open the project in Codex or Claude and ask: "Use AHP+ to check this project, then consult the other agent read-only."',
+    next: 'Open the project in Codex or Claude and ask: "Use AHP+ to check this project, then open or join a shared conversation room with the other agent."',
   };
 }

@@ -64,3 +64,11 @@ Map explicit `$ahp` requests such as `project check`, `session context`,
 corresponding installed CLI operations. Return the actual EVT ID and fingerprint
 for message writes and the actual RLY/RCP IDs for relay operations. Do not
 describe local capture or channel availability as receiver-confirmed delivery.
+
+For a user-requested multi-turn project discussion with another platform, use
+the `ahp_conversation_open`, `ahp_conversation_send`,
+`ahp_conversation_inbox`, and explicit `ahp_conversation_wait` MCP tools (or
+their `conversation` CLI equivalents). Keep all participants, room IDs, and
+causal EVT fingerprints visible. The room is shared through MCP in each IDE;
+it does not write into another IDE's native chat box, wake an idle chat, or
+authorize an autonomous loop.

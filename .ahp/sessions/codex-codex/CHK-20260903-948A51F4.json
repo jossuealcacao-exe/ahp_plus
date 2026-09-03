@@ -1,0 +1,194 @@
+{
+  "schema_version": "1.4.0",
+  "id": "CHK-20260903-948A51F4",
+  "kind": "checkpoint",
+  "session_id": "codex-codex",
+  "project_id": "ahp-plus",
+  "summary": "AHP+ 1.4 conversation-room candidate approved for closure; clean tarball setup, idempotence, causal round trip, strict verification, and positive long-poll test passed",
+  "objective": "Deliver AHP+ 1.4 simple setup, bounded live Codex-Claude consultation, and device-authenticated encrypted relay",
+  "next_action": "Commit the 1.4.0-dev.1 candidate, push the exact SHA, require full CI, then perform active Codex-Claude MCP room acceptance before stable publication",
+  "files": [],
+  "validations": [],
+  "blockers": [],
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "git": {
+    "branch": "codex/v1.4-live-interoperability",
+    "commit": "2bb688ba01a3052924dfc9a2882696623253428a",
+    "tree": "c709c30ad8d768e59f28c02243795faf914a238c",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "README.es.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "VERSION"
+      },
+      {
+        "code": " M",
+        "path": "docs/CHANNELS_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS_BY_SURFACE_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/LIVE_INTEROP_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "package.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/continuity-event.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "src/cli.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/command-catalog.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/constants.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/live.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/setup.mjs"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/claude/CLAUDE.fragment.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/codex/.agents/skills/ahp/SKILL.md"
+      },
+      {
+        "code": " M",
+        "path": "tests/core.test.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/conversations.mjs"
+      }
+    ],
+    "working_tree_digest": "fb8f0942b8beff47a6b8d34cde81a7ca093856df95380850a86d1a53527f1fe8",
+    "project_working_tree": "DIRTY",
+    "project_changed_files": [
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "README.es.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "VERSION"
+      },
+      {
+        "code": " M",
+        "path": "docs/CHANNELS_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS_BY_SURFACE_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/LIVE_INTEROP_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "package.json"
+      },
+      {
+        "code": " M",
+        "path": "schemas/continuity-event.schema.json"
+      },
+      {
+        "code": " M",
+        "path": "src/cli.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/command-catalog.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/constants.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/live.mjs"
+      },
+      {
+        "code": " M",
+        "path": "src/setup.mjs"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/claude/CLAUDE.fragment.md"
+      },
+      {
+        "code": " M",
+        "path": "templates/adapters/codex/.agents/skills/ahp/SKILL.md"
+      },
+      {
+        "code": " M",
+        "path": "tests/core.test.mjs"
+      },
+      {
+        "code": "??",
+        "path": "src/conversations.mjs"
+      }
+    ],
+    "project_working_tree_digest": "fb8f0942b8beff47a6b8d34cde81a7ca093856df95380850a86d1a53527f1fe8",
+    "ahp_state_working_tree": "CLEAN",
+    "ahp_state_changed_files": [],
+    "upstream": "origin/codex/v1.4-live-interoperability",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-09-03T23:34:37.146Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "7ba234021741b8c9c1f27bac4a45f6f9118c4cd410b5dcd1ab6ed82c6795225c"
+  }
+}

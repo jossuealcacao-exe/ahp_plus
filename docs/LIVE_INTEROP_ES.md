@@ -1,6 +1,6 @@
 # AHP+ 1.4: instalación e interoperabilidad Codex-Claude
 
-Estado: flujo de desarrollo para `1.4.0-dev.0`. No describe una versión ya
+Estado: flujo de desarrollo para `1.4.0-dev.1`. No describe una versión ya
 publicada en npm.
 
 ## 1. Instalación de un comando
@@ -60,7 +60,40 @@ Resultado esperado: `status: CONSULTED`, un evento `CONSULT_REQUEST`, otro
 consultado opera con sandbox de solo lectura y un máximo de un salto. No puede
 editar, delegar otra consulta, hacer commit, push, deploy ni publicar.
 
-## 3. Mensaje cifrado entre dos dispositivos
+## 3. Sala compartida entre chats de IDE
+
+Una consulta es una sola opinión. Para un diálogo de proyecto con más de un
+turno, abre una sala durable desde cualquiera de los chats que tenga el MCP de
+AHP+ instalado:
+
+```bash
+ahp conversation open "Revisión de arquitectura" \
+  --participants codex,claude --from codex
+```
+
+El resultado devuelve el `room_id` (`conv-...`) y el evento de apertura. Cada
+participante escribe y lee desde su propio chat/IDE:
+
+```bash
+ahp conversation send conv-... "Evalúa el riesgo de la migración." --from codex
+ahp conversation inbox conv-... --for claude
+ahp conversation send conv-... "El mayor riesgo es..." --from claude --to codex
+ahp conversation wait conv-... --for codex --timeout 60
+```
+
+La sala conserva participantes, orden y fingerprint causal por cada mensaje.
+`wait` hace un long-poll explícito de hasta cinco minutos; por eso un chat que
+lo invoca puede mostrar un mensaje nuevo sin salir de su superficie. No hay API
+pública común para insertar automáticamente texto en la caja nativa de otro
+IDE ni para despertar un chat inactivo. La integración se presenta en cada IDE
+como herramientas MCP del mismo proyecto, no como automatización de clicks.
+
+Las herramientas MCP son `ahp_conversation_open`, `ahp_conversation_send`,
+`ahp_conversation_inbox`, `ahp_conversation_wait` y
+`ahp_conversation_list`. Un agente debe abrir/enviar/esperar solo cuando la
+persona lo pide; la sala no crea un loop autónomo.
+
+## 4. Mensaje cifrado entre dos dispositivos
 
 Obtén las identidades creadas por setup:
 
@@ -87,7 +120,7 @@ El receptor debe devolver `RECEIVED`; el emisor, `DELIVERY_CONFIRMED`. El
 fingerprint del EVT debe ser idéntico en ambos extremos y el recibo `SRC` debe
 mostrar firma válida.
 
-## 4. Carrier de red de referencia
+## 5. Carrier de red de referencia
 
 Crea un token aleatorio fuera de Git y protégelo:
 
@@ -119,7 +152,7 @@ Una interfaz que no sea loopback exige `--tls-cert` y `--tls-key`. Para Internet
 también se necesitan operación del servidor, DNS, firewall, respaldo y política
 de retención; AHP+ no provee un SaaS público en esta versión.
 
-## 5. Qué acredita cada capa
+## 6. Qué acredita cada capa
 
 | Evidencia | Acredita | No acredita |
 |---|---|---|
@@ -127,6 +160,7 @@ de retención; AHP+ no provee un SaaS público en esta versión.
 | RLY/RCP | Posesión del secreto compartido y recibo | Dispositivo único o cifrado |
 | SEC/SRC | Cifrado, posesión de claves registradas y entrega firmada | Persona o modelo exacto |
 | Consulta MCP | Una respuesta acotada del CLI de plataforma | Ejecución de cambios |
+| Sala MCP | Mensajes causales visibles en la superficie MCP de cada participante | Inyección automática en chats nativos o entrega remota |
 | Git remoto | Estado confirmado y portable | Autoridad para modificarlo |
 
 La liberación de 1.4 requiere además pruebas completas, conformance, validación

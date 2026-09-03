@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Add `conversation` rooms for durable multi-turn project discussion across
+  MCP-enabled IDE chats: open rooms, causal messages, per-participant inboxes,
+  and explicit long polling. The feature deliberately does not inject text into
+  a different IDE's native chat or wake an idle agent.
 - Start AHP+ 1.4 as `1.4.0-dev.0` with one-command project setup, automatic
   Codex/Claude MCP configuration, safe protocol upgrade, and idempotent device
   identity provisioning.

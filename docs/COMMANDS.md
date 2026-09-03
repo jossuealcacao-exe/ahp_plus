@@ -34,6 +34,21 @@ continuous autonomous conversation and does not grant mutation authority.
 Claude consultations default to a USD 1 maximum budget; operators may set a
 lower positive value with `--max-budget-usd`.
 
+## Shared project conversation
+
+| Command | Meaning |
+|---|---|
+| `ahp conversation open "TITLE" --participants codex,claude --from codex` | Open a durable, shared project conversation room. |
+| `ahp conversation list [--for PLATFORM]` | List rooms available to a participant. |
+| `ahp conversation send conv-ID "TEXT" --from PLATFORM` | Append a causal message to the room. |
+| `ahp conversation inbox conv-ID --for PLATFORM` | Read messages addressed to that participant. |
+| `ahp conversation wait conv-ID --for PLATFORM --timeout 60` | Explicitly wait for a new room message for up to five minutes. |
+
+Rooms are surfaced through MCP tools in each participant's own chat. They do
+not inject content into another IDE's native chat, wake an idle agent, or prove
+remote delivery. Relay or secure-network delivery remains a separate, verified
+operation.
+
 ## Project
 
 | Command | Meaning |
@@ -175,6 +190,10 @@ An installed adapter may expose semantic chat forms such as:
 /ahp relay wait as=cursor channel="/shared/ahp-relay"
 /ahp relay confirm as=codex channel="/shared/ahp-relay"
 /ahp agent ask claude question="Review this implementation read-only"
+/ahp conversation open title="Architecture review" participants="codex,claude"
+/ahp conversation send room=conv-... text="Review the migration risk"
+/ahp conversation inbox room=conv-... for=claude
+/ahp conversation wait room=conv-... for=codex timeout=60
 ```
 
 The adapter translates the request to the repository-installed CLI, executes

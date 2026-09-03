@@ -1,4 +1,4 @@
-export const CLI_VERSION = '1.4.0-dev.0';
+export const CLI_VERSION = '1.4.0-dev.1';
 export const PROTOCOL_VERSION = '1.4.0';
 export const SUPPORTED_PROTOCOL_VERSIONS = Object.freeze(['1.1.0', '1.2.0', '1.3.0', '1.4.0']);
 export const CONTINUITY_EVENT_PROTOCOL_VERSIONS = Object.freeze(['1.2.0', '1.3.0', '1.4.0']);
@@ -35,6 +35,8 @@ export const CONTINUITY_EVENT_TYPES = Object.freeze([
   'HANDOFF',
   'CAPABILITY_CHANGE',
   'MESSAGE',
+  'CONVERSATION_OPENED',
+  'CONVERSATION_CLOSED',
   'CONSULT_REQUEST',
   'CONSULT_RESPONSE',
 ]);

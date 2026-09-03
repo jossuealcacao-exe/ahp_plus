@@ -58,6 +58,18 @@ const CATEGORIES = Object.freeze([
     aliases: [],
   },
   {
+    name: 'conversation',
+    purpose: 'Open a shared project conversation room and exchange durable messages between platform participants.',
+    commands: [
+      'ahp conversation open "TITLE" --participants codex,claude --from codex',
+      'ahp conversation list [path] [--for PLATFORM]',
+      'ahp conversation send conv-ID "TEXT" --from PLATFORM [--to PLATFORM]',
+      'ahp conversation inbox conv-ID --for PLATFORM [--after EVT-ID --limit N]',
+      'ahp conversation wait conv-ID --for PLATFORM [--after EVT-ID --timeout SECONDS --interval SECONDS]',
+    ],
+    aliases: [],
+  },
+  {
     name: 'live',
     purpose: 'Expose the AHP+ MCP bridge and inspect local provider availability.',
     commands: [

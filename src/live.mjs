@@ -5,6 +5,13 @@ import path from 'node:path';
 import readline from 'node:readline';
 import { execFile, spawn, spawnSync } from 'node:child_process';
 import { appendContinuityEvent } from './events.mjs';
+import {
+  conversationInbox,
+  listConversations,
+  openConversation,
+  sendConversationMessage,
+  waitForConversationMessage,
+} from './conversations.mjs';
 import { AhpError, invariant } from './errors.mjs';
 import { runGit } from './git.mjs';
 import { doctor, status } from './context.mjs';
@@ -353,6 +360,77 @@ function toolsList() {
         additionalProperties: false,
       },
     },
+    {
+      name: 'ahp_conversation_open',
+      description: 'Open a durable shared project conversation room. Use only when the user asks to begin a cross-platform project conversation; messages remain visible through each participant\'s MCP chat surface.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          title: { type: 'string', minLength: 1 },
+          participants: { type: 'string', minLength: 3, description: 'Comma-separated platform IDs, for example codex,claude.' },
+          from: { type: 'string', minLength: 1 },
+        },
+        required: ['title', 'participants', 'from'],
+        additionalProperties: false,
+      },
+    },
+    {
+      name: 'ahp_conversation_list',
+      description: 'List shared project conversation rooms, optionally limited to a participant.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          for: { type: 'string', minLength: 1 },
+        },
+        additionalProperties: false,
+      },
+    },
+    {
+      name: 'ahp_conversation_send',
+      description: 'Post a durable message to participants in an existing shared project conversation. This records local capture; use the configured secure relay separately for cross-device delivery.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          room_id: { type: 'string', pattern: '^conv-' },
+          text: { type: 'string', minLength: 1 },
+          from: { type: 'string', minLength: 1 },
+          to: { type: 'string', minLength: 1 },
+        },
+        required: ['room_id', 'text', 'from'],
+        additionalProperties: false,
+      },
+    },
+    {
+      name: 'ahp_conversation_inbox',
+      description: 'Read messages addressed to a participant in a shared project conversation. Return actual event IDs and causal fingerprints.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          room_id: { type: 'string', pattern: '^conv-' },
+          for: { type: 'string', minLength: 1 },
+          after: { type: 'string', pattern: '^EVT-' },
+          limit: { type: 'integer', minimum: 1, maximum: 100 },
+        },
+        required: ['room_id', 'for'],
+        additionalProperties: false,
+      },
+    },
+    {
+      name: 'ahp_conversation_wait',
+      description: 'Wait for a new message addressed to a participant for up to five minutes. This is an explicit user-visible long poll, not automatic native-chat injection.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          room_id: { type: 'string', pattern: '^conv-' },
+          for: { type: 'string', minLength: 1 },
+          after: { type: 'string', pattern: '^EVT-' },
+          timeout: { type: 'integer', minimum: 1, maximum: 300 },
+          interval: { type: 'number', minimum: 0.2, maximum: 30 },
+        },
+        required: ['room_id', 'for'],
+        additionalProperties: false,
+      },
+    },
   ];
 }
 
@@ -383,6 +461,13 @@ export async function handleMcpRequest(input, message, options = {}) {
       };
       return mcpResult(await consultAgent(input, consultOptions));
     }
+    if (name === 'ahp_conversation_open') return mcpResult(openConversation(input, args));
+    if (name === 'ahp_conversation_send') {
+      return mcpResult(sendConversationMessage(input, args.room_id, args.text, args));
+    }
+    if (name === 'ahp_conversation_inbox') return mcpResult(conversationInbox(input, args.room_id, args));
+    if (name === 'ahp_conversation_wait') return mcpResult(await waitForConversationMessage(input, args.room_id, args));
+    if (name === 'ahp_conversation_list') return mcpResult(listConversations(input, args));
     throw new Error(`Unknown AHP+ MCP tool ${name}`);
   }
   return null;

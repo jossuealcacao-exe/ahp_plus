@@ -18,7 +18,7 @@
     "correlation_id": { "type": "string" },
     "sequence": { "type": "integer", "minimum": 1 },
     "event_type": {
-      "enum": ["DIRECTIVE", "DECISION", "ACTION", "OBSERVATION", "VALIDATION", "ERROR", "BLOCKER", "CHECKPOINT", "HANDOFF", "CAPABILITY_CHANGE", "MESSAGE", "CONSULT_REQUEST", "CONSULT_RESPONSE"]
+      "enum": ["DIRECTIVE", "DECISION", "ACTION", "OBSERVATION", "VALIDATION", "ERROR", "BLOCKER", "CHECKPOINT", "HANDOFF", "CAPABILITY_CHANGE", "MESSAGE", "CONVERSATION_OPENED", "CONVERSATION_CLOSED", "CONSULT_REQUEST", "CONSULT_RESPONSE"]
     },
     "summary": { "type": "string", "minLength": 1 },
     "from": { "type": "string", "minLength": 1 },

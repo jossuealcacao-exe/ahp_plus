@@ -19,7 +19,8 @@
 ---
 
 > **Development status:** this branch develops AHP+ 1.4 device identity,
-> encrypted transport, and bounded live consultation as `1.4.0-dev.0`. npm
+> encrypted transport, bounded live consultation, and shared project rooms as
+> `1.4.0-dev.1`. npm
 > `next` remains `1.2.0-dev.0` and
 > `latest` remains `1.1.0` until a separately authorized release.
 
@@ -153,6 +154,24 @@ AHP+ starts the target CLI in read-only mode, sends bounded repository context,
 accepts exactly one response, and records `CONSULT_REQUEST` and
 `CONSULT_RESPONSE` events with causal fingerprints. It is not an autonomous
 agent loop and grants no edit, Git-network, deployment, or publication authority.
+
+## Shared project conversation rooms
+
+AHP+ 1.4 also provides a durable shared room for a project conversation across
+IDE chats. Each participant uses the same MCP server from its own chat surface:
+
+```bash
+ahp conversation open "Architecture review" --participants codex,claude --from codex
+ahp conversation send conv-... "Please review the migration risk." --from codex
+ahp conversation inbox conv-... --for claude
+ahp conversation wait conv-... --for claude --timeout 60
+```
+
+Every room and message is a sealed causal event. `wait` is an explicit,
+user-visible long poll and may surface messages already imported by an approved
+relay. It does **not** inject text into another IDE's native chat, wake an idle
+agent, or prove cross-device delivery. Use the secure relay and its signed
+receipt when the participants are on separate devices.
 
 ## Handoff workflow
 
@@ -317,7 +336,7 @@ The npm and GitHub release artifacts share SHA-256
 
 - **Stable:** semantic versions on npm `latest` and non-prerelease GitHub
   Releases.
-- **Development:** prerelease versions such as `1.4.0-dev.0` on npm `next` and
+- **Development:** prerelease versions such as `1.4.0-dev.1` on npm `next` and
   GitHub prereleases.
 
 ## Security and contributing

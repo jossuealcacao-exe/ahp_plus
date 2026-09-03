@@ -35,6 +35,10 @@ Dentro de un proyecto que instaló AHP+ como dependencia local, usa `npx ahp`:
 | Verificar recibo | `npx ahp relay receipt verify RCP-... .` |
 | Consultar Claude desde Codex | `npx ahp agent ask claude "..." --from codex` |
 | Consultar Codex desde Claude | `npx ahp agent ask codex "..." --from claude` |
+| Abrir sala compartida | `npx ahp conversation open "..." --participants codex,claude --from codex` |
+| Enviar a la sala | `npx ahp conversation send conv-... "..." --from codex` |
+| Leer inbox de sala | `npx ahp conversation inbox conv-... --for claude` |
+| Esperar mensaje de sala | `npx ahp conversation wait conv-... --for codex --timeout 60` |
 | Listar dispositivos | `npx ahp identity list` |
 | Enviar cifrado por red | `npx ahp secure network send EVT-... --from-device DEV-... --to-device DEV-... --url URL --token-file FILE` |
 | Recibir cifrado por red | `npx ahp secure network receive --as-device DEV-... --url URL --token-file FILE` |
@@ -67,6 +71,9 @@ En IDEs y apps puedes pedir estas operaciones sin copiar toda la sintaxis:
   devuelven un RCP creado por el receptor sin cambiar el fingerprint original.
 - `agent ask`: obtiene una sola opinión de solo lectura desde Codex o Claude y
   registra solicitud/respuesta con causalidad verificable.
+- `conversation`: abre una sala durable de proyecto. Cada IDE lee y responde
+  mediante su propio MCP; `wait` es long-poll explícito, no inyección automática
+  en una caja nativa ni activación de un chat inactivo.
 - `identity` y `secure network`: operan identidad por dispositivo, cifrado y
   recibos `SRC` firmados.
 - `record evidence`: conserva el resultado observado de una prueba o artefacto.
@@ -93,6 +100,8 @@ reales. Un mensaje del modelo no sustituye la ejecución.
 /ahp relay confirm as=codex channel="/shared/ahp-relay"
 /ahp handoff to codex
 /ahp receive HOF-...
+/ahp conversation open title="Revisión de arquitectura" participants="codex,claude"
+/ahp conversation inbox room=conv-... for=cursor
 ```
 
 El archivo del comando indica a Cursor que resuelva la raíz, lea

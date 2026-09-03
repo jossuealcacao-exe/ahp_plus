@@ -20,7 +20,7 @@
 
 > **Estado de desarrollo:** esta rama desarrolla identidad de dispositivo,
 > transporte cifrado y consulta en vivo acotada de AHP+ 1.4 como
-> `1.4.0-dev.0`. npm `next` permanece
+> `1.4.0-dev.1`. npm `next` permanece
 > en `1.2.0-dev.0` y `latest` en `1.1.0` hasta una publicación autorizada por
 > separado.
 
@@ -318,7 +318,7 @@ Los artefactos de npm y GitHub comparten el SHA-256
 ## Canales de distribución
 
 - **Estable:** versiones semánticas en npm `latest` y GitHub Releases normales.
-- **Desarrollo:** versiones como `1.4.0-dev.0` en npm `next` y GitHub
+- **Desarrollo:** versiones como `1.4.0-dev.1` en npm `next` y GitHub
   prereleases.
 
 ## Seguridad y contribución
