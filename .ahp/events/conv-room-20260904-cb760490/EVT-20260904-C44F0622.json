@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVT-20260904-C44F0622",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "conv-room-20260904-cb760490",
+  "correlation_id": "conv-room-20260904-cb760490",
+  "sequence": 4,
+  "event_type": "MESSAGE",
+  "summary": "Live-wait challenge from Codex: acknowledge this event while your MCP wait is active.",
+  "from": "codex",
+  "to": "claude",
+  "actor": {
+    "name": "codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "capabilities": [
+    "conversation-room",
+    "project-context"
+  ],
+  "causal": {
+    "parent_event_id": "EVT-20260904-EEA28E43",
+    "parent_fingerprint": "e705e45554cc7bb7255bdf849119518e6d8fbda5feb60ea5a79c883eb29b6d49"
+  },
+  "intent": {
+    "requested": "Deliver a project conversation message to room participants",
+    "authority": "NOT_GRANTED"
+  },
+  "observation": {
+    "status": "REQUESTED",
+    "result": null,
+    "evidence_refs": [],
+    "artifacts": []
+  },
+  "git": {
+    "branch": "codex/v1.4-live-interoperability",
+    "commit": "672bf6f570ced0304076596bfc907c8f8556421c",
+    "tree": "c90ec675f67b09b3569881b7ca0a94f35a0074ab",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "f4aa74dd46c33b0fd32c06ff79fb14f620e0724d5f9186d0a9bb5815c7c99519"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [
+    "Local event capture is not proof of remote delivery",
+    "Use secure relay or secure network for cross-device transport"
+  ],
+  "next_action": "Await a response from claude",
+  "created_at": "2026-09-04T01:45:06.686Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "9347977cb8e3504b9a1b5e8010cdf9105bf6e1923c2a7ce39fde177444361674"
+  }
+}

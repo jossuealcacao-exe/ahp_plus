@@ -1,15 +1,14 @@
 # AHP+ 1.4: instalación e interoperabilidad Codex-Claude
 
-Estado: flujo de desarrollo para `1.4.0-dev.1`. No describe una versión ya
-publicada en npm.
+Estado: candidato estable `1.4.0`. No describe una versión ya publicada en npm.
 
 ## 1. Instalación de un comando
 
-Cuando el prerelease esté autorizado en npm:
+Después de publicar la versión estable en npm:
 
 ```bash
 cd /ruta/al/proyecto
-npx @jossuealcala/ahp-plus@next setup .
+npx @jossuealcala/ahp-plus@1.4.0 setup .
 ```
 
 Este comando fija AHP+ como dependencia local, crea o actualiza `.ahp/`, instala

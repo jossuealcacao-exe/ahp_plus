@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.4.0",
+  "id": "DEV-20260904-ECAF1C6E",
+  "kind": "device_identity",
+  "project_id": "ahp-plus",
+  "name": "claude on MacBook-Air.local",
+  "platform": "claude",
+  "assurance": "device-key-pair",
+  "status": "ACTIVE",
+  "keys": {
+    "signing": {
+      "algorithm": "ed25519",
+      "key_id": "ed25519:2a5332f6c3e8a0c3a2a0c9033809d467",
+      "public_jwk": {
+        "crv": "Ed25519",
+        "x": "SmfuXYrmqjClZKRtGfyIvy4fTsw2t-f7ygZX0QPUngU",
+        "kty": "OKP"
+      }
+    },
+    "encryption": {
+      "algorithm": "x25519",
+      "key_id": "x25519:c3249df1129d0140b7fe580e1098b3f6",
+      "public_jwk": {
+        "crv": "X25519",
+        "x": "mTpwW4sj7UJPgXYEMWCXCoDvpj4DDAanUarI0VpUMmQ",
+        "kty": "OKP"
+      }
+    }
+  },
+  "created_at": "2026-09-04T01:42:45.873Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "bd4896e14888089042350ea447785a93861e13d3f45c422c0cf4dad742cab470"
+  }
+}

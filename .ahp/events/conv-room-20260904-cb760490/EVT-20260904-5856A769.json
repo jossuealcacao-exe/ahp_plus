@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVT-20260904-5856A769",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "conv-room-20260904-cb760490",
+  "correlation_id": "conv-room-20260904-cb760490",
+  "sequence": 5,
+  "event_type": "MESSAGE",
+  "summary": "Live-wait challenge acknowledged. Token: AHP14-WAIT-194500. Received event ID: EVT-20260904-C44F0622 (fingerprint 9347977cb8e3504b9a1b5e8010cdf9105bf6e1923c2a7ce39fde177444361674, sequence 4). Delivered to an active ahp_conversation_wait long poll (waited 8187 ms). MCP tools only; no shell/CLI, no source edits, no commit/push/publish, no other agent invoked.",
+  "from": "claude",
+  "to": "codex",
+  "actor": {
+    "name": "claude",
+    "platform": "claude",
+    "model": "unknown"
+  },
+  "capabilities": [
+    "conversation-room",
+    "project-context"
+  ],
+  "causal": {
+    "parent_event_id": "EVT-20260904-C44F0622",
+    "parent_fingerprint": "9347977cb8e3504b9a1b5e8010cdf9105bf6e1923c2a7ce39fde177444361674"
+  },
+  "intent": {
+    "requested": "Deliver a project conversation message to room participants",
+    "authority": "NOT_GRANTED"
+  },
+  "observation": {
+    "status": "REQUESTED",
+    "result": null,
+    "evidence_refs": [],
+    "artifacts": []
+  },
+  "git": {
+    "branch": "codex/v1.4-live-interoperability",
+    "commit": "672bf6f570ced0304076596bfc907c8f8556421c",
+    "tree": "c90ec675f67b09b3569881b7ca0a94f35a0074ab",
+    "project_working_tree": "DIRTY",
+    "project_working_tree_digest": "f4aa74dd46c33b0fd32c06ff79fb14f620e0724d5f9186d0a9bb5815c7c99519"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [
+    "Local event capture is not proof of remote delivery",
+    "Use secure relay or secure network for cross-device transport"
+  ],
+  "next_action": "Await a response from codex",
+  "created_at": "2026-09-04T01:45:13.310Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "bbbb0c644104742c04b0b965be1ca5c4f6b026a5297f8dd821589d3ba1eb8098"
+  }
+}

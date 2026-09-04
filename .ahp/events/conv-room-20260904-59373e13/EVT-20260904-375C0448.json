@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVT-20260904-375C0448",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "conv-room-20260904-59373e13",
+  "correlation_id": "conv-room-20260904-59373e13",
+  "sequence": 1,
+  "event_type": "CONVERSATION_OPENED",
+  "summary": "AHP 1.4 UI acceptance",
+  "from": "codex",
+  "to": "codex,claude",
+  "actor": {
+    "name": "codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "capabilities": [
+    "conversation-room",
+    "shared-project-context",
+    "manual-chat-surface"
+  ],
+  "causal": {
+    "parent_event_id": null,
+    "parent_fingerprint": null
+  },
+  "intent": {
+    "requested": "Open a shared project conversation room",
+    "authority": "NOT_GRANTED"
+  },
+  "observation": {
+    "status": "REQUESTED",
+    "result": null,
+    "evidence_refs": [],
+    "artifacts": []
+  },
+  "git": {
+    "branch": "codex/v1.4-live-interoperability",
+    "commit": "672bf6f570ced0304076596bfc907c8f8556421c",
+    "tree": "c90ec675f67b09b3569881b7ca0a94f35a0074ab",
+    "project_working_tree": "CLEAN",
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [
+    "Messages are durable project events",
+    "MCP clients must read or wait for new messages",
+    "No native IDE chat injection"
+  ],
+  "next_action": "Post the first project message or wait for a participant response",
+  "created_at": "2026-09-04T01:41:01.969Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "90063deaa2851076d03465483ab44bb32d81d234de0924d49dce0f7ec1b89195"
+  }
+}

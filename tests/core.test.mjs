@@ -23,10 +23,10 @@ import {
 } from '../src/secure-network.mjs';
 import { createSecureHub } from '../src/hub.mjs';
 
-test('CLI reports the development version', () => {
+test('CLI reports the package version', () => {
   for (const argv of [['version'], ['--version']]) {
     const result = runAhp(process.cwd(), argv);
-    assert.equal(result.stdout.trim(), '1.4.0-dev.1');
+    assert.equal(result.stdout.trim(), '1.4.0');
   }
 });
 

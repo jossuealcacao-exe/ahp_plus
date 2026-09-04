@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.4.0",
+  "id": "QA-20260904-BB2238E0",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.4 MCP conversation-room release acceptance",
+  "description": "Visible Claude UI loaded the AHP MCP server from the project, received a causally linked Codex message during ahp_conversation_wait, and replied through ahp_conversation_send. The resulting events passed integrity and causal-parent verification. Acceptance is scoped to a same-machine shared Git checkout with explicit long polling; it does not claim native chat injection, idle-agent wake, autonomous operation, or cross-device secure delivery.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-04T01:48:09.000Z",
+  "updated_at": "2026-09-04T01:48:09.000Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [
+    "EVD-20260904-2CCBF09E"
+  ],
+  "base_commit": "672bf6f570ced0304076596bfc907c8f8556421c",
+  "tags": [
+    "1.4",
+    "release",
+    "mcp",
+    "conversation",
+    "ui"
+  ]
+}

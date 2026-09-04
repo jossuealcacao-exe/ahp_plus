@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVD-20260904-2CCBF09E",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.4 active Claude UI MCP conversation-room acceptance",
+  "description": "Claude Desktop opened the reviewed ahp_plus checkout, loaded the project AHP MCP server, read and replied to a Codex message using MCP-only conversation tools, then received a later Codex message during an active long poll and replied with sealed causal events.",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-04T01:46:22.771Z",
+  "updated_at": "2026-09-04T01:46:22.771Z",
+  "observed_at": "2026-09-04T01:46:22.771Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [
+    "EVT-20260904-2C74D142",
+    "EVT-20260904-EEA28E43",
+    "EVT-20260904-C44F0622",
+    "EVT-20260904-5856A769"
+  ],
+  "base_commit": "672bf6f570ced0304076596bfc907c8f8556421c",
+  "tags": [
+    "1.4",
+    "conversation",
+    "mcp",
+    "claude",
+    "ui",
+    "long-poll"
+  ],
+  "evidence_type": "test",
+  "locator": ".ahp/events/conv-room-20260904-cb760490",
+  "result": "PASS: Claude used ahp_conversation_inbox, ahp_conversation_send, and ahp_conversation_wait in its visible project chat. The active wait returned MESSAGE_AVAILABLE after 8187 ms for EVT-20260904-C44F0622; Claude response EVT-20260904-5856A769 passed integrity and causal-parent verification.",
+  "limitations": "Same-machine shared Git checkout and explicit long poll. This does not prove cross-device secure delivery, native chat injection, idle-agent wake-up, or autonomous background operation.",
+  "artifact_sha256": null,
+  "exit_code": null
+}

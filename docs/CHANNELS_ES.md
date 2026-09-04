@@ -44,10 +44,9 @@ El mismo candidato se publica como GitHub prerelease bajo
 `v1.2.0-dev.0`. El canal `next` sirve para probar y reportar mejoras; puede
 cambiar y no debe sustituir un pin estable en proyectos sensibles.
 
-El desarrollo de identidad, cifrado y consulta acotada AHP+ 1.4 usa internamente
-`1.4.0-dev.1`. Esa versión no debe describirse como disponible en `next` hasta
-que exista autorización explícita, artefacto publicado y verificación desde el
-registro público.
+El árbol fuente candidato de AHP+ 1.4 usa la versión estable `1.4.0`. No debe
+describirse como disponible en `latest` hasta que exista autorización explícita,
+artefacto publicado y verificación desde el registro público.
 
 ## Política de promoción
 

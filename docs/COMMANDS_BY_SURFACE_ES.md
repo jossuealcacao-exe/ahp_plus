@@ -10,7 +10,7 @@ Dentro de un proyecto que instaló AHP+ como dependencia local, usa `npx ahp`:
 
 | Objetivo | Comando |
 |---|---|
-| Instalar y configurar | `npx @jossuealcala/ahp-plus@next setup .` |
+| Instalar y configurar | `npx @jossuealcala/ahp-plus@1.4.0 setup .` |
 | Pulso completo recomendado | `npx ahp project check . --platform codex` |
 | Resolver la raíz | `npx ahp project root .` |
 | Diagnosticar instalación | `npx ahp project doctor .` |

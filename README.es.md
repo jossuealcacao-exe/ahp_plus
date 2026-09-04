@@ -18,11 +18,11 @@
 
 ---
 
-> **Estado de desarrollo:** esta rama desarrolla identidad de dispositivo,
-> transporte cifrado y consulta en vivo acotada de AHP+ 1.4 como
-> `1.4.0-dev.1`. npm `next` permanece
-> en `1.2.0-dev.0` y `latest` en `1.1.0` hasta una publicación autorizada por
-> separado.
+> **Candidato de lanzamiento:** este árbol fuente está preparado como AHP+
+> `1.4.0`, con identidad de dispositivo, transporte cifrado, consulta en vivo
+> acotada y salas compartidas de proyecto. npm `next` permanece en
+> `1.2.0-dev.0` y `latest` en `1.1.0` hasta autorizar y verificar la publicación
+> por separado.
 
 AHP+ (**Agent Handoff Protocol Plus**) es un protocolo abierto respaldado por
 Git y una CLI de referencia para conservar la verdad operativa de un proyecto:
@@ -50,18 +50,18 @@ cuando el trabajo cambia de entorno:
 Requisitos: Git, Node.js 20 o superior y un repositorio Git con al menos un
 commit. El runtime no tiene dependencias de terceros.
 
-Cuando 1.4 llegue al canal npm autorizado, la instalación local y configuración
-de IDE se harán con un solo comando:
+Después de publicar 1.4, la instalación local y configuración de IDE se harán
+con un solo comando:
 
 ```bash
-npx @jossuealcala/ahp-plus@next setup .
+npx @jossuealcala/ahp-plus@1.4.0 setup .
 ```
 
 `setup` fija la versión exacta, inicializa o actualiza `.ahp/` con respaldo,
 instala adaptadores y MCP para Codex/Claude, crea pares de claves separados
-fuera de Git y ejecuta doctor más verificación estricta. Es idempotente. Durante
-el desarrollo desde este checkout usa `node bin/ahp.mjs setup . --no-install`;
-1.4 todavía no está publicado en npm.
+fuera de Git y ejecuta doctor más verificación estricta. Es idempotente. Antes
+de la publicación, prueba el tarball local exacto o usa `node bin/ahp.mjs setup .
+--no-install` desde este checkout.
 
 Ejecuta el primer pulso:
 
@@ -313,12 +313,12 @@ Los artefactos de npm y GitHub comparten el SHA-256
 | [Canales de distribución](docs/CHANNELS_ES.md) | Estable `latest` y desarrollo `next` |
 | [Feedback público](docs/COMMUNITY_FEEDBACK_ES.md) | Reportes seguros y reproducibles |
 | [Interoperabilidad en vivo](docs/LIVE_INTEROP_ES.md) | Setup de un comando, consulta entre IA, identidad y carrier cifrado |
-| [Especificación](SPECIFICATION.md) | Protocolo AHP+ 1.4 en desarrollo |
+| [Especificación](SPECIFICATION.md) | Protocolo AHP+ 1.4 |
 
 ## Canales de distribución
 
 - **Estable:** versiones semánticas en npm `latest` y GitHub Releases normales.
-- **Desarrollo:** versiones como `1.4.0-dev.1` en npm `next` y GitHub
+- **Desarrollo:** versiones prerelease en npm `next` y GitHub
   prereleases.
 
 ## Seguridad y contribución

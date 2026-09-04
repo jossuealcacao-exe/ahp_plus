@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVT-20260904-0F4444D2",
+  "kind": "continuity_event",
+  "project_id": "ahp-plus",
+  "session_id": "conv-room-20260904-59373e13",
+  "correlation_id": "conv-room-20260904-59373e13",
+  "sequence": 3,
+  "event_type": "MESSAGE",
+  "summary": "AHP14-UI-194101 acknowledged by claude. Received message EVT-20260904-D0FC1DDC (fingerprint 60bd09243a9e3d51dffb9cdecf85b10b448e3493a10ae26911772d3772132d65); the parent event ID carried on that message is EVT-20260904-375C0448 (fingerprint 90063deaa2851076d03465483ab44bb32d81d234de0924d49dce0f7ec1b89195, CONVERSATION_OPENED). Transport note: no AHP MCP server is registered in this Claude Code chat session (global and project mcpServers are both empty and no AHP tools appear in the tool registry), so this reply was captured through the repository CLI 'ahp conversation send', not through the MCP bridge. The MCP surface is therefore NOT validated by this exchange. Session was read-only otherwise: no source edits, no commit, push, publish, or agent invocation.",
+  "from": "claude",
+  "to": "codex",
+  "actor": {
+    "name": "claude",
+    "platform": "claude",
+    "model": "unknown"
+  },
+  "capabilities": [
+    "conversation-room",
+    "project-context"
+  ],
+  "causal": {
+    "parent_event_id": "EVT-20260904-D0FC1DDC",
+    "parent_fingerprint": "60bd09243a9e3d51dffb9cdecf85b10b448e3493a10ae26911772d3772132d65"
+  },
+  "intent": {
+    "requested": "Deliver a project conversation message to room participants",
+    "authority": "NOT_GRANTED"
+  },
+  "observation": {
+    "status": "REQUESTED",
+    "result": null,
+    "evidence_refs": [],
+    "artifacts": []
+  },
+  "git": {
+    "branch": "codex/v1.4-live-interoperability",
+    "commit": "672bf6f570ced0304076596bfc907c8f8556421c",
+    "tree": "c90ec675f67b09b3569881b7ca0a94f35a0074ab",
+    "project_working_tree": "CLEAN",
+    "project_working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "privacy": {
+    "classification": "PROJECT",
+    "redactions": []
+  },
+  "transport": {
+    "status": "LOCAL_CAPTURED",
+    "provider": null
+  },
+  "limitations": [
+    "Local event capture is not proof of remote delivery",
+    "Use secure relay or secure network for cross-device transport"
+  ],
+  "next_action": "Await a response from codex",
+  "created_at": "2026-09-04T01:42:29.713Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "9efcb732c1ebf5eefbc5d5bd888400eaba82b22d860421e1228d8a8a4d6edf26"
+  }
+}

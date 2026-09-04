@@ -18,11 +18,10 @@
 
 ---
 
-> **Development status:** this branch develops AHP+ 1.4 device identity,
-> encrypted transport, bounded live consultation, and shared project rooms as
-> `1.4.0-dev.1`. npm
-> `next` remains `1.2.0-dev.0` and
-> `latest` remains `1.1.0` until a separately authorized release.
+> **Release candidate:** this source tree is prepared as AHP+ `1.4.0`, with
+> device identity, encrypted transport, bounded live consultation, and shared
+> project rooms. npm `next` remains `1.2.0-dev.0` and `latest` remains `1.1.0`
+> until publication is separately authorized and verified.
 
 AHP+ (**Agent Handoff Protocol Plus**) is an open, Git-backed protocol and a
 reference CLI for preserving the operational truth of a software project:
@@ -50,18 +49,18 @@ between environments:
 Requirements: Git, Node.js 20 or newer, and a Git repository with at least one
 commit. The runtime has no third-party dependencies.
 
-After 1.4 reaches the authorized npm channel, installation and IDE setup are a
-single project-local command:
+After 1.4 is published, installation and IDE setup are a single project-local
+command:
 
 ```bash
-npx @jossuealcala/ahp-plus@next setup .
+npx @jossuealcala/ahp-plus@1.4.0 setup .
 ```
 
 `setup` pins the exact package, initializes or safely upgrades `.ahp/`, installs
 the Codex and Claude adapters plus MCP configuration, creates separate device
 key pairs outside Git, and runs doctor plus strict verification. It is
-idempotent. During source development, use `node bin/ahp.mjs setup .
---no-install` instead; the unreleased 1.4 package is not yet available on npm.
+idempotent. Until the release is published, test the exact local package
+tarball or use `node bin/ahp.mjs setup . --no-install` from this checkout.
 
 Run the first heartbeat:
 
@@ -330,13 +329,13 @@ The npm and GitHub release artifacts share SHA-256
 | [Distribution channels](docs/CHANNELS_ES.md) | Stable `latest` and development `next` |
 | [Community feedback](docs/COMMUNITY_FEEDBACK_ES.md) | Safe, reproducible issue reports |
 | [Live interoperability](docs/LIVE_INTEROP_ES.md) | One-command setup, bounded AI consultation, device identity, and encrypted carrier |
-| [Specification](SPECIFICATION.md) | Development AHP+ 1.4 protocol |
+| [Specification](SPECIFICATION.md) | AHP+ 1.4 protocol |
 
 ## Distribution channels
 
 - **Stable:** semantic versions on npm `latest` and non-prerelease GitHub
   Releases.
-- **Development:** prerelease versions such as `1.4.0-dev.1` on npm `next` and
+- **Development:** prerelease versions on npm `next` and
   GitHub prereleases.
 
 ## Security and contributing

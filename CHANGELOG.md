@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.4.0 — 2026-09-03
+
 - Add `conversation` rooms for durable multi-turn project discussion across
   MCP-enabled IDE chats: open rooms, causal messages, per-participant inboxes,
   and explicit long polling. The feature deliberately does not inject text into

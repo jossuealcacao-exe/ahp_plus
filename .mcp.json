@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "ahp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["--no-install", "ahp", "live", "serve", "."]
+    }
+  }
+}
