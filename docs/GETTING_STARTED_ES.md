@@ -16,8 +16,7 @@ la CLI; así npm no puede resolver la dependencia en un directorio padre.
 
 ## Instalar y configurar
 
-Después de publicar la versión estable, desde la raíz del proyecto ejecuta un
-solo comando:
+Desde la raíz del proyecto ejecuta un solo comando:
 
 ```bash
 npx @jossuealcala/ahp-plus@1.4.0 setup .

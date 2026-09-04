@@ -2,8 +2,8 @@
 
 ## Estable: `latest`
 
-El canal recomendado para personas usuarias es npm `latest`. Después de la
-promoción de 1.4, la vía más simple instala y configura el proyecto en un paso:
+El canal recomendado para personas usuarias es npm `latest`. La vía más simple
+instala y configura AHP+ `1.4.0` en el proyecto en un paso:
 
 ```bash
 npx @jossuealcala/ahp-plus@1.4.0 setup .
@@ -28,10 +28,9 @@ Un prerelease usa el dist-tag `next` y una versión exacta con sufijo
 prerelease. Sirve para pruebas y feedback; no sustituye un pin estable en
 proyectos sensibles. Publicar `next` no mueve `latest`.
 
-Al momento de preparar este candidato, npm `latest` sigue en `1.1.0` y `next`
-sigue en `1.2.0-dev.0`; AHP+ `1.4.0` no debe presentarse como disponible en el
-registro hasta que exista autorización, publicación y una instalación nueva
-verificada desde npm.
+Las versiones estables se anuncian como disponibles únicamente después de que
+la publicación en npm y una instalación nueva desde el registro hayan sido
+verificadas.
 
 ## Política de promoción
 

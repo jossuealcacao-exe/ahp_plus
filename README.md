@@ -18,10 +18,9 @@
 
 ---
 
-> **Release candidate:** this source tree is prepared as AHP+ `1.4.0`, with
-> device identity, encrypted transport, bounded live consultation, and shared
-> project rooms. npm `next` remains `1.2.0-dev.0` and `latest` remains `1.1.0`
-> until publication is separately authorized and verified.
+> **Stable release:** AHP+ `1.4.0` adds device identity, encrypted transport,
+> bounded live consultation, and shared project rooms. Install it project-locally
+> from npm with the versioned command below.
 
 AHP+ (**Agent Handoff Protocol Plus**) is an open, Git-backed protocol and a
 reference CLI for preserving the operational truth of a software project:
@@ -51,8 +50,7 @@ commit. The runtime has no third-party dependencies. A `package.json` is not
 required: when one is absent, `setup` creates a minimal private manifest inside
 the project before pinning AHP+, so npm never installs into a parent directory.
 
-After 1.4 is published, installation and IDE setup are a single project-local
-command:
+AHP+ 1.4 installation and IDE setup are a single project-local command:
 
 ```bash
 npx @jossuealcala/ahp-plus@1.4.0 setup .

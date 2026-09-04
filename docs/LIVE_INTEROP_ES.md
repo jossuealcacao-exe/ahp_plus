@@ -1,10 +1,10 @@
 # AHP+ 1.4: instalación e interoperabilidad Codex-Claude
 
-Estado: candidato estable `1.4.0`. No describe una versión ya publicada en npm.
+Estado: lanzamiento estable `1.4.0`, distribuido por npm `latest`.
 
 ## 1. Instalación de un comando
 
-Después de publicar la versión estable en npm:
+Para instalar la versión estable desde npm:
 
 ```bash
 cd /ruta/al/proyecto
