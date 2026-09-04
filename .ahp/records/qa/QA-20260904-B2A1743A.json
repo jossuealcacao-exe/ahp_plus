@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.4.0",
+  "id": "QA-20260904-B2A1743A",
+  "kind": "qa",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.4.0 stable candidate acceptance",
+  "description": "Stable version metadata, release gate, six-platform-runtime jobs, clean tarball consumer setup, strict validation, causal room exchange, and visible Claude MCP room acceptance passed. Public release actions remain subject to explicit owner authorization.",
+  "status": "PASS",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-04T02:58:20.282Z",
+  "updated_at": "2026-09-04T02:58:20.282Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [
+    "EVD-20260904-D0B8B79E",
+    "EVD-20260904-2CCBF09E"
+  ],
+  "base_commit": "3e14124614fec1352fc68586486fc9d391861e87",
+  "tags": [
+    "1.4",
+    "stable",
+    "release-candidate"
+  ]
+}

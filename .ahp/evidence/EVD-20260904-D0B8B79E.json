@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.4.0",
+  "id": "EVD-20260904-D0B8B79E",
+  "kind": "evidence",
+  "project_id": "ahp-plus",
+  "title": "AHP+ 1.4.0 stable candidate verified release gate",
+  "description": "The exact stable source candidate passed the local release gate, six-job GitHub Actions matrix, and a from-zero consumer installation from its local tarball.",
+  "status": "OBSERVED",
+  "confidence": "VERIFIED",
+  "created_at": "2026-09-04T02:58:12.381Z",
+  "updated_at": "2026-09-04T02:58:12.381Z",
+  "observed_at": "2026-09-04T02:58:12.381Z",
+  "actor": {
+    "name": "Codex",
+    "platform": "codex",
+    "model": "unknown"
+  },
+  "source_refs": [],
+  "base_commit": "3e14124614fec1352fc68586486fc9d391861e87",
+  "tags": [
+    "1.4",
+    "stable",
+    "release",
+    "ci",
+    "consumer"
+  ],
+  "evidence_type": "test",
+  "locator": "https://github.com/jossuealcacao-exe/ahp_plus/actions/runs/33827373441",
+  "result": "PASS: 34/34 core tests, 3/3 conformance, 253 validated files, 75 packaged files; Ubuntu/macOS/Windows on Node 20/22; clean tarball consumer reported 1.4.0, idempotent setup, strict PASS, and a valid causal Codex-Claude room reply",
+  "limitations": "The tarball was installed locally before registry publication. GitHub tag, GitHub Release, npm latest publication, public-registry installation, native chat injection, idle wake, and cross-device UI delivery remain outside this evidence.",
+  "artifact_sha256": "6bceeba4735635022e5e99f7df3c92009a1dd2e68eb46987a7088203390ab447",
+  "exit_code": 0
+}
