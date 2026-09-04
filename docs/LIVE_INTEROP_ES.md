@@ -15,7 +15,10 @@ Este comando fija AHP+ como dependencia local, crea o actualiza `.ahp/`, instala
 las instrucciones de Codex y Claude, registra el servidor MCP en
 `.codex/config.toml` y `.mcp.json`, crea una identidad por plataforma fuera de
 Git y ejecuta `doctor` más `verify --strict`. Puede repetirse sin duplicar
-archivos, identidades ni bloques administrados.
+archivos, identidades ni bloques administrados. Si el repositorio no usa Node,
+crea primero un `package.json` mínimo y privado para que la dependencia quede
+en ese proyecto y nunca en un directorio padre. Para un solo IDE, usa por
+ejemplo `--platforms codex`.
 
 En el checkout de desarrollo de AHP+ se usa:
 

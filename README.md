@@ -47,7 +47,9 @@ between environments:
 ## Install in a project
 
 Requirements: Git, Node.js 20 or newer, and a Git repository with at least one
-commit. The runtime has no third-party dependencies.
+commit. The runtime has no third-party dependencies. A `package.json` is not
+required: when one is absent, `setup` creates a minimal private manifest inside
+the project before pinning AHP+, so npm never installs into a parent directory.
 
 After 1.4 is published, installation and IDE setup are a single project-local
 command:
@@ -61,6 +63,12 @@ the Codex and Claude adapters plus MCP configuration, creates separate device
 key pairs outside Git, and runs doctor plus strict verification. It is
 idempotent. Until the release is published, test the exact local package
 tarball or use `node bin/ahp.mjs setup . --no-install` from this checkout.
+
+If the project uses only one IDE, limit the generated integration:
+
+```bash
+npx @jossuealcala/ahp-plus@1.4.0 setup . --platforms codex
+```
 
 Run the first heartbeat:
 
@@ -78,7 +86,7 @@ Review the generated files before committing them. AHP+ never commits, pushes,
 merges, deploys, publishes, deletes, or grants itself authority.
 
 For an exact reproducible pin, install
-`@jossuealcala/ahp-plus@1.1.0`. Do not use `main` as a production dependency.
+`@jossuealcala/ahp-plus@1.4.0`. Do not use `main` as a production dependency.
 
 ## How it works
 
@@ -299,21 +307,14 @@ AHP+ complements existing agent infrastructure:
 
 Read [What makes AHP+ different](docs/WHY_AHP_ES.md) for the detailed boundary.
 
-## Verified release quality
+## Release validation
 
-AHP+ 1.1.0 is tested on Ubuntu, macOS, and Windows with Node.js 20 and 22. The
-stable release passed:
-
-- core tests and protocol conformance;
-- strict integrity and ancestry verification;
-- shallow-clone and native Windows Git-path checks;
-- package-content and checksum verification;
-- clean installation from npm `latest`;
-- adapter installation across all supported surfaces;
-- a real Codex-to-Cursor consumer handoff in `iris-foundation`.
-
-The npm and GitHub release artifacts share SHA-256
-`c953fe7eb0c67070bf91d6342d1d1efe5fc036045eb5b3edf6897efa5cfc0548`.
+The AHP+ 1.4.0 candidate passed core tests, protocol conformance, strict
+verification, package inspection, and clean local-tarball onboarding for both
+Node and non-Node Git projects. The Codex–Claude shared-room field acceptance
+was also completed in independent IDE chats. A fresh consumer installation from
+the public npm registry remains a required confirmation immediately after the
+authorized publication.
 
 ## Documentation
 

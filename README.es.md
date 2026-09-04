@@ -48,7 +48,10 @@ cuando el trabajo cambia de entorno:
 ## Instalar en un proyecto
 
 Requisitos: Git, Node.js 20 o superior y un repositorio Git con al menos un
-commit. El runtime no tiene dependencias de terceros.
+commit. El runtime no tiene dependencias de terceros. No hace falta que el
+proyecto ya tenga `package.json`: si falta, `setup` crea uno mínimo y privado
+dentro del repositorio antes de fijar AHP+, para que npm nunca instale en un
+directorio padre.
 
 Después de publicar 1.4, la instalación local y configuración de IDE se harán
 con un solo comando:
@@ -62,6 +65,12 @@ instala adaptadores y MCP para Codex/Claude, crea pares de claves separados
 fuera de Git y ejecuta doctor más verificación estricta. Es idempotente. Antes
 de la publicación, prueba el tarball local exacto o usa `node bin/ahp.mjs setup .
 --no-install` desde este checkout.
+
+Si el proyecto usa un solo IDE, limita la integración generada:
+
+```bash
+npx @jossuealcala/ahp-plus@1.4.0 setup . --platforms codex
+```
 
 Ejecuta el primer pulso:
 
@@ -79,7 +88,7 @@ Revisa los archivos generados antes de confirmarlos. AHP+ nunca ejecuta commit,
 push, merge, deploy, publicación o eliminación, ni se concede autoridad.
 
 Para una instalación reproducible exacta usa
-`@jossuealcala/ahp-plus@1.1.0`. No uses `main` como dependencia de producción.
+`@jossuealcala/ahp-plus@1.4.0`. No uses `main` como dependencia de producción.
 
 ## Cómo funciona
 
@@ -283,21 +292,14 @@ AHP+ complementa la infraestructura de agentes existente:
 
 Lee [Qué diferencia a AHP+](docs/WHY_AHP_ES.md) para conocer el límite completo.
 
-## Calidad verificada de la versión
+## Validación de liberación
 
-AHP+ 1.1.0 se prueba en Ubuntu, macOS y Windows con Node.js 20 y 22. La versión
-estable superó:
-
-- pruebas del núcleo y conformidad del protocolo;
-- verificación estricta de integridad y ascendencia;
-- shallow clones y rutas Git nativas de Windows;
-- contenido y checksum del paquete;
-- instalación limpia desde npm `latest`;
-- instalación de adaptadores en todas las superficies soportadas;
-- un handoff real Codex → Cursor en `iris-foundation`.
-
-Los artefactos de npm y GitHub comparten el SHA-256
-`c953fe7eb0c67070bf91d6342d1d1efe5fc036045eb5b3edf6897efa5cfc0548`.
+El candidato AHP+ 1.4.0 superó pruebas del núcleo, conformidad del protocolo,
+verificación estricta, inspección del paquete y onboarding desde tarball local
+en proyectos Git con y sin Node. También se completó la aceptación de la sala
+compartida Codex–Claude en chats independientes de IDE. Una instalación nueva
+desde el registro público de npm sigue siendo una confirmación obligatoria
+inmediatamente después de la publicación autorizada.
 
 ## Documentación
 

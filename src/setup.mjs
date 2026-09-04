@@ -38,14 +38,27 @@ function inferredOwner(repoRoot, options) {
     || 'Project owner';
 }
 
+function ensureProjectPackageManifest(repoRoot) {
+  const manifestFile = path.join(repoRoot, 'package.json');
+  if (fs.existsSync(manifestFile)) return { status: 'PRESENT', path: 'package.json' };
+
+  const manifest = {
+    private: true,
+    devDependencies: {},
+  };
+  fs.writeFileSync(manifestFile, `${JSON.stringify(manifest, null, 2)}\n`, { encoding: 'utf8', flag: 'wx' });
+  return { status: 'CREATED', path: 'package.json' };
+}
+
 function ensureLocalPackage(repoRoot, options) {
-  if (options.install === false) return { status: 'SKIPPED', reason: '--no-install' };
+  const manifest = ensureProjectPackageManifest(repoRoot);
+  if (options.install === false) return { status: 'SKIPPED', reason: '--no-install', manifest };
   const executable = path.join(repoRoot, 'node_modules', '.bin', process.platform === 'win32' ? 'ahp.cmd' : 'ahp');
   const installedManifest = path.join(repoRoot, 'node_modules', ...PACKAGE.name.split('/'), 'package.json');
   let installedVersion = null;
   try { installedVersion = JSON.parse(fs.readFileSync(installedManifest, 'utf8')).version || null; } catch { /* install below */ }
   if (fs.existsSync(executable) && installedVersion === PACKAGE.version) {
-    return { status: 'PRESENT', package: PACKAGE.name, version: PACKAGE.version };
+    return { status: 'PRESENT', package: PACKAGE.name, version: PACKAGE.version, manifest };
   }
   const spec = `${PACKAGE.name}@${PACKAGE.version}`;
   try {
@@ -64,6 +77,7 @@ function ensureLocalPackage(repoRoot, options) {
     package: PACKAGE.name,
     version: PACKAGE.version,
     previous_version: installedVersion,
+    manifest,
   };
 }
 

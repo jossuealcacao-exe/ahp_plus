@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Make `setup` safe for Git repositories without a pre-existing `package.json`:
+  create a minimal private manifest before npm installation so the package is
+  pinned in the project rather than resolved from a parent directory.
+- Align the first-installation guides with the 1.4 one-command setup and show
+  the single-IDE `--platforms` option.
+
 ## 1.4.0 — 2026-09-03
 
 - Add `conversation` rooms for durable multi-turn project discussion across

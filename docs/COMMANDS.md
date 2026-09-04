@@ -15,10 +15,11 @@ rewrite.
 
 | Command | Meaning |
 |---|---|
-| `ahp setup [path]` | Install/configure Codex and Claude adapters, initialize or upgrade protocol state, create device identities, and run doctor plus strict verification. |
+| `ahp setup [path]` | Install/configure Codex and Claude adapters, initialize or upgrade protocol state, create device identities, and run doctor plus strict verification. If the repository has no `package.json`, create a minimal private one before installing AHP+ locally. |
 
 Use `--platforms`, `--no-install`, or `--no-identity` only when customizing the
-guided default. Repeating setup is idempotent.
+guided default. For a single IDE, use `--platforms codex` or `--platforms
+claude`. Repeating setup is idempotent.
 
 ## Live agent consultation
 

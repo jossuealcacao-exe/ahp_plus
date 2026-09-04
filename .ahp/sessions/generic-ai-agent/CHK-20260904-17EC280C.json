@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.4.0",
+  "id": "CHK-20260904-17EC280C",
+  "kind": "checkpoint",
+  "session_id": "generic-ai-agent",
+  "project_id": "ahp-plus",
+  "summary": "Hardened 1.4 onboarding for non-Node Git repositories, aligned installation guides, and validated clean local-tarball setup plus single-IDE selection.",
+  "objective": "Deliver AHP+ 1.4 simple setup, bounded live Codex-Claude consultation, and device-authenticated encrypted relay",
+  "next_action": "Review and commit the onboarding hardening, then await explicit authorization for release operations.",
+  "files": [],
+  "validations": [],
+  "blockers": [],
+  "actor": {
+    "name": "AI agent",
+    "platform": "unknown",
+    "model": "unknown"
+  },
+  "git": {
+    "branch": "codex/v1.4-live-interoperability",
+    "commit": "881a41f883cab82ea19330b4a37e127a67a09f58",
+    "tree": "fde45fa4406f407934d0172ab88d4218ed061eed",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "README.es.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/CHANNELS_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS_BY_SURFACE_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/GETTING_STARTED_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/LIVE_INTEROP_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "src/setup.mjs"
+      },
+      {
+        "code": " M",
+        "path": "tests/core.test.mjs"
+      }
+    ],
+    "working_tree_digest": "61bd031b78a41faff2bae3a81309552b808bdf35a04ee455167469c2c70a5765",
+    "project_working_tree": "DIRTY",
+    "project_changed_files": [
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "README.es.md"
+      },
+      {
+        "code": " M",
+        "path": "README.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/CHANNELS_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/COMMANDS_BY_SURFACE_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/GETTING_STARTED_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/LIVE_INTEROP_ES.md"
+      },
+      {
+        "code": " M",
+        "path": "src/setup.mjs"
+      },
+      {
+        "code": " M",
+        "path": "tests/core.test.mjs"
+      }
+    ],
+    "project_working_tree_digest": "61bd031b78a41faff2bae3a81309552b808bdf35a04ee455167469c2c70a5765",
+    "ahp_state_working_tree": "CLEAN",
+    "ahp_state_changed_files": [],
+    "upstream": "origin/codex/v1.4-live-interoperability",
+    "ahead": 0,
+    "behind": 0
+  },
+  "created_at": "2026-09-04T17:17:36.678Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "bf53c342ec28797ef9a0fde0da8e4a383d752d9ebd4a146ca5cb170a16eaec61"
+  }
+}

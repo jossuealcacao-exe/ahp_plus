@@ -11,6 +11,7 @@ Dentro de un proyecto que instaló AHP+ como dependencia local, usa `npx ahp`:
 | Objetivo | Comando |
 |---|---|
 | Instalar y configurar | `npx @jossuealcala/ahp-plus@1.4.0 setup .` |
+| Instalar solo Codex | `npx @jossuealcala/ahp-plus@1.4.0 setup . --platforms codex` |
 | Pulso completo recomendado | `npx ahp project check . --platform codex` |
 | Resolver la raíz | `npx ahp project root .` |
 | Diagnosticar instalación | `npx ahp project doctor .` |
@@ -51,6 +52,9 @@ Dentro de un proyecto que instaló AHP+ como dependencia local, usa `npx ahp`:
 Los comandos que escriben aceptan `--expected-head <commit>` y
 `--expected-state <revision>`. Usa ambos cuando exista trabajo concurrente.
 La sintaxis anterior de AHP+ 1.2 sigue disponible como alias compatible.
+
+No necesitas un `package.json` previo: `setup` crea un manifiesto mínimo y
+privado cuando falta, para fijar AHP+ dentro del repositorio correcto.
 
 ## Vocabulario semántico común
 

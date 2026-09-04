@@ -30,7 +30,7 @@ test('CLI reports the package version', () => {
   }
 });
 
-test('setup initializes and configures a project in one idempotent command', (context) => {
+test('setup initializes a non-Node Git project safely and remains idempotent', (context) => {
   const temporary = temporaryDirectory('ahp-setup-');
   context.after(() => removeTemporary(temporary));
   const repo = createGitRepository(path.join(temporary, 'project'));
@@ -42,6 +42,11 @@ test('setup initializes and configures a project in one idempotent command', (co
   assert.equal(first.initialized, true);
   assert.equal(first.owner, 'AHP Test');
   assert.equal(first.package.status, 'SKIPPED');
+  assert.deepEqual(first.package.manifest, { status: 'CREATED', path: 'package.json' });
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(repo, 'package.json'), 'utf8')), {
+    private: true,
+    devDependencies: {},
+  });
   assert.equal(first.identities.length, 2);
   assert.ok(first.identities.every((identity) => identity.status === 'CREATED'));
   assert.ok(first.applied.includes('AGENTS.md'));
@@ -57,6 +62,7 @@ test('setup initializes and configures a project in one idempotent command', (co
   const second = jsonAhp(repo, ['setup', '--platforms', 'codex,claude', '--store', identityStore, '--no-install']);
   assert.equal(second.ok, true);
   assert.equal(second.initialized, false);
+  assert.deepEqual(second.package.manifest, { status: 'PRESENT', path: 'package.json' });
   assert.ok(second.identities.every((identity) => identity.status === 'PRESENT'));
   assert.deepEqual(second.applied, []);
   assert.ok(second.unchanged.includes('CLAUDE.md'));

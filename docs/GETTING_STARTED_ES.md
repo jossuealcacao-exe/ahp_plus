@@ -5,138 +5,94 @@ al proyecto, no a una cuenta, chat, modelo o editor.
 
 ## Antes de instalar
 
-Necesitas:
+Necesitas Git, Node.js 20 o superior, un repositorio Git con al menos un commit
+y autoridad para modificarlo. Trabaja en una rama revisable y guarda o confirma
+primero cualquier cambio ajeno. AHP+ no limpia el árbol, cambia de rama, hace
+commit, push ni publica por su cuenta.
 
-- Git.
-- Node.js 20 o superior.
-- Un repositorio Git con al menos un commit.
-- Autoridad para modificar el repositorio.
-- Una rama de trabajo revisable; evita instalar directamente durante un
-  despliegue o una corrección urgente.
+No necesitas que el proyecto use Node ni que ya tenga `package.json`. Si falta,
+`setup` crea un manifiesto mínimo y privado dentro de ese repositorio para fijar
+la CLI; así npm no puede resolver la dependencia en un directorio padre.
 
-Guarda o confirma primero cualquier cambio ajeno. AHP+ no limpia el árbol, no
-cambia de rama y no publica nada por su cuenta.
+## Instalar y configurar
 
-## Elegir el canal oficial
-
-Para uso normal instala el canal estable de npm:
+Después de publicar la versión estable, desde la raíz del proyecto ejecuta un
+solo comando:
 
 ```bash
-npm install --save-dev @jossuealcala/ahp-plus@latest
+npx @jossuealcala/ahp-plus@1.4.0 setup .
 ```
 
-Durante el desarrollo de 1.2, `latest` continúa siendo 1.1.0. Las pruebas de
-1.2 deben usar un prerelease exacto o un checkout revisado; nunca `main` como
-dependencia de producción.
+El comando instala la versión exacta como dependencia de desarrollo, inicializa
+o actualiza `.ahp/`, instala los adaptadores y MCP de Codex y Claude, crea las
+identidades de dispositivo fuera de Git y ejecuta `doctor` más
+`verify --strict`.
 
-Para un proyecto AHP+ 1.1 existente, revisa y aplica la migración de protocolo
-sin reescribir checkpoints, records ni handoffs sellados:
+Si solo vas a usar un IDE, evita archivos de integración innecesarios:
 
 ```bash
-npx ahp upgrade . --plan
-npx ahp upgrade . --apply
+npx @jossuealcala/ahp-plus@1.4.0 setup . --platforms codex
 ```
 
-Para fijar exactamente la primera versión estable:
+La primera salida debe indicar `status: AHP_READY` y ambos checks en `PASS`.
+Repite el mismo comando para confirmar que `applied` queda vacío y los archivos
+aparecen en `unchanged`: la operación es idempotente.
+
+Antes de la publicación, prueba el tarball local exacto o ejecuta desde un
+checkout revisado:
 
 ```bash
-npm install --save-dev @jossuealcala/ahp-plus@1.1.0
+node bin/ahp.mjs setup /ruta/al/proyecto --no-install
 ```
 
-La misma versión está disponible en GitHub bajo el tag `v1.1.0`, junto con el
-paquete descargable y su checksum. No uses `main` como versión. Si quieres
-probar cambios futuros, usa el canal `next` descrito en [Canales de
-distribución](CHANNELS_ES.md); no lo uses por accidente en producción.
+## Primer pulso
 
-## Inicializar el proyecto
-
-Desde la raíz Git del proyecto:
+La instalación ya deja `npx ahp` disponible en el proyecto. Comprueba el
+contexto antes de pedir trabajo a un agente:
 
 ```bash
-npx ahp init . \
-  --owner "Tu nombre" \
-  --project mi-proyecto
+npx ahp project check .
+npx ahp project status .
+npx ahp session context . --format markdown --budget 8000
 ```
 
-El identificador de proyecto debe ser estable y describir el repositorio, por
-ejemplo `mi-api` o `sitio-comercial`. La inicialización crea `.ahp/` y añade un
-bloque administrado a `.gitignore`. No hace commit ni push.
+Confirma que `project_id`, raíz Git, rama y commit sean los del proyecto
+correcto. En una instalación nueva, `LOCAL_ONLY` es normal hasta que la persona
+revise, confirme y transporte los cambios deliberadamente.
 
-Comprueba la identidad antes de continuar:
+## Primer uso en el IDE
 
-```bash
-npx ahp root .
-npx ahp doctor .
-npx ahp verify . --strict
-npx ahp status .
-npx ahp ready . --platform tu-plataforma
+Abre el mismo repositorio en Codex o Claude Code y reinicia el chat o la
+aplicación si el host carga MCP al abrir el proyecto. Después pide en el chat:
+
+```text
+Usa AHP+ para comprobar este proyecto y mostrar project_id, commit,
+portabilidad, bloqueos y siguiente acción. No edites archivos.
 ```
 
-Debes confirmar que `root`, `project_id`, rama y commit pertenecen al proyecto
-correcto. En una instalación nueva, `LOCAL_ONLY` es normal: los archivos aún
-no están confirmados en Git.
+Para iniciar una conversación de proyecto entre Codex y Claude, pide desde
+cualquiera de los chats que abra una sala compartida. Cada IDE lee y responde
+desde su propia superficie MCP; AHP+ no inyecta texto automáticamente en la
+caja nativa de otro IDE.
 
-## Instalar adaptadores
+## Revisar y continuar
 
-Primero revisa el plan:
-
-```bash
-npx ahp adapter install all .
-```
-
-Si no hay colisiones inesperadas, aplica el plan:
+Revisa el diff antes de confirmar los archivos generados. Cuando la instalación
+se haya confirmado en Git, acepta explícitamente la frontera canónica:
 
 ```bash
-npx ahp adapter install all . --apply
-```
-
-Los adaptadores conectan el mismo protocolo con `AGENTS.md`, Claude, Cursor,
-OpenCode, Codex y una cápsula para ChatGPT/móvil. No crean protocolos distintos.
-Una segunda ejecución debe ser idempotente: no debe volver a modificar archivos
-que ya coinciden.
-
-## Revisar y transportar la instalación
-
-Revisa el diff completo. Confirma solamente los archivos de instalación que
-entiendas y deja fuera cualquier cambio previo ajeno.
-
-Después del commit de instalación, actualiza la frontera canónica:
-
-```bash
-npx ahp status .
+npx ahp project status .
 npx ahp set-state . \
   --accept-head \
   --confidence USER_CONFIRMED \
   --next-action "Crear el primer checkpoint"
-npx ahp verify . --strict
+npx ahp project verify . --strict
 ```
 
-`set-state --accept-head` actualiza explícitamente `base_commit`; tampoco hace commit. El cambio de estado
-debe confirmarse como un sobre AHP+ separado. Solo después de que ambos commits
-estén en el remoto el proyecto podrá reportar `REMOTE_READY`.
+El comando no hace commit ni push. Solo cuando los cambios revisados estén en
+el remoto autorizado `sync check --require-remote` podrá reportar continuidad
+transportable.
 
-## Primer checkpoint
-
-```bash
-npx ahp checkpoint . \
-  --session onboarding \
-  --platform tu-plataforma \
-  --actor "Tu agente o tu nombre" \
-  --summary "AHP+ instalado y verificado" \
-  --next-action "Continuar con la primera tarea gobernada"
-```
-
-El checkpoint es un punto de recuperación, no una afirmación de que hubo
-commit, push o despliegue. Registra solo hechos observados.
-
-## Criterio de instalación terminada
-
-- `doctor` devuelve `ok: true`.
-- `verify --strict` devuelve `ok: true`.
-- El `project_id` y la raíz Git son correctos.
-- Los adaptadores fueron revisados y aplicados sin colisiones no resueltas.
-- La instalación y el sobre de estado están confirmados y disponibles en el
-  remoto autorizado.
-- `sync check --require-remote` termina correctamente.
-
-Continúa con [Gestión y uso cotidiano](OPERATIONS_ES.md).
+Continúa con [Gestión y uso cotidiano](OPERATIONS_ES.md) y consulta
+[Comandos por superficie](COMMANDS_BY_SURFACE_ES.md) para Cursor, OpenCode,
+Codex y Claude Code.
