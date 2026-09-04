@@ -18,7 +18,7 @@
 
 ---
 
-> **Stable release:** AHP+ `1.4.0` adds device identity, encrypted transport,
+> **Stable release:** AHP+ `1.4.1` adds device identity, encrypted transport,
 > bounded live consultation, and shared project rooms. Install it project-locally
 > from npm with the versioned command below.
 
@@ -53,7 +53,7 @@ the project before pinning AHP+, so npm never installs into a parent directory.
 AHP+ 1.4 installation and IDE setup are a single project-local command:
 
 ```bash
-npx @jossuealcala/ahp-plus@1.4.0 setup .
+npx @jossuealcala/ahp-plus@1.4.1 setup .
 ```
 
 `setup` pins the exact package, initializes or safely upgrades `.ahp/`, installs
@@ -65,7 +65,7 @@ tarball or use `node bin/ahp.mjs setup . --no-install` from this checkout.
 If the project uses only one IDE, limit the generated integration:
 
 ```bash
-npx @jossuealcala/ahp-plus@1.4.0 setup . --platforms codex
+npx @jossuealcala/ahp-plus@1.4.1 setup . --platforms codex
 ```
 
 Run the first heartbeat:
@@ -84,7 +84,7 @@ Review the generated files before committing them. AHP+ never commits, pushes,
 merges, deploys, publishes, deletes, or grants itself authority.
 
 For an exact reproducible pin, install
-`@jossuealcala/ahp-plus@1.4.0`. Do not use `main` as a production dependency.
+`@jossuealcala/ahp-plus@1.4.1`. Do not use `main` as a production dependency.
 
 ## How it works
 
@@ -307,7 +307,7 @@ Read [What makes AHP+ different](docs/WHY_AHP_ES.md) for the detailed boundary.
 
 ## Release validation
 
-The AHP+ 1.4.0 candidate passed core tests, protocol conformance, strict
+The AHP+ 1.4 stable release passed core tests, protocol conformance, strict
 verification, package inspection, and clean local-tarball onboarding for both
 Node and non-Node Git projects. The Codex–Claude shared-room field acceptance
 was also completed in independent IDE chats. A fresh consumer installation from

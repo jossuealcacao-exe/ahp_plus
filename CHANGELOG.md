@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 1.4.1 — 2026-09-04
+
+- Ensure `npx @jossuealcala/ahp-plus setup .` clears npm-exec temporary
+  prefix variables before its nested installation, so AHP+ is pinned in the
+  selected project even when that project previously had no `package.json`.
+
+## 1.4.0 — 2026-09-03
+
 - Make `setup` safe for Git repositories without a pre-existing `package.json`:
   create a minimal private manifest before npm installation so the package is
   pinned in the project rather than resolved from a parent directory.

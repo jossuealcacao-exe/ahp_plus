@@ -18,7 +18,7 @@
 
 ---
 
-> **Lanzamiento estable:** AHP+ `1.4.0` incorpora identidad por dispositivo,
+> **Lanzamiento estable:** AHP+ `1.4.1` incorpora identidad por dispositivo,
 > transporte cifrado, consulta en vivo acotada y salas de proyecto compartidas.
 > Instálalo localmente en el proyecto desde npm con el comando versionado de
 > abajo.
@@ -56,7 +56,7 @@ La instalación local y configuración de IDE de AHP+ 1.4 se hacen con un solo
 comando:
 
 ```bash
-npx @jossuealcala/ahp-plus@1.4.0 setup .
+npx @jossuealcala/ahp-plus@1.4.1 setup .
 ```
 
 `setup` fija la versión exacta, inicializa o actualiza `.ahp/` con respaldo,
@@ -68,7 +68,7 @@ de la publicación, prueba el tarball local exacto o usa `node bin/ahp.mjs setup
 Si el proyecto usa un solo IDE, limita la integración generada:
 
 ```bash
-npx @jossuealcala/ahp-plus@1.4.0 setup . --platforms codex
+npx @jossuealcala/ahp-plus@1.4.1 setup . --platforms codex
 ```
 
 Ejecuta el primer pulso:
@@ -87,7 +87,7 @@ Revisa los archivos generados antes de confirmarlos. AHP+ nunca ejecuta commit,
 push, merge, deploy, publicación o eliminación, ni se concede autoridad.
 
 Para una instalación reproducible exacta usa
-`@jossuealcala/ahp-plus@1.4.0`. No uses `main` como dependencia de producción.
+`@jossuealcala/ahp-plus@1.4.1`. No uses `main` como dependencia de producción.
 
 ## Cómo funciona
 
@@ -293,7 +293,7 @@ Lee [Qué diferencia a AHP+](docs/WHY_AHP_ES.md) para conocer el límite complet
 
 ## Validación de liberación
 
-El candidato AHP+ 1.4.0 superó pruebas del núcleo, conformidad del protocolo,
+El lanzamiento estable AHP+ 1.4 superó pruebas del núcleo, conformidad del protocolo,
 verificación estricta, inspección del paquete y onboarding desde tarball local
 en proyectos Git con y sin Node. También se completó la aceptación de la sala
 compartida Codex–Claude en chats independientes de IDE. Una instalación nueva

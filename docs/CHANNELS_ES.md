@@ -3,16 +3,16 @@
 ## Estable: `latest`
 
 El canal recomendado para personas usuarias es npm `latest`. La vía más simple
-instala y configura AHP+ `1.4.0` en el proyecto en un paso:
+instala y configura AHP+ `1.4.1` en el proyecto en un paso:
 
 ```bash
-npx @jossuealcala/ahp-plus@1.4.0 setup .
+npx @jossuealcala/ahp-plus@1.4.1 setup .
 ```
 
 Para una reproducción exacta fija la misma versión:
 
 ```bash
-npm install --save-dev @jossuealcala/ahp-plus@1.4.0
+npm install --save-dev @jossuealcala/ahp-plus@1.4.1
 ```
 
 Una dependencia ya instalada no se actualiza sola. La persona propietaria debe

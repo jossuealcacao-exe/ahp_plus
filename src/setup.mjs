@@ -50,6 +50,20 @@ function ensureProjectPackageManifest(repoRoot) {
   return { status: 'CREATED', path: 'package.json' };
 }
 
+export function npmEnvironmentForProjectInstall() {
+  const environment = { ...process.env };
+  // npm exec/npx can export the directory that resolved its temporary package
+  // as npm_config_local_prefix. A nested npm install would then write there
+  // instead of to the project passed to `setup`.
+  delete environment.npm_config_local_prefix;
+  delete environment.npm_config_package;
+  delete environment.npm_config_call;
+  delete environment.npm_command;
+  delete environment.npm_lifecycle_event;
+  delete environment.npm_lifecycle_script;
+  return environment;
+}
+
 function ensureLocalPackage(repoRoot, options) {
   const manifest = ensureProjectPackageManifest(repoRoot);
   if (options.install === false) return { status: 'SKIPPED', reason: '--no-install', manifest };
@@ -66,6 +80,7 @@ function ensureLocalPackage(repoRoot, options) {
       cwd: repoRoot,
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe'],
+      env: npmEnvironmentForProjectInstall(),
     });
   } catch (error) {
     invariant(false, `Cannot install ${spec} in this project: ${error.stderr || error.message}`, {

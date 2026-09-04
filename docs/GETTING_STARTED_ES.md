@@ -19,7 +19,7 @@ la CLI; así npm no puede resolver la dependencia en un directorio padre.
 Desde la raíz del proyecto ejecuta un solo comando:
 
 ```bash
-npx @jossuealcala/ahp-plus@1.4.0 setup .
+npx @jossuealcala/ahp-plus@1.4.1 setup .
 ```
 
 El comando instala la versión exacta como dependencia de desarrollo, inicializa
@@ -30,7 +30,7 @@ identidades de dispositivo fuera de Git y ejecuta `doctor` más
 Si solo vas a usar un IDE, evita archivos de integración innecesarios:
 
 ```bash
-npx @jossuealcala/ahp-plus@1.4.0 setup . --platforms codex
+npx @jossuealcala/ahp-plus@1.4.1 setup . --platforms codex
 ```
 
 La primera salida debe indicar `status: AHP_READY` y ambos checks en `PASS`.

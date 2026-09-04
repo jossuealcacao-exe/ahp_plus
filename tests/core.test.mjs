@@ -22,11 +22,40 @@ import {
   sendSecureNetworkEnvelope,
 } from '../src/secure-network.mjs';
 import { createSecureHub } from '../src/hub.mjs';
+import { npmEnvironmentForProjectInstall } from '../src/setup.mjs';
 
 test('CLI reports the package version', () => {
   for (const argv of [['version'], ['--version']]) {
     const result = runAhp(process.cwd(), argv);
-    assert.equal(result.stdout.trim(), '1.4.0');
+    assert.equal(result.stdout.trim(), '1.4.1');
+  }
+});
+
+test('setup removes npm exec context before installing into a project', () => {
+  const inherited = {
+    npm_config_local_prefix: process.env.npm_config_local_prefix,
+    npm_config_package: process.env.npm_config_package,
+    npm_config_call: process.env.npm_config_call,
+    npm_command: process.env.npm_command,
+    npm_lifecycle_event: process.env.npm_lifecycle_event,
+    npm_lifecycle_script: process.env.npm_lifecycle_script,
+  };
+  Object.assign(process.env, {
+    npm_config_local_prefix: '/temporary/npx-prefix',
+    npm_config_package: '@jossuealcala/ahp-plus@1.4.1',
+    npm_config_call: 'ahp setup .',
+    npm_command: 'exec',
+    npm_lifecycle_event: 'npx',
+    npm_lifecycle_script: 'ahp setup .',
+  });
+  try {
+    const environment = npmEnvironmentForProjectInstall();
+    for (const key of Object.keys(inherited)) assert.equal(environment[key], undefined);
+  } finally {
+    for (const [key, value] of Object.entries(inherited)) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
   }
 });
 
