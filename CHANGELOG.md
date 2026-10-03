@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## 1.4.2 — 2026-10-02
+
+- Stop the secret scan from flagging ordinary file names. A token such as
+  `sk-…`, `rk-…`, `ghp_…` or `AKIA…` now has to start at a word boundary, so
+  `work-detail-desktop-scrolled.png` no longer reads as an `rk-` key and no
+  longer blocks `ahp project verify`. Real-looking keys are still flagged.
+
 ## 1.4.1 — 2026-09-04
 
 - Ensure `npx @jossuealcala/ahp-plus setup .` clears npm-exec temporary

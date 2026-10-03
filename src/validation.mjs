@@ -20,10 +20,12 @@ import { readJson, relativeUnix, walkFiles, walkJson } from './fs-utils.mjs';
 import { gitCommitRelation, gitState } from './git.mjs';
 import { resolveRepository, statePaths } from './root.mjs';
 
-const SECRET_PATTERNS = [
-  /AKIA[0-9A-Z]{16}/,
-  /(?:sk|rk)-[A-Za-z0-9_-]{20,}/,
-  /ghp_[A-Za-z0-9]{30,}/,
+// Each token must start at a boundary: `work-detail-desktop-scrolled.png` contains
+// «rk-detail-desktop-scrolled» but is a file name, not a key.
+export const SECRET_PATTERNS = [
+  /(?<![A-Za-z0-9])AKIA[0-9A-Z]{16}/,
+  /(?<![A-Za-z0-9_-])(?:sk|rk)-[A-Za-z0-9_-]{20,}/,
+  /(?<![A-Za-z0-9_])ghp_[A-Za-z0-9]{30,}/,
   /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/,
   /(?:password|passwd|api[_-]?key|secret)\s*[:=]\s*["'][^"']{8,}["']/i,
 ];
@@ -274,6 +276,11 @@ function validateLock(lock, file, errors, warnings) {
   validateSchemaVersion(lock.schema_version, file, errors);
   if (!validTimestamp(lock.created_at) || !validTimestamp(lock.expires_at)) errors.push(`${file}: invalid timestamp`);
   if (validTimestamp(lock.expires_at) && Date.parse(lock.expires_at) <= Date.now()) warnings.push(`${file}: expired lock`);
+}
+
+/** True when the text looks like it carries a credential. */
+export function containsSecret(text) {
+  return SECRET_PATTERNS.some((pattern) => pattern.test(text));
 }
 
 function scanSecrets(stateRoot, errors) {

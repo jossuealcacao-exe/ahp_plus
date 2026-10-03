@@ -23,11 +23,12 @@ import {
 } from '../src/secure-network.mjs';
 import { createSecureHub } from '../src/hub.mjs';
 import { npmEnvironmentForProjectInstall } from '../src/setup.mjs';
+import { containsSecret } from '../src/validation.mjs';
 
 test('CLI reports the package version', () => {
   for (const argv of [['version'], ['--version']]) {
     const result = runAhp(process.cwd(), argv);
-    assert.equal(result.stdout.trim(), '1.4.1');
+    assert.equal(result.stdout.trim(), '1.4.2');
   }
 });
 
@@ -42,7 +43,7 @@ test('setup removes npm exec context before installing into a project', () => {
   };
   Object.assign(process.env, {
     npm_config_local_prefix: '/temporary/npx-prefix',
-    npm_config_package: '@jossuealcala/ahp-plus@1.4.1',
+    npm_config_package: '@jossuealcala/ahp-plus@1.4.2',
     npm_config_call: 'ahp setup .',
     npm_command: 'exec',
     npm_lifecycle_event: 'npx',
@@ -1003,4 +1004,17 @@ test('a shallow clone reports unavailable ancestry instead of stale state', (con
   assert.ok(verification.warnings.some((warning) => warning.includes('is unavailable in this Git history')));
   const strict = runAhp(shallow, ['verify', '--strict'], { expect: 2 });
   assert.match(strict.stdout, /fetch sufficient history to verify ancestry/);
+});
+
+test('secret scan flags real-looking keys but not file names that contain «rk-»', () => {
+  // A false positive that blocked strict verification: screenshots named work-detail-*.
+  assert.equal(containsSecret('"path": "audit/after/work-detail-desktop-scrolled.png"'), false);
+  assert.equal(containsSecret('"path": "audit/before/network-detail-mobile-scrolled.png"'), false);
+  assert.equal(containsSecret('task-description-without-any-key-material'), false);
+  assert.equal(containsSecret('OPENAI_API_KEY=sk-proj-abcdefghijklmnopqrstuvwxyz012345'), true);
+  assert.equal(containsSecret('"token": "rk-live-0123456789abcdefghijkl"'), true);
+  assert.equal(containsSecret('key AKIAABCDEFGHIJKLMNOP here'), true);
+  assert.equal(containsSecret('ghp_0123456789abcdefghijklmnopqrstuvwx'), true);
+  assert.equal(containsSecret('-----BEGIN OPENSSH PRIVATE KEY-----'), true);
+  assert.equal(containsSecret('password = "correct-horse-battery"'), true);
 });
