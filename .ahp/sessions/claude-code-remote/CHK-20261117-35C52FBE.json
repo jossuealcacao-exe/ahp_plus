@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.4.0",
+  "id": "CHK-20261117-35C52FBE",
+  "kind": "checkpoint",
+  "session_id": "claude-code-remote",
+  "project_id": "ahp-plus",
+  "summary": "Confirmed 1.4.2 is published as npm latest and v1.4.2 tags HEAD; stabilized the 1.4.0 specification, specified conversation rooms (section 9.5) with a conformance item, merged the duplicate changelog heading, and cleared the stale release blocker. Protocol 1.4.0 and CLI 1.4.2 unchanged; npm test 36/36, validate and conformance pass.",
+  "objective": "Deliver AHP+ 1.4 simple setup, bounded live Codex-Claude consultation, and device-authenticated encrypted relay",
+  "next_action": "Commit the 1.4.0 specification maintenance on claude/jolly-darwin-udrw0y, then merge into main with owner authority.",
+  "files": [
+    "SPECIFICATION.md",
+    "docs/CONFORMANCE.md",
+    "CHANGELOG.md",
+    ".ahp/state/project.json",
+    ".ahp/INDEX.md"
+  ],
+  "validations": [
+    "npm test: 36 pass|npm run validate: pass|npm run conformance: pass"
+  ],
+  "blockers": [],
+  "actor": {
+    "name": "claude",
+    "platform": "claude",
+    "model": "unknown"
+  },
+  "git": {
+    "branch": "claude/jolly-darwin-udrw0y",
+    "commit": "449013006118b91bfc4886cecf4adc0645067dbf",
+    "tree": "874b1be8c882b250fdd366aa0da419de73f6db32",
+    "working_tree": "DIRTY",
+    "changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      },
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "SPECIFICATION.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/CONFORMANCE.md"
+      }
+    ],
+    "working_tree_digest": "6f1c71934612165bd63322c779c1cd2d1ad3d25f1b7d60d3ef106f35f79fa326",
+    "project_working_tree": "DIRTY",
+    "project_changed_files": [
+      {
+        "code": " M",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "code": " M",
+        "path": "SPECIFICATION.md"
+      },
+      {
+        "code": " M",
+        "path": "docs/CONFORMANCE.md"
+      }
+    ],
+    "project_working_tree_digest": "4b196f35c46450f325cbd624b183987a145cb192bd873537e0cd3ed81c5f0ece",
+    "ahp_state_working_tree": "DIRTY",
+    "ahp_state_changed_files": [
+      {
+        "code": " M",
+        "path": ".ahp/state/project.json"
+      }
+    ],
+    "upstream": null,
+    "ahead": null,
+    "behind": null
+  },
+  "created_at": "2026-11-17T18:11:37.835Z",
+  "integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "ahp-canonical-json-v1",
+    "digest": "045f6b8f9f857813f54b8a37656a714ac5c8c8244b0d7baab0b4dbb191125851"
+  }
+}

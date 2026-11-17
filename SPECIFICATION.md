@@ -1,7 +1,10 @@
 # AHP+ Protocol Specification 1.4
 
-Status: development specification for AHP+ 1.4.0. Implementations MUST retain
-read compatibility with sealed 1.1.0, 1.2.0, and 1.3.0 documents.
+Status: stable specification for AHP+ protocol 1.4.0, implemented by the 1.4.x
+reference CLI. Patch releases of the CLI MUST NOT change protocol semantics or
+schema versions; clarifications to this document MUST describe behavior the
+1.4.0 schemas already accept. Implementations MUST retain read compatibility
+with sealed 1.1.0, 1.2.0, and 1.3.0 documents.
 
 ## 1. Scope
 
@@ -213,6 +216,36 @@ MUST be returned to the originating human-facing chat and MUST NOT be treated as
 execution evidence. The exact target model MUST remain unknown unless exposed
 and verified by the host.
 
+### 9.5 Shared conversation rooms
+
+A conversation room is a durable, multi-turn project discussion recorded as
+Continuity Events. It is not an autonomous agent loop, a push service, or a
+channel into another IDE's native chat.
+
+1. A room MUST be opened with a `CONVERSATION_OPENED` event whose `session_id`
+   and `correlation_id` both equal the room ID. The reference room ID prefix is
+   `conv-`. The opening event MUST have no causal parent, MUST list at least two
+   distinct participants in `to`, and the opener MUST be one of them.
+2. Room messages MUST be `MESSAGE` events in the room session. A sender MUST be
+   a participant, and every recipient MUST be another participant. Each message
+   MUST store the parent event ID and fingerprint of its causal predecessor;
+   by default the reference implementation uses the preceding room event.
+3. Opening a room and posting a message MUST declare `authority` as
+   `NOT_GRANTED`. Room content MUST NOT be treated as approval for mutation,
+   publication, or external actions, nor as execution evidence.
+4. An inbox for a participant MUST return only messages addressed to that
+   participant and not sent by it. A wait operation MUST be an explicit,
+   bounded long poll; the reference bound is 300 seconds.
+5. Local capture of a room message is `LOCAL_CAPTURED`, not delivery.
+   Cross-device delivery requires a relay or secure envelope and its
+   receiver-created receipt.
+6. `CONVERSATION_CLOSED` is reserved in the 1.4.0 event schema. The reference
+   1.4.x CLI does not emit it; a consumer MUST accept a valid sealed event of
+   this type and MUST NOT infer that later room messages are invalid unless its
+   own profile defines closure semantics.
+7. Rooms require a 1.4.0 manifest. An older project MUST be upgraded through
+   the plan-first migration in section 17 before opening a room.
+
 ## 10. Handoff
 
 A handoff MUST include:
@@ -348,6 +381,8 @@ Core conformance requires:
   receipt verification through both file and HTTP carriers.
 - A one-hop read-only live consultation with causally linked request/response
   fingerprints.
+- Conversation rooms with participant-bounded routing, causal message
+  fingerprints, per-participant inboxes, and bounded explicit waits.
 - Receiver-side reconciliation checks.
 - Secret detection and project isolation.
 - No Git network or publication side effects.

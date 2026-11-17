@@ -3,12 +3,10 @@
   "project_id": "ahp-plus",
   "phase": "VERIFIED",
   "objective": "Deliver AHP+ 1.4 simple setup, bounded live Codex-Claude consultation, and device-authenticated encrypted relay",
-  "next_action": "Validate the 1.4.2 release candidate across CI, then publish to npm and GitHub and verify a fresh public consumer.",
+  "next_action": "Commit the 1.4.0 specification maintenance on claude/jolly-darwin-udrw0y, then merge into main with owner authority; no protocol or CLI version change is planned.",
   "confidence": "VERIFIED",
-  "blockers": [
-    "Release CI matrix pending"
-  ],
-  "base_commit": "59c6c84c58b92ef156d1dceaf746ff787d60df9c",
+  "blockers": [],
+  "base_commit": "988a89acd64e28acb4ccf50009559f6dce6decce",
   "created_at": "2026-08-12T22:55:21.478Z",
-  "updated_at": "2026-10-03T07:42:36.870Z"
+  "updated_at": "2026-11-17T18:12:17.221Z"
 }
