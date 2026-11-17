@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+Documentation and project-state maintenance only. Protocol 1.4.0, the schemas,
+and the CLI version are unchanged.
+
+- Mark `SPECIFICATION.md` as the stable 1.4.0 specification and state that CLI
+  patch releases must not change protocol semantics or schema versions.
+- Specify shared conversation rooms normatively (section 9.5), including the
+  reserved `CONVERSATION_CLOSED` event type, and add the matching conformance
+  requirement.
+- Merge the duplicated 1.4.0 changelog heading.
+
 ## 1.4.2 — 2026-10-02
 
 - Stop the secret scan from flagging ordinary file names. A token such as
@@ -22,9 +32,6 @@
   pinned in the project rather than resolved from a parent directory.
 - Align the first-installation guides with the 1.4 one-command setup and show
   the single-IDE `--platforms` option.
-
-## 1.4.0 — 2026-09-03
-
 - Add `conversation` rooms for durable multi-turn project discussion across
   MCP-enabled IDE chats: open rooms, causal messages, per-participant inboxes,
   and explicit long polling. The feature deliberately does not inject text into

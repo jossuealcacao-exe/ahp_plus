@@ -33,6 +33,9 @@ fixtures and demonstrates the following behaviors:
 23. Requires HTTPS outside loopback and rejects unsafe token files.
 24. Limits live cross-agent consultation to one read-only response with causal
     request/response fingerprints.
+25. Opens conversation rooms only on 1.4.0 manifests, restricts senders and
+    recipients to room participants, preserves causal message fingerprints,
+    filters inboxes per participant, and bounds explicit waits.
 
 Reference checks:
 
