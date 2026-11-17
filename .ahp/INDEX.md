@@ -5,11 +5,11 @@
 - Objective: Deliver AHP+ 1.4 simple setup, bounded live Codex-Claude consultation, and device-authenticated encrypted relay
 - Confidence: VERIFIED
 - Git branch: claude/jolly-darwin-udrw0y
-- Git commit: 449013006118b91bfc4886cecf4adc0645067dbf
+- Git commit: 988a89acd64e28acb4ccf50009559f6dce6decce
 - Working tree: DIRTY
-- Portability: LOCAL_ONLY — Project working-tree changes are not transported by Git.
-- State revision: 330ec2437e0087b2fa797ec462eca9899a68a70966c931da735e8922f1ceb333
-- Next action: Commit the 1.4.0 specification maintenance on claude/jolly-darwin-udrw0y, then merge into main with owner authority.
+- Portability: PUSH_REQUIRED — AHP+ state has uncommitted changes.
+- State revision: 0cacfdd826b76b2099ebb7e134f85229ed143f8582b8602757c7adc753b71245
+- Next action: Commit the 1.4.0 specification maintenance on claude/jolly-darwin-udrw0y, then merge into main with owner authority; no protocol or CLI version change is planned.
 
 ## Blockers
 
